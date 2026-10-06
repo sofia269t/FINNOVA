@@ -13,7 +13,7 @@ a{ /* Estilos para los enlaces */
     Estilos para el encabezado
 */
 header{
-    background-color: #5afdc7;
+    background-color: #57fdc6;
     margin: 0px;
     height: 2%;
     display: flex;
@@ -65,4 +65,20 @@ header{
     width: 300px;
     height: auto;
     margin-top: 20px;
+}
+
+.nav-links:hover{
+    color: #fff;
+    background-color: #57fdc6;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+footer{
+    background-color: #57fdc6;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
