@@ -1,0 +1,588 @@
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7fb;
+    color: #263445;
+    min-height: 100vh;
+}
+
+
+
+
+/* =========================
+   HEADER
+========================= */
+
+
+header {
+    width: 100%;
+    min-height: 85px;
+
+
+    background-color: #ffffff;
+
+
+    display: flex;
+    align-items: center;
+
+
+    padding: 12px 5%;
+    gap: 15px;
+
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+/* Logo */
+
+
+.logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+
+
+
+/* Nombre Finnova */
+
+
+.logo-nombre {
+    width: 170px;
+    height: auto;
+    object-fit: contain;
+}
+
+
+
+
+/* Título */
+
+
+header h1 {
+    color: #0b3d91;
+    font-size: 28px;
+    margin-left: 20px;
+}
+
+
+
+
+/* =========================
+   USUARIO
+========================= */
+
+
+.user-icon {
+    margin-left: auto;
+
+
+    display: flex;
+    align-items: center;
+
+
+    gap: 15px;
+}
+
+
+.user-icon a {
+    text-decoration: none;
+
+
+    color: #1769aa;
+
+
+    font-size: 16px;
+    font-weight: bold;
+
+
+    transition: 0.3s;
+}
+
+
+.user-icon a:hover {
+    color: #0b3d91;
+}
+
+
+.user-icon img {
+    width: 42px;
+    height: 42px;
+
+
+    object-fit: contain;
+}
+
+
+
+
+/* =========================
+   CONTENIDO PRINCIPAL
+========================= */
+
+
+main {
+    width: 100%;
+}
+
+
+
+
+/* =========================
+   SECCIÓN INICIAR SESIÓN
+========================= */
+
+
+.iniciar.sesion {
+    min-height: calc(100vh - 160px);
+
+
+    display: flex;
+    flex-direction: column;
+
+
+    justify-content: center;
+    align-items: center;
+
+
+    padding: 60px 20px;
+
+
+    background: linear-gradient(
+        135deg,
+        #e3f2fd,
+        #ffffff
+    );
+}
+
+
+
+
+/* =========================
+   FORMULARIO
+========================= */
+
+
+.iniciar.sesion form {
+    width: 100%;
+    max-width: 420px;
+
+
+    background-color: #ffffff;
+
+
+    padding: 40px;
+
+
+    border-radius: 18px;
+
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+/* =========================
+   LABELS
+========================= */
+
+
+.iniciar.sesion label {
+    color: #0b3d91;
+
+
+    font-size: 16px;
+    font-weight: bold;
+
+
+    margin-bottom: 8px;
+}
+
+
+
+
+/* =========================
+   INPUTS
+========================= */
+
+
+.iniciar.sesion input {
+    width: 100%;
+
+
+    padding: 14px 15px;
+
+
+    margin-bottom: 22px;
+
+
+    border: 1px solid #ccd6e0;
+
+
+    border-radius: 8px;
+
+
+    background-color: #f9fbfd;
+
+
+    color: #263445;
+
+
+    font-size: 15px;
+
+
+    outline: none;
+
+
+    transition: all 0.3s ease;
+}
+
+
+
+
+/* Input seleccionado */
+
+
+.iniciar.sesion input:focus {
+    border-color: #1769aa;
+
+
+    background-color: #ffffff;
+
+
+    box-shadow:
+        0 0 0 3px rgba(23, 105, 170, 0.12);
+}
+
+
+
+
+/* Placeholder */
+
+
+.iniciar.sesion input::placeholder {
+    color: #8a99a8;
+}
+
+
+
+
+/* =========================
+   BOTÓN
+========================= */
+
+
+.iniciar.sesion button {
+    width: 100%;
+
+
+    padding: 14px;
+
+
+    border: none;
+
+
+    border-radius: 25px;
+
+
+    background-color: #1769aa;
+
+
+    color: #ffffff;
+
+
+    font-size: 16px;
+
+
+    font-weight: bold;
+
+
+    cursor: pointer;
+
+
+    transition: all 0.3s ease;
+}
+
+
+
+
+/* Hover botón */
+
+
+.iniciar.sesion button:hover {
+    background-color: #0b3d91;
+
+
+    transform: translateY(-2px);
+
+
+    box-shadow:
+        0 6px 15px rgba(11, 61, 145, 0.25);
+}
+
+
+
+
+/* =========================
+   TEXTO DE REGISTRO
+========================= */
+
+
+.iniciar.sesion p {
+    margin-top: 25px;
+
+
+    color: #52657a;
+
+
+    font-size: 15px;
+
+
+    text-align: center;
+}
+
+
+.iniciar.sesion p a {
+    color: #1769aa;
+
+
+    text-decoration: none;
+
+
+    font-weight: bold;
+
+
+    transition: 0.3s;
+}
+
+
+.iniciar.sesion p a:hover {
+    color: #0b3d91;
+
+
+    text-decoration: underline;
+}
+
+
+
+
+/* =========================
+   FOOTER
+========================= */
+
+
+footer {
+    width: 100%;
+
+
+    background-color: #0b3d91;
+
+
+    color: #ffffff;
+
+
+    text-align: center;
+
+
+    padding: 22px 15px;
+
+
+    font-size: 14px;
+}
+
+
+footer p {
+    margin: 0;
+}
+
+
+
+
+/* =========================
+   TABLETS
+========================= */
+
+
+@media (max-width: 768px) {
+
+
+    header {
+        padding: 12px 3%;
+    }
+
+
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+
+    .logo-nombre {
+        width: 135px;
+    }
+
+
+    header h1 {
+        font-size: 22px;
+        margin-left: 10px;
+    }
+
+
+    .user-icon {
+        gap: 10px;
+    }
+
+
+    .user-icon a {
+        font-size: 14px;
+    }
+
+
+    .user-icon img {
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .iniciar.sesion {
+        padding: 40px 20px;
+    }
+
+
+    .iniciar.sesion form {
+        max-width: 380px;
+        padding: 32px;
+    }
+}
+
+
+
+
+/* =========================
+   CELULARES
+========================= */
+
+
+@media (max-width: 480px) {
+
+
+    header {
+        min-height: 70px;
+
+
+        padding: 10px 12px;
+
+
+        gap: 7px;
+    }
+
+
+    .logo {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .logo-nombre {
+        width: 100px;
+    }
+
+
+    header h1 {
+        font-size: 17px;
+        margin-left: 3px;
+    }
+
+
+    .user-icon {
+        gap: 7px;
+    }
+
+
+    .user-icon a {
+        font-size: 11px;
+    }
+
+
+    .user-icon img {
+        width: 28px;
+        height: 28px;
+    }
+
+
+    .iniciar.sesion {
+        min-height: calc(100vh - 135px);
+
+
+        padding: 30px 15px;
+    }
+
+
+    .iniciar.sesion form {
+        width: 100%;
+
+
+        padding: 28px 20px;
+
+
+        border-radius: 15px;
+    }
+
+
+    .iniciar.sesion label {
+        font-size: 14px;
+    }
+
+
+    .iniciar.sesion input {
+        padding: 12px;
+
+
+        font-size: 14px;
+    }
+
+
+    .iniciar.sesion button {
+        padding: 13px;
+
+
+        font-size: 15px;
+    }
+
+
+    .iniciar.sesion p {
+        font-size: 13px;
+    }
+
+
+    footer {
+        font-size: 12px;
+
+
+        padding: 18px 10px;
+    }
+}
+
+
+

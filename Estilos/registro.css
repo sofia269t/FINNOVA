@@ -1,0 +1,419 @@
+/* ESTILOS GENERALES */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f8fc;
+    color: #333;
+}
+
+
+
+
+/* HEADER */
+
+
+header {
+    height: 85px;
+    background-color: white;
+
+
+    display: flex;
+    align-items: center;
+
+
+    padding: 10px 40px;
+
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.logo {
+    width: 55px;
+    height: 55px;
+}
+
+
+.logo-nombre {
+    width: 170px;
+    margin-left: 10px;
+}
+
+
+header h1 {
+    color: #1261a0;
+    font-size: 28px;
+    margin-left: 30px;
+}
+
+
+
+
+/* USUARIO */
+
+
+.user-icon {
+    margin-left: auto;
+
+
+    display: flex;
+    align-items: center;
+
+
+    gap: 15px;
+}
+
+
+.user-icon a {
+    color: #1261a0;
+
+
+    text-decoration: none;
+
+
+    font-weight: bold;
+}
+
+
+.user-icon a:hover {
+    color: #083b66;
+}
+
+
+.user-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+/* CONTENEDOR REGISTRO */
+
+
+.Registro {
+    min-height: calc(100vh - 145px);
+
+
+    display: flex;
+    flex-direction: column;
+
+
+    justify-content: center;
+    align-items: center;
+
+
+    padding: 40px 20px;
+
+
+    background: linear-gradient(
+        to right,
+        #eaf5ff,
+        #ffffff
+    );
+}
+
+
+
+
+/* FORMULARIO */
+
+
+.Registro form {
+    width: 430px;
+    max-width: 100%;
+
+
+    background-color: white;
+
+
+    padding: 35px;
+
+
+    border-radius: 12px;
+
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+/* LABEL */
+
+
+.Registro label {
+    color: #1261a0;
+
+
+    font-size: 15px;
+
+
+    font-weight: bold;
+
+
+    margin-bottom: 6px;
+}
+
+
+
+
+/* INPUT */
+
+
+.Registro input {
+    width: 100%;
+
+
+    padding: 12px;
+
+
+    margin-bottom: 18px;
+
+
+    border: 1px solid #ccc;
+
+
+    border-radius: 6px;
+
+
+    font-size: 15px;
+
+
+    outline: none;
+}
+
+
+.Registro input:focus {
+    border-color: #1261a0;
+
+
+    box-shadow: 0 0 4px rgba(18, 97, 160, 0.3);
+}
+
+
+
+
+/* BOTÓN */
+
+
+.Registro button {
+    width: 100%;
+
+
+    padding: 13px;
+
+
+    background-color: #1261a0;
+
+
+    color: white;
+
+
+    border: none;
+
+
+    border-radius: 25px;
+
+
+    font-size: 16px;
+
+
+    font-weight: bold;
+
+
+    cursor: pointer;
+
+
+    transition: 0.3s;
+}
+
+
+.Registro button:hover {
+    background-color: #083b66;
+}
+
+
+
+
+/* TEXTO INFERIOR */
+
+
+.Registro p {
+    margin-top: 20px;
+
+
+    text-align: center;
+
+
+    font-size: 14px;
+
+
+    color: #555;
+}
+
+
+.Registro p a {
+    color: #1261a0;
+
+
+    text-decoration: none;
+
+
+    font-weight: bold;
+}
+
+
+.Registro p a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* FOOTER */
+
+
+footer {
+    background-color: #083b66;
+
+
+    color: white;
+
+
+    text-align: center;
+
+
+    padding: 20px;
+
+
+    font-size: 14px;
+}
+
+
+
+
+/* TABLET */
+
+
+@media (max-width: 768px) {
+
+
+    header {
+        padding: 10px 20px;
+    }
+
+
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+
+    .logo-nombre {
+        width: 130px;
+    }
+
+
+    header h1 {
+        font-size: 22px;
+        margin-left: 15px;
+    }
+
+
+    .Registro form {
+        width: 400px;
+    }
+}
+
+
+
+
+/* CELULAR */
+
+
+@media (max-width: 480px) {
+
+
+    header {
+        height: 70px;
+        padding: 8px 10px;
+    }
+
+
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+
+
+    .logo-nombre {
+        width: 90px;
+        margin-left: 5px;
+    }
+
+
+    header h1 {
+        font-size: 17px;
+        margin-left: 8px;
+    }
+
+
+    .user-icon {
+        gap: 6px;
+    }
+
+
+    .user-icon a {
+        font-size: 11px;
+    }
+
+
+    .user-icon img {
+        width: 28px;
+        height: 28px;
+    }
+
+
+    .Registro {
+        padding: 30px 15px;
+    }
+
+
+    .Registro form {
+        width: 100%;
+        padding: 25px 20px;
+    }
+
+
+    .Registro input {
+        padding: 11px;
+        font-size: 14px;
+    }
+
+
+    .Registro button {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+
+    footer {
+        font-size: 12px;
+    }
+}
+
+
+
