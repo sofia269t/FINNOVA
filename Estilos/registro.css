@@ -49,7 +49,7 @@ header {
 
 
 header h1 {
-    color: #1261a0;
+    color: #12a099;
     font-size: 28px;
     margin-left: 30px;
 }
@@ -73,7 +73,7 @@ header h1 {
 
 
 .user-icon a {
-    color: #1261a0;
+    color: #109276;
 
 
     text-decoration: none;
@@ -155,7 +155,7 @@ header h1 {
 
 
 .Registro label {
-    color: #1261a0;
+    color: #000000;
 
 
     font-size: 15px;
@@ -216,7 +216,7 @@ header h1 {
     padding: 13px;
 
 
-    background-color: #1261a0;
+    background-color: #19a38c;
 
 
     color: white;
@@ -287,7 +287,7 @@ header h1 {
 
 
 footer {
-    background-color: #083b66;
+    background-color: #086659;
 
 
     color: white;
@@ -413,7 +413,7 @@ footer {
     footer {
         font-size: 12px;
     }
-    
+
 }
 
 
