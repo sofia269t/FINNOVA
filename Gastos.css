@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #172033;
+    background: white;
+}
+
+
+/* ENCABEZADO*/
+
+.encabezado {
+    height: 70px;
+
+    border-bottom: 1px solid #333;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 35px;
+    gap: 20px;
+}
+
+.menu {
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.logo {
+    width: 125px;
+    height: 38px;
+
+    border: 1px solid #333;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.encabezado h1 {
+    font-size: 25px;
+    font-weight: normal;
+}
+
+.usuario {
+    margin-left: auto;
+    font-size: 16px;
+}
+
+/*  CONTENIDO*/
+
+.contenido {
+    position: relative;
+
+    min-height: 650px;
+
+    padding: 20px 7%;
+}
+
+
+/* ORGANIZAR */
+
+.organizar {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.organizar span {
+    margin-left: 10px;
+}
+
+
+/* LISTA DE GASTOS */
+
+.lista-gastos {
+    display: flex;
+    flex-direction: column;
+
+    gap: 80px;
+}
+
+
+/*  TARJETAS */
+
+.tarjeta-gasto {
+    width: 370px;
+
+    min-height: 165px;
+
+    border: 1px solid #333;
+
+    padding: 20px 15px;
+
+    position: relative;
+
+    background: white;
+}
+
+
+/*  TÍTULO */
+
+.titulo-gasto {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo-gasto h2 {
+    font-size: 23px;
+    font-weight: normal;
+}
+
+.estrella {
+    font-size: 30px;
+    color: #ffd900;
+}
+
+
+/*  TOTAL */
+
+.total {
+    display: flex;
+    align-items: center;
+
+    gap: 35px;
+
+    margin-top: 25px;
+}
+
+.total span {
+    font-size: 15px;
+}
+
+.total .valor {
+    min-width: 150px;
+    height: 30px;
+
+    border: 1px solid #333;
+
+    padding: 6px 10px;
+
+    font-size: 13px;
+}
+
+
+/*  SERVICIOS */
+
+.servicios-lista {
+    margin-top: 15px;
+
+    border-top: 1px solid #ddd;
+}
+
+.servicio {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px 3px;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.servicio strong {
+    font-weight: normal;
+}
+
+
+/*  ACCIONES*/
+
+.acciones {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 15px;
+}
+
+.acciones button {
+    background: white;
+
+    border: 1px solid #333;
+
+    border-radius: 6px;
+
+    padding: 5px 18px;
+
+    cursor: pointer;
+}
+
+.acciones button:hover {
+    background: #f2f2f2;
+}
+
+.acciones .opciones {
+    border: none;
+
+    font-size: 25px;
+
+    padding: 0;
+}
+
+
+/*  BOTÓN AGREGAR GASTOS */
+
+.btn-agregar {
+    position: absolute;
+
+    top: 65px;
+    left: 58%;
+
+    height: 34px;
+
+    padding: 0 20px;
+
+    background: white;
+
+    border: 1px solid #333;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.btn-agregar span {
+    font-size: 20px;
+
+    margin-right: 12px;
+}
+
+
+@media (max-width: 700px) {
+
+    .usuario {
+        display: none;
+    }
+
+    .contenido {
+        padding: 20px;
+    }
+
+    .tarjeta-gasto {
+        width: 100%;
+        max-width: 370px;
+    }
+
+    .btn-agregar {
+        position: static;
+
+        margin-top: 30px;
+    }
+}
+
