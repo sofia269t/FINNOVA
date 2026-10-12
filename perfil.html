@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="Estilos/pag.principal.css">
+    <link rel="stylesheet" href="Estilos/perfil.css">
 </head>
 <body>
     <header>
@@ -41,6 +41,39 @@
             </ul>
         </div>
 
+        <div class="foto-perfil">
+            <img src="Estilos/img/user-icon.png" alt="Foto de Perfil">
+            <p>Nombre: (nombre del usuario)</p>
+        </div>
+
+        <section class="perfil">
+            <h2>Información del Usuario</h2>
+            
+            <p>Correo: (correo del usuario)</p>
+            <p>Telefono: (telefono del usuario)</p>
+
+            <label for="notificaciones"> Recibir Notificaciones</label>
+            <input type="checkbox" id="notificaciones" name="notificaciones" readonly>
+
+            <label for="fecha_notificaciones"> Cuando Recibir notificaciones</label>
+            <select id="fecha_notificaciones" name="fecha_notificaciones" readonly> 
+                <option value="Sin Notificaciones" selected>Sin Notificaciones</option>
+                <option value="Mesual">Mesual</option>
+                <option value="Quincenal">Quincenal</option>
+                <option value="Semanal">Semanal</option>
+            </select>
+
+            <label for="presupuesto"> ¿Cuando realizara el presupuesto? </label>
+            <input type="date" id="presupuesto" name="presupuesto" readonly> >
+
+            
+            <a href="editar_perfil.html">Editar Perfil</a>
+        </section>
+        
+
     </main>
+    <footer>
+        <p> &copy; 2026 Finnova. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
