@@ -23,6 +23,7 @@
                 <li><a href="perfil.html">Perfil</a></li>
                 <li><a href="index.html">Cerrar Sesión</a></li>
             </ul>
+        </div>
     </header>
     
     <main>
@@ -41,33 +42,66 @@
             </ul>
         </div>
 
-        <div class="foto-perfil">
-            <img src="Estilos/img/user-icon.png" alt="Foto de Perfil">
-            <p>Nombre: (nombre del usuario)</p>
-        </div>
+        <section class="perfil-contenido" aria-labelledby="titulo-perfil">
+            <div class="foto-perfil">
+                <img src="Estilos/img/user-icon.png" alt="Foto de perfil">
+                <div>
+                    <p class="etiqueta">Mi cuenta</p>
+                    <h2>Nombre del usuario</h2>
+                    <p class="estado">Cuenta activa</p>
+                </div>
+            </div>
 
-        <section class="perfil">
-            <h2>Información del Usuario</h2>
-            
-            <p>Correo: (correo del usuario)</p>
-            <p>Telefono: (telefono del usuario)</p>
+            <section class="perfil" aria-labelledby="titulo-perfil">
+                <div class="perfil-titulo">
+                    <div>
+                        <p class="etiqueta">Información personal</p>
+                        <h2 id="titulo-perfil">Información del usuario</h2>
+                    </div>
+                    <a class="boton-editar" href="editar_perfil.html">Editar perfil</a>
+                </div>
 
-            <label for="notificaciones"> Recibir Notificaciones</label>
-            <input type="checkbox" id="notificaciones" name="notificaciones" readonly>
+                <div class="datos-usuario">
+                    <div class="dato">
+                        <span>Correo electrónico</span>
+                        <p>(correo del usuario)</p>
+                    </div>
+                    <div class="dato">
+                        <span>Teléfono</span>
+                        <p>(teléfono del usuario)</p>
+                    </div>
+                </div>
 
-            <label for="fecha_notificaciones"> Cuando Recibir notificaciones</label>
-            <select id="fecha_notificaciones" name="fecha_notificaciones" readonly> 
-                <option value="Sin Notificaciones" selected>Sin Notificaciones</option>
-                <option value="Mesual">Mesual</option>
-                <option value="Quincenal">Quincenal</option>
-                <option value="Semanal">Semanal</option>
-            </select>
+                <div class="preferencias">
+                    <div class="preferencias-titulo">
+                        <p class="etiqueta">Preferencias</p>
+                        <h3>Notificaciones y presupuesto</h3>
+                    </div>
 
-            <label for="presupuesto"> ¿Cuando realizara el presupuesto? </label>
-            <input type="date" id="presupuesto" name="presupuesto" readonly> >
+                    <div class="opcion opcion-checkbox">
+                        <div>
+                            <label for="notificaciones">Recibir notificaciones</label>
+                            <small>Te avisaremos sobre tus movimientos y metas.</small>
+                        </div>
+                        <input type="checkbox" id="notificaciones" name="notificaciones" disabled>
+                    </div>
 
-            
-            <a href="editar_perfil.html">Editar Perfil</a>
+                    <div class="opcion">
+                        <label for="fecha_notificaciones">Cuándo recibir notificaciones</label>
+                        <select id="fecha_notificaciones" name="fecha_notificaciones" disabled>
+                            <option value="Sin Notificaciones" selected>Sin notificaciones</option>
+                            <option value="Mensual">Mensual</option>
+                            <option value="Quincenal">Quincenal</option>
+                            <option value="Semanal">Semanal</option>
+                        </select>
+                    </div>
+
+                    <div class="opcion">
+                        <label for="presupuesto">Cuándo realizará el presupuesto</label>
+                        <input type="date" id="presupuesto" name="presupuesto" disabled>
+                    </div>
+                </div>
+            </section>
         </section>
         
 
