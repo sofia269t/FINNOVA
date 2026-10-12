@@ -95,7 +95,7 @@ header {
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
 
   min-width: 160px;
-  padding: 10px;
+  padding: 0px;
 
   display: none;
 }
