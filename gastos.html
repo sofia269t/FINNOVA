@@ -1,162 +1,85 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Gastos</title>
-
-    <link rel="stylesheet" href="css/gastos.css">
+    <link rel="stylesheet" href="estilos/gastos.css">
 </head>
-
 <body>
-
-    <!-- ENCABEZADO -->
-    <header class="encabezado">
-
-        <div class="menu">☰</div>
-
-        <div class="logo">
-            LOGO
-        </div>
-
+    <header>
+        <a href="pag.principal.html">
+            <img class="logo" src="Estilos/img/logo_img.png" alt="Logo">
+        </a>
+        <a href="pag.principal.html">
+            <img class="logo-nombre" src="estilos/img/Logo.png" alt="Finnova Logo">
+        </a>
         <h1>Gastos</h1>
-
-        <div class="usuario">
-            Nombre 👤
+        <div class="user-icon">
+            <a href="index.html">Inicio</a>
+            <a href="perfil.html">
+                <img src="Estilos/img/user-icon.png" alt="Usuario">
+            </a>
         </div>
-
     </header>
 
+    <main>
+        <nav class="menu">
+            <ul>
+                <li><a href="ingresos.html">Ingresos</a></li>
+                <li><a href="gastos.html">Gastos</a></li>
+                <li><a href="ahorros.html">Ahorros</a></li>
+                <li><a href="metas.html">Metas</a></li>
+                <li><a href="presupuesto.html">Presupuesto</a></li>
+                <li><a href="#">Reportes</a></li>
+                <li>
+                    <label for="total-restante">Total restante:</label>
+                    <input type="text" id="total-restante"
+                           value="$0.00" readonly>
+                </li>
+            </ul>
+        </nav>
 
-    <main class="contenido">
+        <section class="contenido">
+            <h2>Registrar gastos</h2>
 
-        <!-- ORGANIZAR -->
-        <div class="organizar">
-            ↕ <span>Organizar</span>
-        </div>
+            <form action="" method="post">
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Seleccione una opción</option>
+                    <option>Agua</option>
+                    <option>Energía eléctrica</option>
+                    <option>Gas</option>
+                    <option>Internet</option>
+                    <option>Telefonía</option>
+                    <option>Arriendo</option>
+                    <option>Alimentación</option>
+                    <option>Transporte</option>
+                    <option>Educación</option>
+                    <option>Salud</option>
+                    <option>Entretenimiento</option>
+                    <option>Otros</option>
+                </select>
 
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion"
+                       name="descripcion" required>
 
-        <div class="lista-gastos">
+                <label for="valor">Valor del gasto:</label>
+                <input type="number" id="valor" name="valor"
+                       min="1" step="0.01" required>
 
-            <!-- SERVICIOS PÚBLICOS-->
-                 
-        
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
 
-            <div class="tarjeta-gasto servicios">
-
-                <div class="titulo-gasto">
-                    <h2>Pago de Servicios</h2>
-
-                    <span class="estrella">☆</span>
-                </div>
-
-
-                <div class="total">
-                    <span>Total Pagado</span>
-
-                    <div class="valor">
-                        $0
-                    </div>
-                </div>
-
-
-                <!-- SERVICIOS PREDETERMINADOS -->
-
-                <div class="servicios-lista">
-
-                    <div class="servicio">
-                        <span>⚡ Energía eléctrica</span>
-                        <strong>$0</strong>
-                    </div>
-
-                    <div class="servicio">
-                        <span>💧 Agua / Acueducto</span>
-                        <strong>$0</strong>
-                    </div>
-
-                    <div class="servicio">
-                        <span>🔥 Gas</span>
-                        <strong>$0</strong>
-                    </div>
-
-                    <div class="servicio">
-                        <span>🌐 Internet</span>
-                        <strong>$0</strong>
-                    </div>
-
-                    <div class="servicio">
-                        <span>📱 Telefonía</span>
-                        <strong>$0</strong>
-                    </div>
-
-                </div>
-
-
-                <div class="acciones">
-
-                    <button>
-                        Ver Servicios
-                    </button>
-
-                    <button class="opciones">
-                        ⋮
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- GASTOS VARIOS-->
-                
-             
-
-            <div class="tarjeta-gasto">
-
-                <div class="titulo-gasto">
-
-                    <h2>Gastos Varios</h2>
-
-                </div>
-
-
-                <div class="total">
-
-                    <span>Total Pagado</span>
-
-                    <div class="valor">
-                        $0
-                    </div>
-
-                </div>
-
-
-                <div class="acciones">
-
-                    <button>
-                        Ver Gastos Varios
-                    </button>
-
-                    <button class="opciones">
-                        ⋮
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- AGREGAR GASTOS -->
-
-        <button class="btn-agregar">
-            <span>＋</span>
-            Agregar gastos
-        </button>
-
+                <button type="submit">Guardar gasto</button>
+            </form>
+        </section>
     </main>
 
+    <footer>
+        <p>&copy; 2026 Finnova. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
