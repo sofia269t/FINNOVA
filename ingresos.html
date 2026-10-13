@@ -1,58 +1,77 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingresos</title>
-
-    <link rel="stylesheet" href="css/ingresos.css">
+    <link rel="stylesheet" href="estilos/ingresos.css">
 </head>
-
 <body>
-
-    <header class="encabezado">
-
-        <div class="menu">☰</div>
-
-        <div class="logo">
-            LOGO
-        </div>
-
+    <header>
+        <a href="pag.principal.html">
+            <img class="logo" src="Estilos/img/logo_img.png" alt="Logo">
+        </a>
+        <a href="pag.principal.html">
+            <img class="logo-nombre" src="estilos/img/Logo.png" alt="Finnova Logo">
+        </a>
         <h1>Ingresos</h1>
-
-        <div class="usuario">
-            Nombre 👤
+        <div class="user-icon">
+            <a href="index.html">Inicio</a>
+            <a href="perfil.html">
+                <img src="Estilos/img/user-icon.png" alt="Usuario">
+            </a>
         </div>
-
     </header>
 
+    <main>
+        <nav class="menu">
+            <ul>
+                <li><a href="ingresos.html">Ingresos</a></li>
+                <li><a href="gastos.html">Gastos</a></li>
+                <li><a href="ahorros.html">Ahorros</a></li>
+                <li><a href="metas.html">Metas</a></li>
+                <li><a href="presupuesto.html">Presupuesto</a></li>
+                <li><a href="#">Reportes</a></li>
+                <li>
+                    <label for="total-restante">Total restante:</label>
+                    <input type="text" id="total-restante"
+                           value="$0.00" readonly>
+                </li>
+            </ul>
+        </nav>
 
-    <main class="contenido">
+        <section class="contenido">
+            <h2>Registrar ingresos</h2>
 
-        <div class="tarjeta-ingreso">
+            <form action="" method="post">
+                <label for="tipo">Tipo de ingreso:</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="">Seleccione una opción</option>
+                    <option>Salario</option>
+                    <option>Ventas</option>
+                    <option>Negocio</option>
+                    <option>Otros</option>
+                </select>
 
-            <div class="titulo">
-                <h2>Salario</h2>
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion"
+                       name="descripcion" required>
 
-                <div class="valor">
-                    $ <input type="number" placeholder="0">
-                </div>
-            </div>
+                <label for="valor">Valor:</label>
+                <input type="number" id="valor" name="valor"
+                       min="1" step="0.01" required>
 
-            <div class="fecha">
-                <strong>Fecha:</strong>
-                <span>00-00-0000</span>
-            </div>
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
 
-        </div>
-
-
-        <button class="btn-agregar">
-            <span>＋</span>
-            Agregar ingresos
-        </button>
-
+                <button type="submit">Guardar ingreso</button>
+            </form>
+        </section>
     </main>
 
+    <footer>
+        <p>&copy; 2026 Finnova. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
