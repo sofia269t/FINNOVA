@@ -3,149 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahorros</title>
-    <!-- <link rel="stylesheet" href="Estilos/pag.principal.css"> -->
+    <title>Ahorros - Finnova</title>
+    <link rel="stylesheet" href="Estilos/ahorros.css">
 </head>
 <body>
-    <header>
-        <a href="pag.principal.html"><img class="logo"src="Estilos/img/logo_img.png" alt="Logo"></a>
-        <a href="pag.principal.html"><img class="logo-nombre"src="Estilos/img/Logo.png" alt="Finnova Logo"></a>
+    <header class="encabezado">
+        <a href="pag.principal.html" aria-label="Ir al inicio">
+            <img class="logo" src="Estilos/img/logo_img.png" alt="Logo de Finnova">
+        </a>
+        <a href="pag.principal.html" aria-label="Ir al inicio">
+            <img class="logo-nombre" src="Estilos/img/Logo.png" alt="Finnova">
+        </a>
         <h1>Ahorros</h1>
-        <div class="user-icon">
-                    <p>Bienvenido, Usuario</p>
-                    <a href="perfil.html">
-                     <img  src="Estilos/img/user-icon.png" alt="User Icon">
-                    </a>
+
+        <div class="usuario">
+            <span>Usuario</span>
+            <a href="perfil.html">
+                <img src="Estilos/img/user-icon.png" alt="Ver perfil">
+            </a>
         </div>
-        <div class="sub-menu">
-            <ul>
-                <li><a href="perfil.html">Perfil</a></li>
-                <li><a href="index.html">Cerrar Sesión</a></li>
-            </ul>
+
+        <nav class="sub-menu" aria-label="Opciones de usuario">
+            <a href="perfil.html">Perfil</a>
+            <a href="index.html">Cerrar sesión</a>
+        </nav>
     </header>
 
     <main>
-        <div class="menu">
-            <ul>
-                <li><a href="ingresos.html">Ingresos</a></li>
-                <li><a href="gastos.html">Gastos</a></li>
-                <li><a href="ahorros.html">Ahorros</a></li>
-                <li><a href="metas.html">Metas</a></li>
-                <li><a href="presupuesto.html">Presupuesto</a></li>
-                <li><a href="#">Reportes</a></li>
-                <li><label for="total-restante"> Total restante:</label>
-                    <input type="text" id="total-restante" name="total-restante" value="$0.00" readonly>
-                
-                </li>
-            </ul>
-        </div>
+        <aside class="menu">
+            <nav aria-label="Navegación principal">
+                <ul>
+                    <li><a href="ingresos.html">Ingresos</a></li>
+                    <li><a href="gastos.html">Gastos</a></li>
+                    <li><a href="ahorros.html" class="activo" aria-current="page">Ahorros</a></li>
+                    <li><a href="metas.html">Metas</a></li>
+                    <li><a href="presupuesto.html">Presupuesto</a></li>
+                    <li><a href="#">Reportes</a></li>
+                </ul>
+            </nav>
+
+            <div class="total">
+                <label for="total-restante">Total restante:</label>
+                <input type="text" id="total-restante" value="$0.00" readonly>
+            </div>
+        </aside>
+
+        <section class="contenido">
+            <div class="resumen">
+                <div>
+                    <p class="etiqueta">Mi ahorro</p>
+                    <h2>Ahorros</h2>
+                    <p class="descripcion">Organiza tu dinero y alcanza tus objetivos.</p>
+                </div>
+
+                <div class="saldo">
+                    <span>Saldo actual</span>
+                    <strong id="saldo">$0.00</strong>
+                </div>
+            </div>
+
+            <form class="formulario" action="formulario_ahorros.html" method="get">
+                <div class="campo">
+                    <label for="cantidad">Valor del ahorro</label>
+                    <input type="number" id="cantidad" name="cantidad"
+                           min="0.01" step="0.01" placeholder="0.00" required>
+                </div>
+                <button type="submit">Ahorrar</button>
+                <a class="boton-secundario" href="formulario_ahorros.html">Retirar</a>
+            </form>
+
+            <section class="historial" aria-labelledby="titulo-historial">
+                <div class="historial-encabezado">
+                    <div>
+                        <p class="etiqueta">Movimientos</p>
+                        <h2 id="titulo-historial">Historial</h2>
+                    </div>
+                    <label class="filtro" for="mostrarHistorial">
+                        <input type="checkbox" id="mostrarHistorial" checked>
+                        Mostrar historial
+                    </label>
+                </div>
+
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Movimiento</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaMovimientos">
+                            <tr>
+                                <td colspan="4" class="sin-movimientos">
+                                    Todavía no tienes movimientos registrados.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <a class="borrar-historial" href="ahorros.html">Borrar historial</a>
+            </section>
+        </section>
     </main>
 
-    <!-- Contenido principal -->
-    <table>
-
-        <tr>
-            <td>
-                    Ahorros
-            </td>
-
-            <td >
-                <fieldset>
-                    <legend>Saldo actual</legend>
-                    
-                        <strong id="saldo">$0.00</strong>
-                 
-                </fieldset>
-            </td>
-        </tr>
-
-        <tr>
-            <td></td>
-
-                <label for="cantidad">Valor:</label>
-
-                <input type="number" id="cantidad" placeholder="Ingresa un valor" min="0.01" required>
-
-                <br><br>
-
-                <button>
-                    <a href="formulario_ahorros.html">
-                    Ahorrar
-                    </a>
-                </button>
-
-                <button>
-                    Retirar
-                </button>
-            </td>
-        </tr>
-
-    </table>
-
-    <br>
-    <hr>
-
-    <!-- Historial -->
-    <table >
-        <tr>
-            <td>
-
-                    Historial
-
-            </td>
-
-            <td >
-                <label>
-                    <input type="checkbox" id="mostrarHistorial" checked                   >
-                    Mostrar Historial
-                </label>
-            </td>
-        </tr>
-    </table>
-
-    <!-- Tabla de movimientos -->
-    <div id="contenedorHistorial">
-        <table >
-            <thead>
-                <tr>
-                    <th>Movimiento</th>
-                    <th>Valor</th>
-                    <th>Fecha</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-
-            <tbody id="listaMovimientos">
-                <tr>
-                    <td>
-                        Todavía no tienes movimientos.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <br>
-
-
-        <button>
-            <a href="#">Borrar historial</a> 
-        </button>
-
-
-    <br><br>
-
-    <hr>
-
-
-        <small>Mi aplicación de ahorros</small>
-
-
-
     <footer>
-        <p> &copy; 2026 Finnova. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Finnova. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
-
-
