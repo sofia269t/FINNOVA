@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorros</title>
+</head>
+
+<body>
+
+    <!-- Simulación de la barra del navegador -->
+    <table width="100%" border="1" cellspacing="0" cellpadding="5">
+        <tr>
+            <td bgcolor="#cccccc">
+                <small>A Web Page</small>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &#8592; &nbsp; &#8594; &nbsp; &#8635;
+                <input type="text" value="https://" size="100" readonly>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Encabezado -->
+    <table width="100%" cellpadding="8">
+        <tr>
+            <td width="40">
+                <button onclick="alert('Bienvenido a tus ahorros')">
+                    ☰
+                </button>
+            </td>
+
+            <td width="100">
+                <a href="#" onclick="location.reload(); return false;">
+                    <strong>Mi Logo</strong>
+                </a>
+            </td>
+
+            <td>
+                <a href="#" onclick="location.reload(); return false">
+                    <font size="4" color="#003366">Ahorros</font>
+                </a>
+            </td>
+
+            <td align="right">
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Nombre"
+                    size="12"
+                    aria-label="Nombre de usuario"
+                >
+                <button onclick="guardarNombre()" title="Guardar nombre">
+                    ☻
+                </button>
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!-- Contenido principal -->
+    <table width="90%" align="center" cellpadding="10">
+
+        <tr>
+            <td width="65%">
+                <font size="6" color="#003366">
+                    Ahorros
+                </font>
+            </td>
+
+            <td align="right">
+                <fieldset>
+                    <legend>Saldo actual</legend>
+                    <font size="6">
+                        <strong id="saldo">$0.00</strong>
+                    </font>
+                </fieldset>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td align="right">
+                <label for="cantidad">Valor:</label>
+
+                <input
+                    type="number"
+                    id="cantidad"
+                    placeholder="Ingresa un valor"
+                    min="0.01"
+                    step="0.01"
+                    required
+                >
+
+                <br><br>
+
+                <button onclick="ahorrar()">
+                    Ahorrar
+                </button>
+
+                <button onclick="retirar()">
+                    Retirar
+                </button>
+            </td>
+        </tr>
+
+    </table>
+
+    <br>
+    <hr width="90%">
+
+    <!-- Historial -->
+    <table width="90%" align="center" cellpadding="8">
+        <tr>
+            <td align="center">
+                <font size="6" color="#003366">
+                    Historial
+                </font>
+            </td>
+
+            <td align="right">
+                <label>
+                    <input
+                        type="checkbox"
+                        id="mostrarHistorial"
+                        checked
+                        onchange="alternarHistorial()"
+                    >
+                    Mostrar Historial
+                </label>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Tabla de movimientos -->
+    <div id="contenedorHistorial">
+        <table width="80%" align="center" cellpadding="8">
+            <thead>
+                <tr>
+                    <th align="left">Movimiento</th>
+                    <th align="left">Valor</th>
+                    <th align="left">Fecha</th>
+                    <th align="left">Acción</th>
+                </tr>
+            </thead>
+
+            <tbody id="listaMovimientos">
+                <tr>
+                    <td colspan="4" align="center">
+                        Todavía no tienes movimientos.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <center>
+        <button onclick="borrarHistorial()">
+            Borrar historial
+        </button>
+    </center>
+
+    <br><br>
+
+    <hr>
+
+    <center>
+        <small>Mi aplicación de ahorros</small>
+    </center>
+
+    <script>
+        // Variables principales
+        let saldo = 0;
+        let movimientos = [];
+        let nombreUsuario = "";
+
+        // Formato del dinero
+        function formatoDinero(valor) {
+            return "$" + valor.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        // Obtener la fecha actual
+        function obtenerFecha() {
+            return new Date().toLocaleDateString("es-CO");
+        }
+
+        // Guardar los datos en el navegador
+        function guardarDatos() {
+            localStorage.setItem("misAhorrosSaldo", saldo);
+            localStorage.setItem(
+                "misAhorrosMovimientos",
+                JSON.stringify(movimientos)
+            );
+            localStorage.setItem("misAhorrosNombre", nombreUsuario);
+        }
+
+        // Cargar los datos guardados
+        function cargarDatos() {
+            const saldoGuardado = localStorage.getItem("misAhorrosSaldo");
+            const movimientosGuardados =
+                localStorage.getItem("misAhorrosMovimientos");
+            const nombreGuardado = localStorage.getItem("misAhorrosNombre");
+
+            saldo = saldoGuardado !== null
+                ? Number(saldoGuardado)
+                : 0;
+
+            movimientos = movimientosGuardados
+                ? JSON.parse(movimientosGuardados)
+                : [];
+
+            nombreUsuario = nombreGuardado || "";
+
+            document.getElementById("nombre").value = nombreUsuario;
+
+            actualizarPantalla();
+        }
+
+        // Actualizar el saldo y el historial
+        function actualizarPantalla() {
+            document.getElementById("saldo").textContent =
+                formatoDinero(saldo);
+
+            const lista = document.getElementById("listaMovimientos");
+            lista.innerHTML = "";
+
+            if (movimientos.length === 0) {
+                const fila = document.createElement("tr");
+                const celda = document.createElement("td");
+
+                celda.colSpan = 4;
+                celda.textContent = "Todavía no tienes movimientos.";
+                celda.align = "center";
+
+                fila.appendChild(celda);
+                lista.appendChild(fila);
+            }
+
+            // Mostrar primero el movimiento más reciente
+            movimientos.forEach(function(movimiento) {
+                const fila = document.createElement("tr");
+
+                const celdaTipo = document.createElement("td");
+                const celdaValor = document.createElement("td");
+                const celdaFecha = document.createElement("td");
+                const celdaAccion = document.createElement("td");
+
+                celdaTipo.textContent = movimiento.tipo;
+
+                if (movimiento.tipo === "Ingreso al ahorro") {
+                    celdaTipo.style.color = "green";
+                    celdaValor.textContent =
+                        "+" + formatoDinero(movimiento.valor);
+                } else {
+                    celdaTipo.style.color = "red";
+                    celdaValor.textContent =
+                        "-" + formatoDinero(movimiento.valor);
+                }
+
+                celdaFecha.textContent = movimiento.fecha;
+
+                const botonEliminar = document.createElement("button");
+                botonEliminar.textContent = "Eliminar";
+                botonEliminar.onclick = function() {
+                    eliminarMovimiento(movimiento.id);
+                };
+
+                celdaAccion.appendChild(botonEliminar);
+
+                fila.appendChild(celdaTipo);
+                fila.appendChild(celdaValor);
+                fila.appendChild(celdaFecha);
+                fila.appendChild(celdaAccion);
+
+                lista.appendChild(fila);
+            });
+
+            guardarDatos();
+        }
+
+        // Agregar dinero a los ahorros
+        function ahorrar() {
+            const campo = document.getElementById("cantidad");
+            const cantidad = Number(campo.value);
+
+            if (!Number.isFinite(cantidad) || cantidad <= 0) {
+                alert("Ingresa una cantidad mayor que cero.");
+                campo.focus();
+                return;
+            }
+
+            saldo = Math.round((saldo + cantidad) * 100) / 100;
+
+            movimientos.unshift({
+                id: Date.now() + Math.random(),
+                tipo: "Ingreso al ahorro",
+                valor: cantidad,
+                fecha: obtenerFecha()
+            });
+
+            campo.value = "";
+
+            actualizarPantalla();
+
+            alert("¡Ahorro registrado correctamente!");
+        }
+
+        // Retirar dinero de los ahorros
+        function retirar() {
+            const campo = document.getElementById("cantidad");
+            const cantidad = Number(campo.value);
+
+            if (!Number.isFinite(cantidad) || cantidad <= 0) {
+                alert("Ingresa una cantidad mayor que cero.");
+                campo.focus();
+                return;
+            }
+
+            if (cantidad > saldo) {
+                alert("No tienes suficiente dinero para este retiro.");
+                return;
+            }
+
+            saldo = Math.round((saldo - cantidad) * 100) / 100;
+
+            movimientos.unshift({
+                id: Date.now() + Math.random(),
+                tipo: "Saco del ahorro",
+                valor: cantidad,
+                fecha: obtenerFecha()
+            });
+
+            campo.value = "";
+
+            actualizarPantalla();
+
+            alert("¡Retiro registrado correctamente!");
+        }
+
+        // Guardar el nombre del usuario
+        function guardarNombre() {
+            nombreUsuario = document.getElementById("nombre").value.trim();
+
+            if (nombreUsuario === "") {
+                alert("Escribe tu nombre.");
+                return;
+            }
+
+            guardarDatos();
+
+            alert("Nombre guardado correctamente.");
+        }
+
+        // Mostrar u ocultar el historial
+        function alternarHistorial() {
+            const checkbox =
+                document.getElementById("mostrarHistorial");
+
+            document.getElementById("contenedorHistorial").hidden =
+                !checkbox.checked;
+        }
+
+        // Eliminar un movimiento y recalcular el saldo
+        function eliminarMovimiento(id) {
+            const movimiento = movimientos.find(function(m) {
+                return m.id === id;
+            });
+
+            if (!movimiento) {
+                return;
+            }
+
+            const confirmar = confirm(
+                "¿Quieres eliminar este movimiento? El saldo también cambiará."
+            );
+
+            if (!confirmar) {
+                return;
+            }
+
+            if (movimiento.tipo === "Ingreso al ahorro") {
+                saldo -= movimiento.valor;
+            } else {
+                saldo += movimiento.valor;
+            }
+
+            saldo = Math.round(saldo * 100) / 100;
+
+            movimientos = movimientos.filter(function(m) {
+                return m.id !== id;
+            });
+
+            actualizarPantalla();
+        }
+
+        // Borrar todo el historial
+        function borrarHistorial() {
+            if (movimientos.length === 0) {
+                alert("No hay movimientos para borrar.");
+                return;
+            }
+
+            const confirmar = confirm(
+                "¿Quieres borrar todos los movimientos? " +
+                "El saldo actual se conservará."
+            );
+
+            if (!confirmar) {
+                return;
+            }
+
+            movimientos = [];
+            actualizarPantalla();
+        }
+
+        // Permitir registrar el ahorro presionando Enter
+        document.getElementById("cantidad").addEventListener(
+            "keydown",
+            function(event) {
+                if (event.key === "Enter") {
+                    ahorrar();
+                }
+            }
+        );
+
+        // Iniciar la aplicación
+        cargarDatos();
+    </script>
+
+</body>
+</html>
+
+
