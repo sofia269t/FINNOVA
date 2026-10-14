@@ -1,162 +1,186 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Gastos</title>
-
-    <link rel="stylesheet" href="Estilos/Gastos.css">
+    <title>Gastos - Finnova</title>
+    <link rel="stylesheet" href="Estilos/gastos.css">
 </head>
-
 <body>
 
-    <!-- ENCABEZADO -->
-    <header class="encabezado">
+    <header>
+        <a href="pag.principal.html">
+            <img class="logo" src="Estilos/img/logo_img.png" alt="Logo">
+        </a>
 
-        <div class="menu">☰</div>
-
-        <div class="logo">
-            LOGO
-        </div>
+        <a href="pag.principal.html">
+            <img class="logo-nombre" src="Estilos/img/Logo.png" alt="Finnova Logo">
+        </a>
 
         <h1>Gastos</h1>
 
-        <div class="usuario">
-            Nombre 👤
+        <div class="user-icon">
+            <p>Usuario</p>
+            <a href="perfil.html">
+                <img src="Estilos/img/user-icon.png" alt="User Icon">
+            </a>
         </div>
 
+        <div class="sub-menu">
+            <ul>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="index.html">Cerrar Sesión</a></li>
+            </ul>
+        </div>
     </header>
 
+    <main>
+        <div class="menu">
+            <ul>
+                <li><a href="ingresos.html">Ingresos</a></li>
+                <li><a href="gastos.html" class="activo">Gastos</a></li>
+                <li><a href="ahorros.html">Ahorros</a></li>
+                <li><a href="metas.html">Metas</a></li>
+                <li><a href="presupuesto.html">Presupuesto</a></li>
+                <li><a href="#">Reportes</a></li>
 
-    <main class="contenido">
-
-        <!-- ORGANIZAR -->
-        <div class="organizar">
-            ↕ <span>Organizar</span>
+                <li class="total">
+                    <label for="total-restante">Total restante:</label>
+                    <input type="text" id="total-restante"
+                           name="total-restante" value="$0.00" readonly>
+                </li>
+            </ul>
         </div>
 
+        <section class="contenido">
+            <h2>Registro de gastos</h2>
+            <p>Controla tus gastos y servicios públicos.</p>
 
-        <div class="lista-gastos">
+            <div class="formulario">
+                <form id="form-gastos">
+                    <label for="categoria">Categoría:</label>
+                    <select id="categoria" required>
+                        <option value="Servicios">Servicios públicos</option>
+                        <option value="Alimentación">Alimentación</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Educación">Educación</option>
+                        <option value="Salud">Salud</option>
+                        <option value="Entretenimiento">Entretenimiento</option>
+                        <option value="Otros">Otros</option>
+                    </select>
 
-            <!-- SERVICIOS PÚBLICOS-->
-                 
-        
+                    <label for="nombre">Nombre del gasto:</label>
+                    <select id="nombre" required></select>
 
-            <div class="tarjeta-gasto servicios">
+                    <label for="monto">Monto:</label>
+                    <input type="number" id="monto" min="0.01"
+                           step="0.01" required placeholder="0.00">
 
-                <div class="titulo-gasto">
-                    <h2>Pago de Servicios</h2>
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" required>
 
-                    <span class="estrella">☆</span>
-                </div>
-
-
-                <div class="total">
-                    <span>Total Pagado</span>
-
-                    <div class="valor">
-                        $0
-                    </div>
-                </div>
-
-
-                <!-- SERVICIOS PREDETERMINADOS -->
-
-                <div class="servicios-lista">
-
-                    <div class="servicio">
-                        <span>⚡ Energía eléctrica</span>
-                        <strong>$0</strong>
-                    </div>
-
-                    <div class="servicio">
-                        <span>💧 Agua / Acueducto</span>
-                        <strong>$0</strong>
-                    </div>
-
-                    <div class="servicio">
-                        <span>🔥 Gas</span>
-                        <strong>$0</strong>
-                    </div>
-
-                    <div class="servicio">
-                        <span>🌐 Internet</span>
-                        <strong>$0</strong>
-                    </div>
-
-                    <div class="servicio">
-                        <span>📱 Telefonía</span>
-                        <strong>$0</strong>
-                    </div>
-
-                </div>
-
-
-                <div class="acciones">
-
-                    <button>
-                        Ver Servicios
-                    </button>
-
-                    <button class="opciones">
-                        ⋮
-                    </button>
-
-                </div>
-
+                    <button type="submit">Registrar gasto</button>
+                </form>
             </div>
 
-
-            <!-- GASTOS VARIOS-->
-                
-             
-
-            <div class="tarjeta-gasto">
-
-                <div class="titulo-gasto">
-
-                    <h2>Gastos Varios</h2>
-
-                </div>
-
-
-                <div class="total">
-
-                    <span>Total Pagado</span>
-
-                    <div class="valor">
-                        $0
-                    </div>
-
-                </div>
-
-
-                <div class="acciones">
-
-                    <button>
-                        Ver Gastos Varios
-                    </button>
-
-                    <button class="opciones">
-                        ⋮
-                    </button>
-
-                </div>
-
+            <div class="tabla">
+                <h2>Historial de gastos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-gastos">
+                        <tr>
+                            <td colspan="4">No hay gastos registrados.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-        </div>
-
-
-        <!-- AGREGAR GASTOS -->
-
-        <button class="btn-agregar">
-            <span>＋</span>
-            Agregar gastos
-        </button>
-
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Finnova. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const categoria = document.getElementById("categoria");
+        const nombre = document.getElementById("nombre");
+        const formulario = document.getElementById("form-gastos");
+        const lista = document.getElementById("lista-gastos");
+        const totalRestante = document.getElementById("total-restante");
+
+        const opciones = {
+            "Servicios": [
+                "Agua", "Energía eléctrica", "Gas",
+                "Internet", "Telefonía", "Televisión"
+            ],
+            "Alimentación": ["Mercado", "Restaurante", "Comida"],
+            "Transporte": ["Bus", "Taxi", "Gasolina"],
+            "Educación": ["Matrícula", "Útiles escolares", "Cursos"],
+            "Salud": ["Medicamentos", "Consulta médica"],
+            "Entretenimiento": ["Cine", "Juegos", "Salidas"],
+            "Otros": ["Compra general", "Imprevistos"]
+        };
+
+        function actualizarNombres() {
+            nombre.innerHTML = "";
+
+            opciones[categoria.value].forEach(function(item) {
+                const opcion = document.createElement("option");
+                opcion.value = item;
+                opcion.textContent = item;
+                nombre.appendChild(opcion);
+            });
+        }
+
+        categoria.addEventListener("change", actualizarNombres);
+        actualizarNombres();
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nombreGasto = nombre.value;
+            const categoriaGasto = categoria.value;
+            const monto = parseFloat(document.getElementById("monto").value);
+            const fecha = document.getElementById("fecha").value;
+
+            if (monto <= 0) return;
+
+            if (lista.querySelector("td[colspan='4']")) {
+                lista.innerHTML = "";
+            }
+
+            const fila = document.createElement("tr");
+
+            [
+                nombreGasto,
+                categoriaGasto,
+                fecha,
+                "$" + monto.toFixed(2)
+            ].forEach(function(texto) {
+                const celda = document.createElement("td");
+                celda.textContent = texto;
+                fila.appendChild(celda);
+            });
+
+            lista.appendChild(fila);
+
+            const saldoActual = parseFloat(
+                totalRestante.value.replace("$", "")
+            ) || 0;
+
+            totalRestante.value = "$" + (saldoActual - monto).toFixed(2);
+            formulario.reset();
+            actualizarNombres();
+        });
+    </script>
 
 </body>
 </html>
