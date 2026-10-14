@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gastos - Finnova</title>
-    <link rel="stylesheet" href="Estilos/gastos.css">
+    <link rel="stylesheet" href="Estilos/ingresos.css">
 </head>
 <body>
 
@@ -53,134 +53,22 @@
             </ul>
         </div>
 
-        <section class="contenido">
-            <h2>Registro de gastos</h2>
-            <p>Controla tus gastos y servicios públicos.</p>
-
-            <div class="formulario">
-                <form id="form-gastos">
-                    <label for="categoria">Categoría:</label>
-                    <select id="categoria" required>
-                        <option value="Servicios">Servicios públicos</option>
-                        <option value="Alimentación">Alimentación</option>
-                        <option value="Transporte">Transporte</option>
-                        <option value="Educación">Educación</option>
-                        <option value="Salud">Salud</option>
-                        <option value="Entretenimiento">Entretenimiento</option>
-                        <option value="Otros">Otros</option>
-                    </select>
-
-                    <label for="nombre">Nombre del gasto:</label>
-                    <select id="nombre" required></select>
-
-                    <label for="monto">Monto:</label>
-                    <input type="number" id="monto" min="0.01"
-                           step="0.01" required placeholder="0.00">
-
-                    <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" required>
-
-                    <button type="submit">Registrar gasto</button>
-                </form>
-            </div>
-
-            <div class="tabla">
-                <h2>Historial de gastos</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Categoría</th>
-                            <th>Fecha</th>
-                            <th>Monto</th>
-                        </tr>
-                    </thead>
-                    <tbody id="lista-gastos">
-                        <tr>
-                            <td colspan="4">No hay gastos registrados.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <section class="en-reparacion" aria-labelledby="titulo-reparacion">
+            <img src="Estilos/img/Finnova_en_reparación.png"
+                 alt="Finnova está en reparación y volverá pronto">
+            <p class="etiqueta-reparacion">Sección en mantenimiento</p>
+            <h2 id="titulo-reparacion">Estamos mejorando tus gastos</h2>
+            <p class="mensaje-reparacion">
+                Esta sección se encuentra temporalmente en reparación.
+                Pronto podrás registrar y consultar tus gastos.
+            </p>
+            <a href="pag.principal.html">Volver al inicio</a>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2026 Finnova. Todos los derechos reservados.</p>
     </footer>
-
-    <script>
-        const categoria = document.getElementById("categoria");
-        const nombre = document.getElementById("nombre");
-        const formulario = document.getElementById("form-gastos");
-        const lista = document.getElementById("lista-gastos");
-        const totalRestante = document.getElementById("total-restante");
-
-        const opciones = {
-            "Servicios": [
-                "Agua", "Energía eléctrica", "Gas",
-                "Internet", "Telefonía", "Televisión"
-            ],
-            "Alimentación": ["Mercado", "Restaurante", "Comida"],
-            "Transporte": ["Bus", "Taxi", "Gasolina"],
-            "Educación": ["Matrícula", "Útiles escolares", "Cursos"],
-            "Salud": ["Medicamentos", "Consulta médica"],
-            "Entretenimiento": ["Cine", "Juegos", "Salidas"],
-            "Otros": ["Compra general", "Imprevistos"]
-        };
-
-        function actualizarNombres() {
-            nombre.innerHTML = "";
-
-            opciones[categoria.value].forEach(function(item) {
-                const opcion = document.createElement("option");
-                opcion.value = item;
-                opcion.textContent = item;
-                nombre.appendChild(opcion);
-            });
-        }
-
-        categoria.addEventListener("change", actualizarNombres);
-        actualizarNombres();
-
-        formulario.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const nombreGasto = nombre.value;
-            const categoriaGasto = categoria.value;
-            const monto = parseFloat(document.getElementById("monto").value);
-            const fecha = document.getElementById("fecha").value;
-
-            if (monto <= 0) return;
-
-            if (lista.querySelector("td[colspan='4']")) {
-                lista.innerHTML = "";
-            }
-
-            const fila = document.createElement("tr");
-
-            [
-                nombreGasto,
-                categoriaGasto,
-                fecha,
-                "$" + monto.toFixed(2)
-            ].forEach(function(texto) {
-                const celda = document.createElement("td");
-                celda.textContent = texto;
-                fila.appendChild(celda);
-            });
-
-            lista.appendChild(fila);
-
-            const saldoActual = parseFloat(
-                totalRestante.value.replace("$", "")
-            ) || 0;
-
-            totalRestante.value = "$" + (saldoActual - monto).toFixed(2);
-            formulario.reset();
-            actualizarNombres();
-        });
-    </script>
 
 </body>
 </html>
