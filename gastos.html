@@ -4,82 +4,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gastos</title>
-    <link rel="stylesheet" href="estilos/gastos.css">
+    <title>Gastos - Finnova</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos/gastos.css') }}">
 </head>
 <body>
+
     <header>
-        <a href="pag.principal.html">
-            <img class="logo" src="Estilos/img/logo_img.png" alt="Logo">
-        </a>
-        <a href="pag.principal.html">
-            <img class="logo-nombre" src="estilos/img/Logo.png" alt="Finnova Logo">
-        </a>
-        <h1>Gastos</h1>
-        <div class="user-icon">
-            <a href="index.html">Inicio</a>
-            <a href="perfil.html">
-                <img src="Estilos/img/user-icon.png" alt="Usuario">
+        <div class="logos">
+            <a href="{{ url_for('inicio') }}">
+                <img class="logo" src="{{ url_for('static', filename='img/logo_img.png') }}" alt="Logo">
             </a>
+            <a href="{{ url_for('inicio') }}">
+                <img class="logo-nombre" src="{{ url_for('static', filename='img/Logo.png') }}" alt="Finnova">
+            </a>
+        </div>
+
+        <nav class="menu">
+            <a href="{{ url_for('ingresos') }}">Ingresos</a>
+            <a href="{{ url_for('gastos') }}" class="activo">Gastos</a>
+            <a href="#">Ahorros</a>
+            <a href="#">Metas</a>
+            <a href="#">Presupuesto</a>
+            <a href="#">Reportes</a>
+        </nav>
+
+        <div class="user-icon">
+            <p>Bienvenido, Usuario</p>
+            <img src="{{ url_for('static', filename='img/user-icon.png') }}" alt="Usuario">
         </div>
     </header>
 
-    <main>
-        <nav class="menu">
-            <ul>
-                <li><a href="ingresos.html">Ingresos</a></li>
-                <li><a href="gastos.html">Gastos</a></li>
-                <li><a href="ahorros.html">Ahorros</a></li>
-                <li><a href="metas.html">Metas</a></li>
-                <li><a href="presupuesto.html">Presupuesto</a></li>
-                <li><a href="#">Reportes</a></li>
-                <li>
-                    <label for="total-restante">Total restante:</label>
-                    <input type="text" id="total-restante"
-                           value="$0.00" readonly>
-                </li>
-            </ul>
-        </nav>
+    <main class="contenedor">
+        <h1>Gestión de gastos</h1>
+        <p class="subtitulo">Registra y controla tus gastos personales.</p>
 
-        <section class="contenido">
-            <h2>Registrar gastos</h2>
+        <section class="resumen">
+            <div class="tarjeta">
+                <h3>Total de gastos</h3>
+                <p>${{ "{:,.2f}".format(total_gastos|float) }}</p>
+            </div>
+        </section>
 
-            <form action="" method="post">
-                <label for="categoria">Categoría:</label>
-                <select id="categoria" name="categoria" required>
-                    <option value="">Seleccione una opción</option>
-                    <option>Agua</option>
-                    <option>Energía eléctrica</option>
-                    <option>Gas</option>
-                    <option>Internet</option>
-                    <option>Telefonía</option>
-                    <option>Arriendo</option>
-                    <option>Alimentación</option>
-                    <option>Transporte</option>
-                    <option>Educación</option>
-                    <option>Salud</option>
-                    <option>Entretenimiento</option>
-                    <option>Otros</option>
-                </select>
+        {% with mensajes = get_flashed_messages() %}
+            {% for mensaje in mensajes %}
+                <p class="mensaje">{{ mensaje }}</p>
+            {% endfor %}
+        {% endwith %}
 
-                <label for="descripcion">Descripción:</label>
-                <input type="text" id="descripcion"
-                       name="descripcion" required>
+        <section class="panel">
+            <h2>Registrar gasto</h2>
 
-                <label for="valor">Valor del gasto:</label>
-                <input type="number" id="valor" name="valor"
-                       min="1" step="0.01" required>
+            <form method="POST">
+                <div class="campo">
+                    <label for="categoria">Categoría</label>
+                    <select name="categoria" id="categoria" required>
+                        {% for categoria in categorias %}
+                        <option value="{{ categoria }}">{{ categoria }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha" required>
+                <div class="campo">
+                    <label for="nombre">Nombre del gasto</label>
+                    <select name="nombre" id="nombre" required></select>
+                </div>
+
+                <div class="campo">
+                    <label for="monto">Monto</label>
+                    <input type="number" name="monto" id="monto"
+                           min="0.01" step="0.01" placeholder="0.00" required>
+                </div>
+
+                <div class="campo">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" name="fecha" id="fecha" required>
+                </div>
 
                 <button type="submit">Guardar gasto</button>
             </form>
         </section>
+
+        <section class="panel">
+            <h2>Historial de gastos</h2>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for gasto in gastos %}
+                        <tr>
+                            <td>{{ gasto.gasNombre }}</td>
+                            <td>{{ gasto.gasCategoria }}</td>
+                            <td>{{ gasto.gasFecha }}</td>
+                            <td>${{ "{:,.2f}".format(gasto.gasMonto|float) }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4">No hay gastos registrados.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Finnova. Todos los derechos reservados.</p>
-    </footer>
+    <script>
+        const categoria = document.getElementById("categoria");
+        const nombre = document.getElementById("nombre");
+
+        const servicios = [
+            "Agua", "Energía eléctrica", "Gas",
+            "Internet", "Telefonía", "Televisión"
+        ];
+
+        const opciones = {
+            "Alimentación": ["Mercado", "Restaurante", "Comida"],
+            "Transporte": ["Bus", "Taxi", "Gasolina"],
+            "Educación": ["Matrícula", "Útiles escolares", "Cursos"],
+            "Salud": ["Medicamentos", "Consulta médica"],
+            "Entretenimiento": ["Cine", "Juegos", "Salidas"],
+            "Otros": ["Compra general", "Imprevistos"]
+        };
+
+        function actualizarNombres() {
+            nombre.innerHTML = "";
+
+            const lista = categoria.value === "Servicios"
+                ? servicios
+                : (opciones[categoria.value] || ["Otro gasto"]);
+
+            lista.forEach(function(item) {
+                const opcion = document.createElement("option");
+                opcion.value = item;
+                opcion.textContent = item;
+                nombre.appendChild(opcion);
+            });
+        }
+
+        categoria.addEventListener("change", actualizarNombres);
+        actualizarNombres();
+    </script>
+
 </body>
 </html>
