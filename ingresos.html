@@ -4,74 +4,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingresos</title>
-    <link rel="stylesheet" href="estilos/ingresos.css">
+    <title>Ingresos - Finnova</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos/ingresos.css') }}">
 </head>
 <body>
+
     <header>
-        <a href="pag.principal.html">
-            <img class="logo" src="Estilos/img/logo_img.png" alt="Logo">
-        </a>
-        <a href="pag.principal.html">
-            <img class="logo-nombre" src="estilos/img/Logo.png" alt="Finnova Logo">
-        </a>
-        <h1>Ingresos</h1>
-        <div class="user-icon">
-            <a href="index.html">Inicio</a>
-            <a href="perfil.html">
-                <img src="Estilos/img/user-icon.png" alt="Usuario">
+        <div class="logos">
+            <a href="{{ url_for('inicio') }}">
+                <img class="logo" src="{{ url_for('static', filename='img/logo_img.png') }}" alt="Logo">
             </a>
+            <a href="{{ url_for('inicio') }}">
+                <img class="logo-nombre" src="{{ url_for('static', filename='img/Logo.png') }}" alt="Finnova">
+            </a>
+        </div>
+
+        <nav class="menu">
+            <a href="{{ url_for('ingresos') }}" class="activo">Ingresos</a>
+            <a href="{{ url_for('gastos') }}">Gastos</a>
+            <a href="#">Ahorros</a>
+            <a href="#">Metas</a>
+            <a href="#">Presupuesto</a>
+            <a href="#">Reportes</a>
+        </nav>
+
+        <div class="user-icon">
+            <p>Bienvenido, Usuario</p>
+            <img src="{{ url_for('static', filename='img/user-icon.png') }}" alt="Usuario">
         </div>
     </header>
 
-    <main>
-        <nav class="menu">
-            <ul>
-                <li><a href="ingresos.html">Ingresos</a></li>
-                <li><a href="gastos.html">Gastos</a></li>
-                <li><a href="ahorros.html">Ahorros</a></li>
-                <li><a href="metas.html">Metas</a></li>
-                <li><a href="presupuesto.html">Presupuesto</a></li>
-                <li><a href="#">Reportes</a></li>
-                <li>
-                    <label for="total-restante">Total restante:</label>
-                    <input type="text" id="total-restante"
-                           value="$0.00" readonly>
-                </li>
-            </ul>
-        </nav>
+    <main class="contenedor">
+        <h1>Gestión de ingresos</h1>
+        <p class="subtitulo">Administra y controla el dinero que recibes.</p>
 
-        <section class="contenido">
-            <h2>Registrar ingresos</h2>
+        <section class="resumen">
+            <div class="tarjeta">
+                <h3>Total de ingresos</h3>
+                <p>${{ "{:,.2f}".format(total_ingresos|float) }}</p>
+            </div>
+            <div class="tarjeta">
+                <h3>Saldo disponible</h3>
+                <p>${{ "{:,.2f}".format(saldo|float) }}</p>
+            </div>
+        </section>
 
-            <form action="" method="post">
-                <label for="tipo">Tipo de ingreso:</label>
-                <select id="tipo" name="tipo" required>
-                    <option value="">Seleccione una opción</option>
-                    <option>Salario</option>
-                    <option>Ventas</option>
-                    <option>Negocio</option>
-                    <option>Otros</option>
-                </select>
+        {% with mensajes = get_flashed_messages() %}
+            {% for mensaje in mensajes %}
+                <p class="mensaje">{{ mensaje }}</p>
+            {% endfor %}
+        {% endwith %}
 
-                <label for="descripcion">Descripción:</label>
-                <input type="text" id="descripcion"
-                       name="descripcion" required>
+        <section class="panel">
+            <h2>Registrar ingreso</h2>
 
-                <label for="valor">Valor:</label>
-                <input type="number" id="valor" name="valor"
-                       min="1" step="0.01" required>
+            <form method="POST">
+                <div class="campo">
+                    <label for="descripcion">Descripción del ingreso</label>
+                    <input type="text" id="descripcion" name="descripcion"
+                           placeholder="Ej. Salario" required>
+                </div>
 
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha" required>
+                <div class="campo">
+                    <label for="monto">Monto</label>
+                    <input type="number" id="monto" name="monto"
+                           min="0.01" step="0.01" placeholder="0.00" required>
+                </div>
+
+                <div class="campo">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
 
                 <button type="submit">Guardar ingreso</button>
             </form>
         </section>
+
+        <section class="panel">
+            <h2>Historial de ingresos</h2>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ingreso in ingresos %}
+                        <tr>
+                            <td>{{ ingreso.ingDescripcion }}</td>
+                            <td>{{ ingreso.ingFecha }}</td>
+                            <td>${{ "{:,.2f}".format(ingreso.ingMonto|float) }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3">No hay ingresos registrados.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Finnova. Todos los derechos reservados.</p>
-    </footer>
 </body>
 </html>
+
