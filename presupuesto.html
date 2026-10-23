@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presupuesto</title>
-    <link rel="stylesheet" href="Estilos/pag.principal.css">
+    <link rel="stylesheet" href="Estilos/presupuesto.css">
 </head>
 <body>
     <header>
@@ -41,18 +41,51 @@
             </ul>
         </div>
 
-        <section class="en-reparacion" aria-labelledby="titulo-reparacion">
-            <img src="Estilos/img/Finnova_en_reparación.png"
-                 alt="Finnova está en reparación y volverá pronto">
-            <p class="etiqueta-reparacion">Sección en mantenimiento</p>
-            <h2 id="titulo-reparacion">Estamos mejorando tu presupuesto</h2>
-            <p class="mensaje-reparacion">
-                Esta sección se encuentra temporalmente en reparación.
-                Pronto podrás planificar y controlar mejor tus finanzas.
-            </p>
-            <a href="pag.principal.html">Volver al inicio</a>
-        </section>
+        <section class="inicio">
+            <label for="ingresos">Ingresos Generales</label>
+            <input type="text" id="ingresos" name="ingresos" value="$0.00" readonly>
+            
+            <progress id="file" value="70" max="100"> 70% </progress>
+            <p>70% completado</p>
 
+            <label for="limite">Limite presupuestado</label>
+            <input type="text" id="limite" name="limite" value="$0.00" readonly>
+
+            <label for="gastos">Total Gastados</label>
+            <input type="text" id="gastos" name="gastos" value="$0.00" readonly>
+
+            <label for="restante">Total Restante</label>
+            <input type="text" id="restante" name="restante" value="$0.00" readonly>
+
+            <a href="graficas.html" class="btn-graficas" >Ver Resumen o Ver Graficas</a>
+
+        </section>
+        <section class="gastos-prioritarios">
+            <h2>Gastos Prioritarios</h2>
+            <label for="Total-prioritarios">Total Gastos Prioritarios</label>
+            <input type="text" id="Total-prioritarios" name="Total-prioritarios" value="$0.00" readonly>
+
+            <a href="gastos.html">Ver Detalles</a>
+
+        </section>
+        <section class="gastos-varios">
+            <h2>Gastos Varios</h2>
+            <label for="Total-varios">Total Gastos Varios</label>
+            <input type="text" id="Total-varios" name="Total-varios" value="$0.00" readonly>
+            <a href="gastos.html">Ver Detalles</a>
+        </section>
+        <section class="resumen-metas">
+            <h2>Metas</h2>
+            <label for="Total-metas">Total Metas</label>
+            <input type="text" id="Total-metas" name="Total-metas" value="$0.00" readonly>
+            <a href="metas.html">Ver Metas</a>
+        </section>
+        <section class="resumen-ahorros">
+            <h2>Ahorros</h2>
+            <label for="Total-ahorros">Total Ahorros</label>
+            <input type="text" id="Total-ahorros" name="Total-ahorros" value="$0.00" readonly>
+            <a href="ahorros.html">Ver Ahorros</a>
+        </section>
     </main>
     <footer>
         <p> &copy; 2026 Finnova. Todos los derechos reservados.</p>

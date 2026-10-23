@@ -1,0 +1,547 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --azul-oscuro: #19a38c;
+  --azul: #1769aa;
+  --azul-claro: #eaf2ff;
+  --texto: #263445;
+  --texto-suave: #66758a;
+  --fondo: #f2f6fc;
+  --borde: #dce5f0;
+  --borde-campo: #b9c8da;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================================
+   BASE (igual que tus otras páginas): header, menú, footer
+   ========================================================== */
+
+header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  min-height: 85px;
+  padding: 12px 25px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.logo-nombre {
+  width: 150px;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+header h1 {
+  margin-left: 10px;
+  color: var(--azul-oscuro);
+  font-size: 24px;
+}
+
+.user-icon {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+}
+
+.user-icon p {
+  color: var(--texto);
+  font-size: 14px;
+}
+
+.user-icon a {
+  text-decoration: none;
+}
+
+.user-icon img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.sub-menu {
+  position: absolute;
+  top: 75px;
+  right: 20px;
+  display: none;
+  min-width: 160px;
+  padding: 0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+.sub-menu::before {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  left: 0;
+  height: 20px;
+  content: "";
+}
+
+.user-icon:hover + .sub-menu,
+.sub-menu:hover {
+  display: block;
+}
+
+.sub-menu ul {
+  list-style: none;
+}
+
+.sub-menu li {
+  padding: 10px 14px;
+}
+
+.sub-menu a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.sub-menu a:hover {
+  color: #19a38c;
+}
+
+.menu {
+  position: fixed;
+  top: 85px;
+  bottom: 0;
+  left: 0;
+  width: 245px;
+  padding: 25px 15px;
+  overflow-y: auto;
+  background: var(--azul-oscuro);
+}
+
+.menu ul {
+  list-style: none;
+}
+
+.menu li {
+  margin-bottom: 10px;
+}
+
+.menu li a {
+  display: block;
+  padding: 13px 15px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background 0.3s, padding-left 0.3s;
+}
+
+.menu li a:hover {
+  padding-left: 22px;
+  background: #097563;
+}
+
+.menu label {
+  display: block;
+  margin: 25px 5px 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.menu input {
+  width: 100%;
+  padding: 12px 10px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--azul-oscuro);
+  background: #fff;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
+
+footer {
+  margin-left: 245px;
+  padding: 20px;
+  color: #fff;
+  background: #19a38c;
+  font-size: 14px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================
+   PRESUPUESTO (si usas un CSS compartido, pega desde aquí
+   hasta el final de los @media de esta página)
+   ========================================================== */
+
+/* Marco general: el wireframe es una sola pantalla dividida
+   por líneas (arriba el resumen, abajo cuadrícula 2x2) */
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr;
+  margin: 30px 40px 30px 285px; /* 245px del menú + 40px de aire */
+  min-height: calc(100vh - 205px);
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+main label {
+  color: var(--texto);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+main section input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--borde-campo);
+  border-radius: 6px;
+  color: var(--texto);
+  background: #f8fbff;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: right;
+}
+
+/* Botones (Ver Gastos, Ver Metas, Ver Resumen...) */
+.btn-graficas,
+.gastos-prioritarios a,
+.gastos-varios a,
+.resumen-metas a,
+.resumen-ahorros a {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: #fff;
+  background: #19a38c;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 3px 8px rgba(25, 163, 140, 0.25);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.btn-graficas:hover,
+.gastos-prioritarios a:hover,
+.gastos-varios a:hover,
+.resumen-metas a:hover,
+.resumen-ahorros a:hover {
+  background: #097563;
+  transform: translateY(-2px);
+}
+
+/* ---------- Parte superior: resumen general ---------- */
+.inicio {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 0.6fr 1fr 1fr;
+  grid-template-areas:
+    "l-ing  .      .      l-lim"
+    "i-ing  barra  barra  i-lim"
+    ".      pct    pct    ."
+    "l-gas  .      l-res  ."
+    "i-gas  flecha i-res  btn";
+  column-gap: 20px;
+  row-gap: 8px;
+  padding: 30px 40px 34px;
+  border-bottom: 1px solid var(--borde-campo);
+}
+
+.inicio label[for="ingresos"] { grid-area: l-ing; }
+.inicio #ingresos             { grid-area: i-ing; }
+.inicio label[for="limite"]   { grid-area: l-lim; text-align: right; }
+.inicio #limite               { grid-area: i-lim; }
+.inicio label[for="gastos"]   { grid-area: l-gas; margin-top: 26px; }
+.inicio #gastos               { grid-area: i-gas; }
+.inicio label[for="restante"] { grid-area: l-res; margin-top: 26px; }
+.inicio #restante             { grid-area: i-res; }
+.inicio .btn-graficas         { grid-area: btn; align-self: center; }
+
+/* Barra de progreso (entre Ingresos y Límite) */
+.inicio progress {
+  grid-area: barra;
+  align-self: center;
+  width: 100%;
+  height: 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #e3e9f1;
+  overflow: hidden;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.inicio progress::-webkit-progress-bar {
+  border-radius: 8px;
+  background: #e3e9f1;
+}
+
+.inicio progress::-webkit-progress-value {
+  border-radius: 8px;
+  background: #19a38c;
+}
+
+.inicio progress::-moz-progress-bar {
+  border-radius: 8px;
+  background: #19a38c;
+}
+
+.inicio p {
+  grid-area: pct;
+  color: var(--texto-suave);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Flecha entre Total Gastados y Total Restante */
+.inicio::before {
+  grid-area: flecha;
+  align-self: center;
+  justify-self: center;
+  color: var(--texto);
+  content: "\2192";
+  font-size: 34px;
+  line-height: 1;
+}
+
+/* ---------- Parte inferior: cuadrícula 2x2 ---------- */
+.gastos-prioritarios,
+.gastos-varios,
+.resumen-metas,
+.resumen-ahorros {
+  display: grid;
+  grid-template-columns: 1fr minmax(130px, 200px);
+  align-content: center;
+  align-items: center;
+  column-gap: 20px;
+  row-gap: 16px;
+  padding: 28px 40px;
+}
+
+/* Líneas divisorias del wireframe */
+.gastos-prioritarios,
+.resumen-metas {
+  border-right: 1px solid var(--borde-campo);
+}
+
+.gastos-prioritarios,
+.gastos-varios {
+  border-bottom: 1px solid var(--borde-campo);
+}
+
+.gastos-prioritarios h2,
+.gastos-varios h2,
+.resumen-metas h2,
+.resumen-ahorros h2 {
+  grid-column: 1 / -1;
+  color: var(--azul-oscuro);
+  font-size: 22px;
+  text-align: center;
+}
+
+.gastos-prioritarios a,
+.gastos-varios a,
+.resumen-metas a,
+.resumen-ahorros a {
+  grid-column: 2;
+  justify-self: end;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 1000px) {
+  .inicio {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "l-ing  l-lim"
+      "i-ing  i-lim"
+      "barra  barra"
+      "pct    pct"
+      "l-gas  l-res"
+      "i-gas  i-res"
+      "btn    btn";
+  }
+
+  .inicio::before {
+    display: none;
+  }
+
+  .inicio .btn-graficas {
+    justify-self: end;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .gastos-prioritarios,
+  .gastos-varios,
+  .resumen-metas,
+  .resumen-ahorros {
+    border-right: 0;
+    border-bottom: 1px solid var(--borde-campo);
+  }
+
+  .resumen-ahorros {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 650px) {
+  header {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .logo {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logo-nombre {
+    width: 105px;
+  }
+
+  header h1 {
+    order: 3;
+    width: 100%;
+    margin: 0;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .user-icon {
+    gap: 10px;
+  }
+
+  .user-icon p {
+    font-size: 12px;
+  }
+
+  .user-icon img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .menu {
+    position: relative;
+    top: auto;
+    width: 100%;
+    padding: 15px;
+  }
+
+  .menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .menu li {
+    margin: 0;
+  }
+
+  .menu li a {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .menu li:last-child {
+    width: 100%;
+    max-width: 250px;
+    margin-top: 10px;
+  }
+
+  .menu label {
+    margin-top: 10px;
+  }
+
+  .sub-menu {
+    top: 100%;
+    right: 10px;
+  }
+
+  footer {
+    margin-left: 0;
+  }
+
+  main {
+    margin: 16px;
+    min-height: auto;
+  }
+
+  .inicio {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "l-ing"
+      "i-ing"
+      "barra"
+      "pct"
+      "l-lim"
+      "i-lim"
+      "l-gas"
+      "i-gas"
+      "l-res"
+      "i-res"
+      "btn";
+    padding: 24px 20px;
+  }
+
+  .inicio label[for="limite"] {
+    margin-top: 16px;
+    text-align: left;
+  }
+
+  .inicio .btn-graficas {
+    justify-self: stretch;
+  }
+
+  .gastos-prioritarios,
+  .gastos-varios,
+  .resumen-metas,
+  .resumen-ahorros {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+
+  .gastos-prioritarios a,
+  .gastos-varios a,
+  .resumen-metas a,
+  .resumen-ahorros a {
+    grid-column: 1;
+    justify-self: stretch;
+  }
+}
