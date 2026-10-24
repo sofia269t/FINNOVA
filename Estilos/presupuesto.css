@@ -1,30 +1,25 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 :root {
-  --azul-oscuro: #19a38c;
-  --azul: #1769aa;
-  --azul-claro: #eaf2ff;
+  --principal: #19a38c;
+  --principal-oscuro: #097563;
   --texto: #263445;
   --texto-suave: #66758a;
   --fondo: #f2f6fc;
   --borde: #dce5f0;
-  --borde-campo: #b9c8da;
+  --verde-claro: #e7f7f3;
 }
 
 body {
   min-height: 100vh;
-  background: var(--fondo);
   color: var(--texto);
+  background: var(--fondo);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-/* ==========================================================
-   BASE (igual que tus otras páginas): header, menú, footer
-   ========================================================== */
 
 header {
   position: relative;
@@ -32,11 +27,10 @@ header {
   display: flex;
   align-items: center;
   gap: 20px;
-  width: 100%;
   min-height: 85px;
   padding: 12px 25px;
   background: #fff;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 12px rgb(0 0 0 / 8%);
 }
 
 .logo {
@@ -53,7 +47,7 @@ header {
 
 header h1 {
   margin-left: 10px;
-  color: var(--azul-oscuro);
+  color: var(--principal);
   font-size: 24px;
 }
 
@@ -65,7 +59,6 @@ header h1 {
 }
 
 .user-icon p {
-  color: var(--texto);
   font-size: 14px;
 }
 
@@ -85,10 +78,9 @@ header h1 {
   right: 20px;
   display: none;
   min-width: 160px;
-  padding: 0;
   border-radius: 8px;
   background: #fff;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 18px rgb(0 0 0 / 12%);
 }
 
 .sub-menu::before {
@@ -105,7 +97,8 @@ header h1 {
   display: block;
 }
 
-.sub-menu ul {
+.sub-menu ul,
+.menu ul {
   list-style: none;
 }
 
@@ -119,7 +112,7 @@ header h1 {
 }
 
 .sub-menu a:hover {
-  color: #19a38c;
+  color: var(--principal);
 }
 
 .menu {
@@ -130,11 +123,7 @@ header h1 {
   width: 245px;
   padding: 25px 15px;
   overflow-y: auto;
-  background: var(--azul-oscuro);
-}
-
-.menu ul {
-  list-style: none;
+  background: var(--principal);
 }
 
 .menu li {
@@ -148,12 +137,13 @@ header h1 {
   color: #fff;
   font-size: 15px;
   text-decoration: none;
-  transition: background 0.3s, padding-left 0.3s;
+  transition: background .2s, padding-left .2s;
 }
 
-.menu li a:hover {
+.menu li a:hover,
+.menu li a.activo {
   padding-left: 22px;
-  background: #097563;
+  background: var(--principal-oscuro);
 }
 
 .menu label {
@@ -169,253 +159,236 @@ header h1 {
   padding: 12px 10px;
   border: 0;
   border-radius: 8px;
-  color: var(--azul-oscuro);
+  color: var(--principal-oscuro);
   background: #fff;
   font-size: 17px;
   font-weight: bold;
   text-align: center;
 }
 
-footer {
-  margin-left: 245px;
-  padding: 20px;
-  color: #fff;
-  background: #19a38c;
-  font-size: 14px;
-  text-align: center;
-}
-
-footer p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-/* ==========================================================
-   PRESUPUESTO (si usas un CSS compartido, pega desde aquí
-   hasta el final de los @media de esta página)
-   ========================================================== */
-
-/* Marco general: el wireframe es una sola pantalla dividida
-   por líneas (arriba el resumen, abajo cuadrícula 2x2) */
 main {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr 1fr;
-  margin: 30px 40px 30px 285px; /* 245px del menú + 40px de aire */
-  min-height: calc(100vh - 205px);
-  overflow: hidden;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1180px;
+  margin-left: 245px;
+  padding: 42px 40px 55px;
+}
+
+.inicio,
+.resumen-card {
   border: 1px solid var(--borde);
-  border-radius: 12px;
+  border-radius: 16px;
   background: #fff;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 5px 18px rgb(25 61 110 / 7%);
 }
 
-main label {
-  color: var(--texto);
-  font-size: 18px;
+.inicio {
+  grid-column: 1 / -1;
+  padding: 30px;
+}
+
+.inicio-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.etiqueta {
+  margin-bottom: 7px;
+  color: var(--principal);
+  font-size: 12px;
   font-weight: bold;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
-main section input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1.5px solid var(--borde-campo);
-  border-radius: 6px;
-  color: var(--texto);
-  background: #f8fbff;
-  font-size: 15px;
-  font-weight: bold;
-  text-align: right;
+.inicio h2 {
+  font-size: 28px;
 }
 
-/* Botones (Ver Gastos, Ver Metas, Ver Resumen...) */
+.descripcion {
+  margin-top: 8px;
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
 .btn-graficas,
-.gastos-prioritarios a,
-.gastos-varios a,
-.resumen-metas a,
-.resumen-ahorros a {
+.resumen-card a {
   display: inline-block;
-  padding: 10px 18px;
-  border-radius: 8px;
+  border-radius: 9px;
   color: #fff;
-  background: #19a38c;
+  background: var(--principal);
   font-size: 14px;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
-  box-shadow: 0 3px 8px rgba(25, 163, 140, 0.25);
-  transition: background 0.3s, transform 0.3s;
+  box-shadow: 0 3px 8px rgb(25 163 140 / 25%);
+  transition: background .2s, transform .2s;
+}
+
+.btn-graficas {
+  padding: 13px 18px;
+  white-space: nowrap;
 }
 
 .btn-graficas:hover,
-.gastos-prioritarios a:hover,
-.gastos-varios a:hover,
-.resumen-metas a:hover,
-.resumen-ahorros a:hover {
-  background: #097563;
+.resumen-card a:hover {
+  background: var(--principal-oscuro);
   transform: translateY(-2px);
 }
 
-/* ---------- Parte superior: resumen general ---------- */
-.inicio {
-  grid-column: 1 / -1;
+.resumen-principal {
   display: grid;
-  grid-template-columns: 1fr 0.6fr 1fr 1fr;
-  grid-template-areas:
-    "l-ing  .      .      l-lim"
-    "i-ing  barra  barra  i-lim"
-    ".      pct    pct    ."
-    "l-gas  .      l-res  ."
-    "i-gas  flecha i-res  btn";
-  column-gap: 20px;
-  row-gap: 8px;
-  padding: 30px 40px 34px;
-  border-bottom: 1px solid var(--borde-campo);
+  grid-template-columns: minmax(150px, 1fr) minmax(190px, 1.3fr) minmax(150px, 1fr);
+  align-items: end;
+  gap: 24px;
+  padding: 28px 0 24px;
 }
 
-.inicio label[for="ingresos"] { grid-area: l-ing; }
-.inicio #ingresos             { grid-area: i-ing; }
-.inicio label[for="limite"]   { grid-area: l-lim; text-align: right; }
-.inicio #limite               { grid-area: i-lim; }
-.inicio label[for="gastos"]   { grid-area: l-gas; margin-top: 26px; }
-.inicio #gastos               { grid-area: i-gas; }
-.inicio label[for="restante"] { grid-area: l-res; margin-top: 26px; }
-.inicio #restante             { grid-area: i-res; }
-.inicio .btn-graficas         { grid-area: btn; align-self: center; }
-
-/* Barra de progreso (entre Ingresos y Límite) */
-.inicio progress {
-  grid-area: barra;
-  align-self: center;
-  width: 100%;
-  height: 14px;
-  border: 0;
-  border-radius: 8px;
-  background: #e3e9f1;
-  overflow: hidden;
-  appearance: none;
-  -webkit-appearance: none;
+.dato {
+  display: grid;
+  gap: 8px;
 }
 
-.inicio progress::-webkit-progress-bar {
-  border-radius: 8px;
-  background: #e3e9f1;
-}
-
-.inicio progress::-webkit-progress-value {
-  border-radius: 8px;
-  background: #19a38c;
-}
-
-.inicio progress::-moz-progress-bar {
-  border-radius: 8px;
-  background: #19a38c;
-}
-
-.inicio p {
-  grid-area: pct;
+.dato label,
+.resumen-card label {
   color: var(--texto-suave);
   font-size: 13px;
-  text-align: center;
+  font-weight: bold;
 }
 
-/* Flecha entre Total Gastados y Total Restante */
-.inicio::before {
-  grid-area: flecha;
-  align-self: center;
-  justify-self: center;
+.dato input,
+.resumen-card input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 9px;
   color: var(--texto);
-  content: "\2192";
-  font-size: 34px;
-  line-height: 1;
+  background: #f8fafc;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
 }
 
-/* ---------- Parte inferior: cuadrícula 2x2 ---------- */
-.gastos-prioritarios,
-.gastos-varios,
-.resumen-metas,
-.resumen-ahorros {
+.progreso {
   display: grid;
-  grid-template-columns: 1fr minmax(130px, 200px);
-  align-content: center;
-  align-items: center;
-  column-gap: 20px;
-  row-gap: 16px;
-  padding: 28px 40px;
+  gap: 9px;
 }
 
-/* Líneas divisorias del wireframe */
-.gastos-prioritarios,
-.resumen-metas {
-  border-right: 1px solid var(--borde-campo);
+.progreso-cabecera {
+  display: flex;
+  justify-content: space-between;
+  color: var(--texto-suave);
+  font-size: 12px;
 }
 
-.gastos-prioritarios,
-.gastos-varios {
-  border-bottom: 1px solid var(--borde-campo);
+.progreso-cabecera strong {
+  color: var(--principal-oscuro);
 }
 
-.gastos-prioritarios h2,
-.gastos-varios h2,
-.resumen-metas h2,
-.resumen-ahorros h2 {
-  grid-column: 1 / -1;
-  color: var(--azul-oscuro);
-  font-size: 22px;
+progress {
+  width: 100%;
+  height: 12px;
+  border: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  border-radius: 8px;
+  background: #e3e9f1;
+}
+
+progress::-webkit-progress-value,
+progress::-moz-progress-bar {
+  border-radius: 8px;
+  background: var(--principal);
+}
+
+.progreso p {
+  color: var(--texto-suave);
+  font-size: 12px;
   text-align: center;
 }
 
-.gastos-prioritarios a,
-.gastos-varios a,
-.resumen-metas a,
-.resumen-ahorros a {
+.resumen-metricas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--borde);
+}
+
+.dato-restante input {
+  border-color: #b7e4da;
+  color: var(--principal-oscuro);
+  background: var(--verde-claro);
+}
+
+.resumen-card {
+  display: grid;
+  grid-template-columns: 1fr minmax(130px, 180px);
+  align-items: center;
+  gap: 17px 22px;
+  padding: 25px 28px;
+}
+
+.card-titulo {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-titulo h2 {
+  color: var(--principal-oscuro);
+  font-size: 21px;
+}
+
+.card-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 10px;
+  color: var(--principal-oscuro);
+  background: var(--verde-claro);
+  font-size: 18px;
+}
+
+.resumen-card a {
   grid-column: 2;
   justify-self: end;
+  padding: 10px 14px;
+  font-size: 12px;
 }
 
-/* ==========================================================
-   RESPONSIVE
-   ========================================================== */
-
-@media (max-width: 1000px) {
-  .inicio {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "l-ing  l-lim"
-      "i-ing  i-lim"
-      "barra  barra"
-      "pct    pct"
-      "l-gas  l-res"
-      "i-gas  i-res"
-      "btn    btn";
-  }
-
-  .inicio::before {
-    display: none;
-  }
-
-  .inicio .btn-graficas {
-    justify-self: end;
-    margin-top: 10px;
-  }
+footer {
+  margin-left: 245px;
+  padding: 20px;
+  color: #fff;
+  background: var(--principal);
+  font-size: 14px;
+  text-align: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 850px) {
   main {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    padding: 30px 24px 45px;
   }
 
-  .gastos-prioritarios,
-  .gastos-varios,
-  .resumen-metas,
-  .resumen-ahorros {
-    border-right: 0;
-    border-bottom: 1px solid var(--borde-campo);
+  .resumen-principal {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .resumen-ahorros {
-    border-bottom: 0;
+  .progreso {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 }
 
@@ -489,59 +462,50 @@ main section input {
     margin-top: 10px;
   }
 
-  .sub-menu {
-    top: 100%;
-    right: 10px;
+  main {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+    padding: 20px 16px 35px;
+  }
+
+  .inicio {
+    padding: 22px 18px;
+  }
+
+  .inicio-cabecera,
+  .resumen-principal,
+  .resumen-metricas {
+    grid-template-columns: 1fr;
+  }
+
+  .inicio-cabecera {
+    display: grid;
+  }
+
+  .btn-graficas {
+    width: 100%;
+  }
+
+  .progreso {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .resumen-metricas {
+    display: grid;
+  }
+
+  .resumen-card {
+    grid-template-columns: 1fr;
+    padding: 22px 18px;
+  }
+
+  .resumen-card a {
+    grid-column: 1;
+    justify-self: stretch;
   }
 
   footer {
     margin-left: 0;
-  }
-
-  main {
-    margin: 16px;
-    min-height: auto;
-  }
-
-  .inicio {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "l-ing"
-      "i-ing"
-      "barra"
-      "pct"
-      "l-lim"
-      "i-lim"
-      "l-gas"
-      "i-gas"
-      "l-res"
-      "i-res"
-      "btn";
-    padding: 24px 20px;
-  }
-
-  .inicio label[for="limite"] {
-    margin-top: 16px;
-    text-align: left;
-  }
-
-  .inicio .btn-graficas {
-    justify-self: stretch;
-  }
-
-  .gastos-prioritarios,
-  .gastos-varios,
-  .resumen-metas,
-  .resumen-ahorros {
-    grid-template-columns: 1fr;
-    padding: 24px 20px;
-  }
-
-  .gastos-prioritarios a,
-  .gastos-varios a,
-  .resumen-metas a,
-  .resumen-ahorros a {
-    grid-column: 1;
-    justify-self: stretch;
   }
 }

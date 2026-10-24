@@ -8,8 +8,8 @@
 </head>
 <body>
     <header>
-        <a href="pag.principal.html"><img class="logo"src="Estilos/img/logo_img.png" alt="Logo"></a>
-        <a href="pag.principal.html"><img class="logo-nombre"src="Estilos/img/Logo.png" alt="Finnova Logo"></a>
+        <a href="pag.principal.html"><img class="logo" src="Estilos/img/logo_img.png" alt="Logo"></a>
+        <a href="pag.principal.html"><img class="logo-nombre" src="Estilos/img/Logo.png" alt="Finnova Logo"></a>
         <h1>Presupuesto</h1>
         <div class="user-icon">
                     <p>Usuario</p>
@@ -32,7 +32,7 @@
                 <li><a href="gastos.html">Gastos</a></li>
                 <li><a href="ahorros.html">Ahorros</a></li>
                 <li><a href="metas.html">Metas</a></li>
-                <li><a href="presupuesto.html">Presupuesto</a></li>
+                <li><a href="presupuesto.html" class="activo">Presupuesto</a></li>
                 <li><a href="#">Reportes</a></li>
                 <li><label for="total-restante"> Total restante:</label>
                     <input type="text" id="total-restante" name="total-restante" value="$0.00" readonly>
@@ -41,48 +41,79 @@
             </ul>
         </div>
 
-        <section class="inicio">
-            <label for="ingresos">Ingresos Generales</label>
-            <input type="text" id="ingresos" name="ingresos" value="$0.00" readonly>
-            
-            <progress id="file" value="70" max="100"> 70% </progress>
-            <p>70% completado</p>
+        <section class="inicio" aria-labelledby="titulo-resumen">
+            <div class="inicio-cabecera">
+                <div>
+                    <p class="etiqueta">Resumen financiero</p>
+                    <h2 id="titulo-resumen">Tu presupuesto</h2>
+                    <p class="descripcion">Consulta el estado de tus ingresos, gastos y objetivos.</p>
+                </div>
+                <a href="graficas.html" class="btn-graficas">Ver resumen y gráficas</a>
+            </div>
 
-            <label for="limite">Limite presupuestado</label>
-            <input type="text" id="limite" name="limite" value="$0.00" readonly>
+            <div class="resumen-principal">
+                <div class="dato dato-ingresos">
+                    <label for="ingresos">Ingresos generales</label>
+                    <input type="text" id="ingresos" name="ingresos" value="$0.00" readonly>
+                </div>
+                <div class="progreso">
+                    <div class="progreso-cabecera">
+                        <span>Uso del presupuesto</span>
+                        <strong>70%</strong>
+                    </div>
+                    <progress id="file" value="70" max="100">70%</progress>
+                    <p>70% completado</p>
+                </div>
+                <div class="dato dato-limite">
+                    <label for="limite">Límite presupuestado</label>
+                    <input type="text" id="limite" name="limite" value="$0.00" readonly>
+                </div>
+            </div>
 
-            <label for="gastos">Total Gastados</label>
-            <input type="text" id="gastos" name="gastos" value="$0.00" readonly>
-
-            <label for="restante">Total Restante</label>
-            <input type="text" id="restante" name="restante" value="$0.00" readonly>
-
-            <a href="graficas.html" class="btn-graficas" >Ver Resumen o Ver Graficas</a>
-
+            <div class="resumen-metricas">
+                <div class="dato">
+                    <label for="gastos">Total gastado</label>
+                    <input type="text" id="gastos" name="gastos" value="$0.00" readonly>
+                </div>
+                <div class="dato dato-restante">
+                    <label for="restante">Total restante</label>
+                    <input type="text" id="restante" name="restante" value="$0.00" readonly>
+                </div>
+            </div>
         </section>
-        <section class="gastos-prioritarios">
-            <h2>Gastos Prioritarios</h2>
-            <label for="Total-prioritarios">Total Gastos Prioritarios</label>
+        <section class="resumen-card gastos-prioritarios">
+            <div class="card-titulo">
+                <span class="card-icon">★</span>
+                <h2>Gastos prioritarios</h2>
+            </div>
+            <label for="Total-prioritarios">Total gastos prioritarios</label>
             <input type="text" id="Total-prioritarios" name="Total-prioritarios" value="$0.00" readonly>
-
             <a href="gastos.html">Ver Detalles</a>
-
         </section>
-        <section class="gastos-varios">
-            <h2>Gastos Varios</h2>
-            <label for="Total-varios">Total Gastos Varios</label>
+        <section class="resumen-card gastos-varios">
+            <div class="card-titulo">
+                <span class="card-icon">◈</span>
+                <h2>Gastos varios</h2>
+            </div>
+            <label for="Total-varios">Total gastos varios</label>
             <input type="text" id="Total-varios" name="Total-varios" value="$0.00" readonly>
             <a href="gastos.html">Ver Detalles</a>
         </section>
-        <section class="resumen-metas">
-            <h2>Metas</h2>
-            <label for="Total-metas">Total Metas</label>
+        <section class="resumen-card resumen-metas">
+            <div class="card-titulo">
+                <span class="card-icon">◎</span>
+                <h2>Metas</h2>
+            </div>
+            <label for="Total-metas">Total metas</label>
             <input type="text" id="Total-metas" name="Total-metas" value="$0.00" readonly>
             <a href="metas.html">Ver Metas</a>
         </section>
-        <section class="resumen-ahorros">
-            <h2>Ahorros</h2>
-            <label for="Total-ahorros">Total Ahorros</label>
+        <section class="resumen-card resumen-ahorros">
+            <div class="card-titulo">
+                <span class="card-icon">▣</span>
+                <h2>Ahorros</h2>
+            </div>
+            <label for="Total-ahorros">Total ahorros</label>
             <input type="text" id="Total-ahorros" name="Total-ahorros" value="$0.00" readonly>
             <a href="ahorros.html">Ver Ahorros</a>
         </section>
