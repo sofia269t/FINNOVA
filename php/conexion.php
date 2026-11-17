@@ -2,7 +2,7 @@
 $servidor = "localhost";
 $usuario = "root";
 $password = "";
-$baseDatos = "BD_v1.2.sql";
+$baseDatos = "Finnova";
 
 //crear conexion
 $conexion = new mysqli(
