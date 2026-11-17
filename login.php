@@ -1,3 +1,14 @@
+<?php
+require_once __DIR__ . "/php/sesion.php";
+
+if (isset($_SESSION["usuario_id"])) {
+    header("Location: pag.principal.php");
+    exit;
+}
+
+$mensaje = $_SESSION["mensaje"] ?? "";
+unset($_SESSION["mensaje"]);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,34 +19,34 @@
 </head>
 <body>
     <header>
-        <a href="index.html"><img class="logo"src="Estilos/img/logo_img.png" alt="Logo"></a>
-        <a href="index.html"><img class="logo-nombre"src="Estilos/img/Logo.png" alt="Finnova Logo"></a>
+        <a href="index.html"><img class="logo" src="Estilos/img/logo_img.png" alt="Logo"></a>
+        <a href="index.html"><img class="logo-nombre" src="Estilos/img/Logo.png" alt="Finnova Logo"></a>
         <h1>Iniciar Sesión</h1>
         <div class="user-icon">
-                    <a href="index.html">inicio</a>
-                    <img  src="Estilos/img/user-icon.png" alt="User Icon">
+            <a href="index.html">inicio</a>
+            <img src="Estilos/img/user-icon.png" alt="User Icon">
         </div>
-
     </header>
     <main>
         <section class="iniciar sesion">
-            <form action="php/login.php" method="POST">
+            <?php if ($mensaje !== ""): ?>
+                <p class="mensaje-error"><?= htmlspecialchars($mensaje, ENT_QUOTES, "UTF-8") ?></p>
+            <?php endif; ?>
+
+            <form action="php/validar_login.php" method="POST">
                 <label for="user-email">Correo:</label>
                 <input type="email" id="user-email" name="user-email" placeholder="Ingrese su correo" required>
 
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
 
-                <button type="submit" >Iniciar Sesión</button>
-</form>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
 
-           
             <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
-            
         </section>
-    
     </main>
-        <footer>
+    <footer>
         <p> &copy; 2026 Finnova. Todos los derechos reservados.</p>
     </footer>
 </body>

@@ -1,3 +1,13 @@
+<?php
+require_once __DIR__ . "/php/sesion.php";
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+
+$usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,20 +18,21 @@
 </head>
 <body>
     <header>
-        <a href="pag.principal.html"><img class="logo"src="Estilos/img/logo_img.png" alt="Logo"></a>
-        <a href="pag.principal.html"><img class="logo-nombre"src="Estilos/img/Logo.png" alt="Finnova Logo"></a>
+        <a href="pag.principal.php"><img class="logo" src="Estilos/img/logo_img.png" alt="Logo"></a>
+        <a href="pag.principal.php"><img class="logo-nombre" src="Estilos/img/Logo.png" alt="Finnova Logo"></a>
         <h1>Bienvenido</h1>
         <div class="user-icon">
-                    <p>Bienvenido, Usuario</p>
-                    <a href="perfil.html">
-                     <img  src="Estilos/img/user-icon.png" alt="User Icon">
-                    </a>
+            <p>Bienvenido, <?= $usuarioNombre ?></p>
+            <a href="perfil.html">
+                <img src="Estilos/img/user-icon.png" alt="User Icon">
+            </a>
         </div>
         <div class="sub-menu">
             <ul>
                 <li><a href="perfil.html">Perfil</a></li>
-                <li><a href="index.html">Cerrar Sesión</a></li>
+                <li><a href="php/logout.php">Cerrar Sesión</a></li>
             </ul>
+        </div>
     </header>
 
     <main>
@@ -33,19 +44,18 @@
                 <li><a href="metas.html">Metas</a></li>
                 <li><a href="presupuesto.html">Presupuesto</a></li>
                 <li><a href="#">Reportes</a></li>
-                <li><label for="total-restante"> Total restante:</label>
+                <li>
+                    <label for="total-restante"> Total restante:</label>
                     <input type="text" id="total-restante" name="total-restante" value="$0.00" readonly>
-                
                 </li>
             </ul>
         </div>
         <section class="bienvenida">
             <img src="Estilos/img/logo_completo.png" alt="logo finnova">
-            <h2>Bienvenido (nombre)</h2>
+            <h2>Bienvenido <?= $usuarioNombre ?></h2>
             <p>¿Por donde quieres empezar hoy?</p>
             <a href="ingresos.html">Registra tus ingresos</a>
             <a href="gastos.html">Registra tus gastos</a>
-            
         </section>
     </main>
     <footer>
