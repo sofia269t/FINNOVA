@@ -22,12 +22,14 @@ if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
+// Nota: Si tus contraseñas de prueba en la BD (como '123456') tienen menos de 8 caracteres, 
+// puedes comentar esta validación también si te llega a dar problemas al registrar.
 if (strlen($contraseña) < 8) {
     echo "<script>alert('La contraseña debe tener al menos 8 caracteres.'); window.history.back();</script>";
     exit;
 }
 
-$consultaExiste = "SELECT usuId FROM usuario WHERE usuCorreo = ? LIMIT 1";
+$consultaExiste = "SELECT idUsuario FROM usuario WHERE usuCorreo = ? LIMIT 1";
 $stmtExiste = $conexion->prepare($consultaExiste);
 $stmtExiste->bind_param("s", $correo);
 $stmtExiste->execute();
@@ -42,10 +44,19 @@ if ($resultado->num_rows > 0) {
 
 $stmtExiste->close();
 
-$hash = password_hash($contraseña, PASSWORD_DEFAULT);
+/* =========================================================
+   CÓDIGO ORIGINAL CON CIFRADO (COMENTADO)
+   =========================================================
+   $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+   $sql = "INSERT INTO usuario (usuNombre, usuApellido, usuTelefono, usuCorreo, usuContraseña) VALUES (?, ?, ?, ?, ?)";
+   $stmt = $conexion->prepare($sql);
+   $stmt->bind_param("sssss", $nombres, $apellidos, $telefono, $correo, $hash);
+   ========================================================= */
+
+// Registro SIN cifrado (guarda la contraseña tal cual la escribe el usuario)
 $sql = "INSERT INTO usuario (usuNombre, usuApellido, usuTelefono, usuCorreo, usuContraseña) VALUES (?, ?, ?, ?, ?)";
 $stmt = $conexion->prepare($sql);
-$stmt->bind_param("sssss", $nombres, $apellidos, $telefono, $correo, $hash);
+$stmt->bind_param("sssss", $nombres, $apellidos, $telefono, $correo, $contraseña);
 
 if ($stmt->execute()) {
     echo "<script>alert('¡Usuario registrado exitosamente!'); window.location.href = '../login.php';</script>";

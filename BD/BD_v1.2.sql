@@ -315,3 +315,9 @@ call finnova.sp_crear_usuario('Jose Antonio ', 'Rodriguez Rodriguez', '32455465'
 call finnova.sp_registrar_gasto(5, 100000, '2026-09-26', 'Varios', 'cumpleaños');
 call finnova.sp_registrar_ingreso(1, 1750000, '2026-09-25', 'Salario');
 
+select * from administrador;
+select * from ahorro;
+select * from gastos;
+select * from ingreso;
+select * from meta;
+select * from usuario;
