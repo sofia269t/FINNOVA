@@ -13,19 +13,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Consulta preparada
     $sql = "SELECT * FROM usuario
-            WHERE usuCorreo = ?";
+            WHERE  usuCorreo = ? AND usuContraseña = ?";
 
     $stmt = $conexion->prepare($sql);
 
-    $stmt->bind_param("s", $correo);
+    $stmt->bind_param("ss", $correo, $contraseña );
 
     $stmt->execute();
 
     $resultado = $stmt->get_result();
 
     if ($fila = $resultado->fetch_assoc()) {
-        if (password_verify($contraseña, $fila["usuContraseña"])) {
-            session_start();
+
             header("Location: ../pag.principal.html");
         } else {
             echo "No se encontró el usuario por favor registre su cuenta.";
@@ -35,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
-}
+
 
 $conexion->close();
 ?>
