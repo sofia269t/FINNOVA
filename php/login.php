@@ -1,40 +1,46 @@
 <?php
 
-require_once "conexion.php";
+require_once __DIR__ . "/sesion.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$mensaje = $_SESSION["mensaje"] ?? "";
+unset($_SESSION["mensaje"]);
 
-    $correo = trim($_POST["user-email"] ?? "");
-    $contraseña = trim($_POST["password"] ?? "");
+if($mensaje !== "") {
+    echo "<p>". htmlspecialchars($mensaje) . "</p>";
+}
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if ($correo === "") {
-        die("Debe ingresar un correo.");
-    }
+//     $correo = trim($_POST["user-email"] ?? "");
+//     $contraseña = trim($_POST["password"] ?? "");
 
-    // Consulta preparada
-    $sql = "SELECT * FROM usuario
-            WHERE  usuCorreo = ? AND usuContraseña = ?";
+//     if ($correo === "") {
+//         die("Debe ingresar un correo.");
+//     }
 
-    $stmt = $conexion->prepare($sql);
+//     // Consulta preparada
+//     $sql = "SELECT * FROM usuario
+//             WHERE  usuCorreo = ? AND usuContraseña = ?";
 
-    $stmt->bind_param("ss", $correo, $contraseña );
+//     $stmt = $conexion->prepare($sql);
 
-    $stmt->execute();
+//     $stmt->bind_param("ss", $correo, $contraseña );
 
-    $resultado = $stmt->get_result();
+//     $stmt->execute();
 
-    if ($fila = $resultado->fetch_assoc()) {
+//     $resultado = $stmt->get_result();
 
-            header("Location: ../pag.principal.html");
-        } else {
-            echo "No se encontró el usuario por favor registre su cuenta.";
-        }
-    } else {
-        echo "No se encontró el usuario por favor registre su cuenta.";
-    }
+//     if ($fila = $resultado->fetch_assoc()) {
 
-    $stmt->close();
+//             header("Location: ../pag.principal.html");
+//         } else {
+//             echo "No se encontró el usuario por favor registre su cuenta.";
+//         }
+//     } else {
+//         echo "No se encontró el usuario por favor registre su cuenta.";
+//     }
+
+//     $stmt->close();
 
 
-$conexion->close();
+// $conexion->close();
 ?>
