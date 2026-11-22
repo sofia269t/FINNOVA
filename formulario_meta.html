@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto</title>
+    <link rel="stylesheet" href="Estilos/presupuesto.css">
+</head>
+<body>
+    <header>
+        <a href="pag.principal.php"><img class="logo" src="Estilos/img/logo_img.png" alt="Logo"></a>
+        <a href="pag.principal.php"><img class="logo-nombre" src="Estilos/img/Logo.png" alt="Finnova Logo"></a>
+        <h1>Presupuesto</h1>
+        <div class="user-icon">
+                    <p>Usuario</p>
+                    <a href="perfil.html">
+                        <img  src="Estilos/img/user-icon.png" alt="User Icon">
+                    </a>
+        </div>
+        <div class="sub-menu">
+            <ul>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="index.html">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <main>
+        <div class="menu">
+            <ul>
+                <li><a href="ingresos.html">Ingresos</a></li>
+                <li><a href="gastos.html">Gastos</a></li>
+                <li><a href="ahorros.html">Ahorros</a></li>
+                <li><a href="metas.php">Metas</a></li>
+                <li><a href="presupuesto.html" class="activo">Presupuesto</a></li>
+                <li><a href="#">Reportes</a></li>
+                <li><label for="total-restante"> Total restante:</label>
+                    <input type="text" id="total-restante" name="total-restante" value="$0.00" readonly>
+                
+                </li>
+            </ul>
+        </div>
+    <main>
+        <h1>Registrar aporte</h1>
+        <p>El aporte se asociará a la meta que seleccionaste y se registrará con la fecha y hora actuales.</p>
+        <p id="error-id-meta" class="error" role="alert" hidden>No se recibió una meta válida. Vuelve al detalle de una de tus metas.</p>
+
+        <form action="php/formulario_meta.php" method="post" id="formulario-aporte">
+            <input type="hidden" name="idMeta" id="idMeta">
+
+            <label for="monto">Monto del aporte
+                <input type="number" id="monto" name="monto" min="0.01" max="9999999999.99" step="0.01" placeholder="0.00" required>
+            </label>
+
+            <label for="descripcion">Descripción (opcional)
+                <textarea id="descripcion" name="descripcion" maxlength="150" rows="3" placeholder="Ej.: Ahorro de esta semana"></textarea>
+            </label>
+
+            <button type="submit" id="guardar-aporte">Guardar aporte</button>
+        </form>
+
+        <div class="acciones">
+            <a href="metas.php" id="volver">Volver a mis metas</a>
+        </div>
+    </main>
+    <script>
+        const parametros = new URLSearchParams(window.location.search);
+        const idMeta = parametros.get("idMeta");
+        const campoIdMeta = document.getElementById("idMeta");
+        const errorIdMeta = document.getElementById("error-id-meta");
+        const botonGuardar = document.getElementById("guardar-aporte");
+
+        if (!idMeta || !/^[1-9]\d*$/.test(idMeta)) {
+            errorIdMeta.hidden = false;
+            botonGuardar.disabled = true;
+        } else {
+            campoIdMeta.value = idMeta;
+            document.getElementById("volver").href = `php/detalle_meta.php?idMeta=${encodeURIComponent(idMeta)}`;
+        }
+    </script>
+</body>
+</html>
