@@ -26,9 +26,15 @@ if (!$stmt) {
     http_response_code(500);
     exit("No fue posible consultar tus metas.");
 }
-$stmt->bind_param("i", $_SESSION["usuario_id"]);
-$stmt->execute();
+$usuarioId = (int) $_SESSION["usuario_id"];
+$stmt->bind_param("i", $usuarioId);
+if (!$stmt->execute()) {
+    http_response_code(500);
+    exit("No fue posible cargar tus metas.");
+}
 $metas = $stmt->get_result();
+$mensajeMeta = $_SESSION["mensaje_meta"] ?? "";
+unset($_SESSION["mensaje_meta"]);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -73,7 +79,10 @@ $metas = $stmt->get_result();
             </ul>
         </div>
         <section class="metas">
-
+            <a href="crear_meta.html" class="btn-graficas">Crear nueva meta</a>
+            <?php if ($mensajeMeta !== ""): ?>
+                <p role="status"><?= htmlspecialchars($mensajeMeta, ENT_QUOTES, "UTF-8") ?></p>
+            <?php endif; ?>
                 <!--En esta parte el sistema va a buscar en la base de datos la informacion de las metas del usuario que tiene la sesion iniciada
                  y las va a mostrar en esta seccion primero el nombre de la meta, al lado el valor de la meta, abajo la fecha que coloco el usuario
                   y abajo una barra de progreso todo esto dentro de un bloque y cada meta tendra su categoria sin extender el codigo-->
@@ -97,18 +106,7 @@ $metas = $stmt->get_result();
                 <?php endwhile; ?>
             <?php endif; ?>
         </section>
-        <!-- <section class="en-reparacion" aria-labelledby="titulo-reparacion">
-            <img src="Estilos/img/Finnova_en_reparación.png"
-                 alt="Finnova está en reparación y volverá pronto">
-            <p class="etiqueta-reparacion">Sección en mantenimiento</p>
-            <h2 id="titulo-reparacion">Estamos mejorando tus metas</h2>
-            <p class="mensaje-reparacion">
-                Esta sección se encuentra temporalmente en reparación.
-                Pronto podrás organizar y hacer seguimiento de tus metas financieras.
-            </p>
-            <a href="pag.principal.php">Volver al inicio</a>
-        </section>
-    </main> -->
+    </main>
     <footer>
         <p> &copy; 2026 Finnova. Todos los derechos reservados.</p>
     </footer>

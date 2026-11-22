@@ -926,6 +926,106 @@ LEFT JOIN gastos g ON u.idUsuario = g.gasUsuario
 LEFT JOIN ahorro a ON u.idUsuario = a.ahorUsuario
 GROUP BY u.idUsuario, u.usuNombre, u.usuApellido;
 
+DROP PROCEDURE IF EXISTS sp_registrar_ahorro;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_registrar_ahorro(
+    IN p_idUsuario INT,
+    IN p_monto INT,
+    IN p_fecha DATE
+)
+BEGIN
+    DECLARE v_total INT DEFAULT 0;
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+
+    IF p_monto IS NULL OR p_monto <= 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El monto del ahorro debe ser mayor que cero';
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM usuario
+        WHERE idUsuario = p_idUsuario
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El usuario no existe';
+    END IF;
+
+    INSERT INTO ahorro(
+        ahorFecha,
+        ahorMonto,
+        ahorUsuario
+    )
+    VALUES(
+        COALESCE(p_fecha, CURDATE()),
+        p_monto,
+        p_idUsuario
+    );
+
+    SELECT COALESCE(SUM(ahorMonto), 0)
+    INTO v_total
+    FROM ahorro
+    WHERE ahorUsuario = p_idUsuario;
+
+    COMMIT;
+
+    SELECT
+        LAST_INSERT_ID() AS idAhorro,
+        v_total AS total_ahorrado,
+        'Ahorro registrado exitosamente' AS mensaje;
+
+END$$
+
+DELIMITER ; 	
+
+DROP PROCEDURE IF EXISTS sp_historial_ahorro;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_historial_ahorro(
+    IN p_idUsuario INT
+)
+BEGIN
+
+    -- TOTAL AHORRADO
+    SELECT
+        COALESCE(SUM(ahorMonto), 0) AS total_ahorrado
+    FROM ahorro
+    WHERE ahorUsuario = p_idUsuario;
+
+
+    -- HISTORIAL DE AHORROS
+    SELECT
+        idAhorro,
+        ahorFecha,
+        ahorMonto
+    FROM ahorro
+    WHERE ahorUsuario = p_idUsuario
+    ORDER BY ahorFecha DESC, idAhorro DESC;
+
+END$$
+
+DELIMITER ; 	 	
+
+
+-- Registrar un ahorro de $100.000 para el usuario 1
+CALL sp_registrar_ahorro(1, 100000, '2026-11-22');
+
+-- Consultar el historial y el total ahorrado
+CALL sp_historial_ahorro(1);
+
+-- Consultar el total directamente
+SELECT total_ahorros(1) AS total_ahorrado;
+
 -- Probar Funciones
 SELECT total_ingresos(1) AS Total_Ingresos;
 SELECT saldo_disponible(1) AS Saldo_Disponible;
