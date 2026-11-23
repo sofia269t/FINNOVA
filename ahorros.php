@@ -50,7 +50,7 @@ unset($_SESSION["mensaje_ahorro"]);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahorros </title>
+    <title>Ahorros</title>
     <link rel="stylesheet" href="Estilos/ahorros.css">
 </head>
 <body>
@@ -109,7 +109,11 @@ unset($_SESSION["mensaje_ahorro"]);
                 </div>
             </div>
 
-            <form class="formulario" action="formulario_ahorros.php" method="POST">
+            <?php if ($mensajeMeta !== ""): ?>
+                <p class="mensaje-estado"><?= htmlspecialchars($mensajeMeta) ?></p>
+            <?php endif; ?>
+
+            <form class="formulario" action="php/formulario_ahorros.php" method="POST">
                 <div class="campo">
                     <label for="cantidad">Valor del ahorro</label>
                     <input type="number" id="cantidad" name="cantidad"
@@ -142,7 +146,6 @@ unset($_SESSION["mensaje_ahorro"]);
                                     <th scope="col">Movimiento</th>
                                     <th scope="col">Valor</th>
                                     <th scope="col">Fecha</th>
-                                    
                                 </tr>
                             </thead>
                             <tbody id="listaMovimientos">

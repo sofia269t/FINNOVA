@@ -3,8 +3,8 @@
 
 date_default_timezone_set("America/Bogota");
 
-require_once __DIR__ . "/php/sesion.php";
-require_once __DIR__ . "/php/conexion.php";
+require_once __DIR__ . "/sesion.php";
+require_once __DIR__ . "/conexion.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
