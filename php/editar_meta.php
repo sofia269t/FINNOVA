@@ -107,7 +107,7 @@ $error = filter_input(INPUT_GET, "error", FILTER_UNSAFE_RAW);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar meta - FINNOVA</title>
+    <title>Editar meta</title>
     <link rel="stylesheet" href="../Estilos/metas.css">
 </head>
 <body>
