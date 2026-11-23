@@ -44,12 +44,33 @@ if (!$stmt->execute()) {
 $resultado = $stmt->get_result();
 $meta = $resultado->fetch_assoc();
 $stmt->close();
-$conexion->close();
 
 if (!$meta) {
+    $conexion->close();
     http_response_code(404);
     exit("No se encontró la meta solicitada.");
 }
+
+$sqlAportes = "SELECT apmMonto, apmFecha, apmDescripcion
+               FROM aporte_meta
+               WHERE apmMeta = ?
+               ORDER BY apmFecha DESC, idAporte DESC";
+$stmtAportes = $conexion->prepare($sqlAportes);
+if (!$stmtAportes) {
+    $conexion->close();
+    http_response_code(500);
+    exit("No fue posible consultar el historial de aportes.");
+}
+$stmtAportes->bind_param("i", $idMeta);
+if (!$stmtAportes->execute()) {
+    $stmtAportes->close();
+    $conexion->close();
+    http_response_code(500);
+    exit("No fue posible cargar el historial de aportes.");
+}
+$aportes = $stmtAportes->get_result();
+$stmtAportes->close();
+$conexion->close();
 
 $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario", ENT_QUOTES, "UTF-8");
 $mensajeAporte = $_SESSION["mensaje_aporte"] ?? "";
@@ -113,7 +134,39 @@ $porcentaje = number_format((float) $meta["porcentaje_progreso"], 2, ".", "");
             <label for="progreso-meta">Progreso: <?= $porcentaje ?>%</label>
             <progress id="progreso-meta" value="<?= $porcentaje ?>" max="100"><?= $porcentaje ?>%</progress>
             <p><a href="../formulario_meta.html?idMeta=<?= (int) $meta["idMeta"] ?>">Registrar un aporte</a></p>
+            <p><a href="editar_meta.php?idMeta=<?= (int) $meta["idMeta"] ?>">Editar meta</a></p>
             <p><a href="../metas.php">Volver a mis metas</a></p>
+
+            <section class="historial-meta" aria-labelledby="titulo-historial-meta">
+                <h2 id="titulo-historial-meta">Historial de aportes</h2>
+                <?php if ($aportes->num_rows === 0): ?>
+                    <p class="sin-aportes">Todavía no hay aportes registrados para esta meta.</p>
+                <?php else: ?>
+                    <div class="tabla-historial-meta">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while ($aporte = $aportes->fetch_assoc()):
+                                    $descripcion = trim((string) ($aporte["apmDescripcion"] ?? ""));
+                                    $descripcion = $descripcion !== "" ? $descripcion : "Sin descripción";
+                                ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars(date("d/m/Y H:i", strtotime($aporte["apmFecha"])), ENT_QUOTES, "UTF-8") ?></td>
+                                        <td>$<?= number_format((float) $aporte["apmMonto"], 2, ",", ".") ?></td>
+                                        <td><?= htmlspecialchars($descripcion, ENT_QUOTES, "UTF-8") ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
+            </section>
         </section>
     </main>
 </body>
