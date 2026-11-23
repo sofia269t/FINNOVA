@@ -1,0 +1,460 @@
+
+/* =====================================
+   CONFIGURACIÓN GENERAL
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f3f6f8;
+    color: #263238;
+    min-height: 100vh;
+}
+
+/* =====================================
+   ENCABEZADO
+===================================== */
+
+header {
+    width: 100%;
+    height: 90px;
+    background: #123b35;
+    display: flex;
+    align-items: center;
+    padding: 0 35px;
+    gap: 20px;
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.logo-nombre {
+    width: 130px;
+    height: auto;
+    object-fit: contain;
+}
+
+header h1 {
+    color: white;
+    font-size: 28px;
+    margin-left: 15px;
+    font-weight: 600;
+}
+
+.user-icon {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+}
+
+.user-icon p {
+    font-size: 15px;
+}
+
+.user-icon img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+/* =====================================
+   SUBMENÚ DE USUARIO
+===================================== */
+
+.sub-menu {
+    position: absolute;
+    top: 90px;
+    right: 25px;
+    background: white;
+    min-width: 160px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 10;
+}
+
+.user-icon:hover ~ .sub-menu,
+.sub-menu:hover {
+    display: block;
+}
+
+.sub-menu ul {
+    list-style: none;
+}
+
+.sub-menu li a {
+    display: block;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #263238;
+}
+
+.sub-menu li a:hover {
+    background: #e7f1ed;
+    color: #16805d;
+}
+
+/* =====================================
+   CONTENIDO PRINCIPAL
+===================================== */
+
+main {
+    display: flex;
+    min-height: calc(100vh - 150px);
+    align-items: flex-start;
+}
+
+/* =====================================
+   MENÚ LATERAL
+===================================== */
+
+.menu {
+    width: 245px;
+    min-width: 245px;
+    background: #ffffff;
+    min-height: calc(100vh - 150px);
+    padding: 25px 15px;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu ul li {
+    margin-bottom: 12px;
+}
+
+.menu ul li a {
+    display: block;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: #455a64;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.menu ul li a:hover {
+    background: #e5f2ed;
+    color: #16805d;
+}
+
+.menu ul li a.activo {
+    background: #d9eee5;
+    color: #137653;
+    font-weight: bold;
+    border-left: 4px solid #16805d;
+}
+
+#total-restante {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #dce5e1;
+    border-radius: 7px;
+    margin-top: 8px;
+    background: #f5f8f6;
+    font-weight: bold;
+    color: #16805d;
+    font-size: 16px;
+}
+
+.menu label {
+    display: block;
+    color: #455a64;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+/* =====================================
+   SECCIÓN DE METAS
+===================================== */
+
+.metas {
+    flex: 1;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =====================================
+   BOTÓN CREAR META
+===================================== */
+
+.btn-graficas {
+    display: inline-block;
+    background: #16805d;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 30px;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(22, 128, 93, 0.15);
+}
+
+.btn-graficas:hover {
+    background: #105e44;
+    transform: translateY(-2px);
+}
+
+/* =====================================
+   MENSAJES
+===================================== */
+
+.metas > p[role="status"] {
+    background: #e2f4e9;
+    color: #17643d;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 22px;
+    border-left: 4px solid #16805d;
+}
+
+.metas > p:not([role="status"]) {
+    color: #718096;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* =====================================
+   TARJETAS DE METAS
+===================================== */
+
+.meta {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 27px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e8eeeb;
+    transition: 0.3s;
+}
+
+.meta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+}
+
+.meta h2 {
+    font-size: 23px;
+    color: #123b35;
+    margin-bottom: 18px;
+    font-weight: 650;
+}
+
+.meta p {
+    color: #607078;
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.meta p:last-of-type {
+    margin-top: 12px;
+    color: #16805d;
+    font-weight: 600;
+}
+
+/* =====================================
+   BARRA DE PROGRESO
+===================================== */
+
+.meta progress {
+    display: block;
+    width: 100%;
+    height: 15px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #e5ece8;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.meta progress::-webkit-progress-bar {
+    background: #e5ece8;
+    border-radius: 20px;
+}
+
+.meta progress::-webkit-progress-value {
+    background: linear-gradient(90deg, #16805d, #42bd83);
+    border-radius: 20px;
+}
+
+.meta progress::-moz-progress-bar {
+    background: linear-gradient(90deg, #16805d, #42bd83);
+    border-radius: 20px;
+}
+
+/* =====================================
+   BOTONES DE CADA META
+===================================== */
+
+.meta a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 11px 19px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 10px 8px 0 0;
+    transition: 0.3s;
+}
+
+.meta a:first-of-type {
+    background: #16805d;
+    color: white;
+}
+
+.meta a:first-of-type:hover {
+    background: #105e44;
+}
+
+.meta a:last-of-type {
+    background: #e8f1ed;
+    color: #16805d;
+}
+
+.meta a:last-of-type:hover {
+    background: #d4e7dd;
+}
+
+/* =====================================
+   PIE DE PÁGINA
+===================================== */
+
+footer {
+    background: #123b35;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+/* =====================================
+   DISEÑO RESPONSIVE
+===================================== */
+
+@media (max-width: 900px) {
+
+    header {
+        padding: 0 18px;
+        gap: 12px;
+    }
+
+    header h1 {
+        font-size: 23px;
+    }
+
+    .menu {
+        width: 200px;
+        min-width: 200px;
+    }
+
+    .metas {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    header {
+        height: auto;
+        min-height: 80px;
+        flex-wrap: wrap;
+        padding: 15px;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-nombre {
+        width: 95px;
+    }
+
+    header h1 {
+        font-size: 20px;
+        margin-left: 0;
+    }
+
+    .user-icon {
+        margin-left: auto;
+    }
+
+    .user-icon p {
+        display: none;
+    }
+
+    .sub-menu {
+        top: 75px;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    .menu {
+        width: 100%;
+        min-width: 100%;
+        min-height: auto;
+        padding: 12px;
+    }
+
+    .menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .menu ul li {
+        margin: 0;
+        flex: 1 1 125px;
+    }
+
+    .menu ul li a {
+        padding: 10px;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .menu ul li:last-child {
+        flex-basis: 100%;
+    }
+
+    .metas {
+        width: 100%;
+        padding: 20px 15px;
+    }
+
+    .meta {
+        padding: 20px;
+    }
+
+    .meta h2 {
+        font-size: 20px;
+    }
+
+    .meta a {
+        margin-top: 8px;
+    }
+}
