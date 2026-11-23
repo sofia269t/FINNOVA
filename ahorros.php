@@ -42,7 +42,7 @@ $stmtTotal->bind_param("i", $usuarioId);
 $stmtTotal->execute();
 $totalAhorrado = (float) ($stmtTotal->get_result()->fetch_assoc()["total_ahorrado"] ?? 0);
 
-$mensajeMeta = $_SESSION["mensaje_ahorro"] ?? "";
+$mensajeAhorro = $_SESSION["mensaje_ahorro"] ?? "";
 unset($_SESSION["mensaje_ahorro"]);
 ?>
 <!DOCTYPE html>
@@ -109,8 +109,8 @@ unset($_SESSION["mensaje_ahorro"]);
                 </div>
             </div>
 
-            <?php if ($mensajeMeta !== ""): ?>
-                <p class="mensaje-estado"><?= htmlspecialchars($mensajeMeta) ?></p>
+            <?php if ($mensajeAhorro !== ""): ?>
+                <p class="mensaje-estado"><?= htmlspecialchars($mensajeAhorro) ?></p>
             <?php endif; ?>
 
             <form class="formulario" action="php/formulario_ahorros.php" method="POST">
