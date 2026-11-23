@@ -50,7 +50,7 @@ unset($_SESSION["mensaje_ahorro"]);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahorros - Finnova</title>
+    <title>Ahorros </title>
     <link rel="stylesheet" href="Estilos/ahorros.css">
 </head>
 <body>
@@ -100,20 +100,16 @@ unset($_SESSION["mensaje_ahorro"]);
                 <div>
                     <p class="etiqueta">Mi ahorro</p>
                     <h2>Ahorros</h2>
-                    <p class="descripcion">Organiza tu dinero y alcanza tus objetivos.</p>
+                    <p class="descripcion">Organiza tu dinero</p>
                 </div>
 
                 <div class="saldo">
                     <span>Saldo actual</span>
-                    <strong id="saldo">$<?= number_format($totalAhorrado, 2) ?></strong>
+                    <strong id="saldo">$<?= number_format($totalAhorrado, 0) ?></strong>
                 </div>
             </div>
 
-            <?php if ($mensajeMeta !== ""): ?>
-                <p class="mensaje-estado"><?= htmlspecialchars($mensajeMeta) ?></p>
-            <?php endif; ?>
-
-            <form class="formulario" action="#" method="get">
+            <form class="formulario" action="formulario_ahorros.php" method="POST">
                 <div class="campo">
                     <label for="cantidad">Valor del ahorro</label>
                     <input type="number" id="cantidad" name="cantidad"
@@ -146,7 +142,7 @@ unset($_SESSION["mensaje_ahorro"]);
                                     <th scope="col">Movimiento</th>
                                     <th scope="col">Valor</th>
                                     <th scope="col">Fecha</th>
-                                    <th scope="col">Estado</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody id="listaMovimientos">
@@ -156,7 +152,6 @@ unset($_SESSION["mensaje_ahorro"]);
                                         <td><?= $monto >= 0 ? "Ahorro" : "Retiro" ?></td>
                                         <td>$<?= number_format(abs($monto), 2) ?></td>
                                         <td><?= htmlspecialchars($fila["ahorFecha"]) ?></td>
-                                        <td>Completado</td>
                                     </tr>
                                 <?php endwhile; ?>
                             </tbody>
