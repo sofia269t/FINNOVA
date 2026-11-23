@@ -38,7 +38,7 @@ $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario");
     <main>
         <div class="menu">
             <ul>
-                <li><a href="ingresos.html">Ingresos</a></li>
+                <li><a href="php/ingresos.php">Ingresos</a></li>
                 <li><a href="gastos.html">Gastos</a></li>
                 <li><a href="ahorros.html">Ahorros</a></li>
                 <li><a href="metas.html">Metas</a></li>
@@ -54,7 +54,7 @@ $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario");
             <img src="Estilos/img/logo_completo.png" alt="logo finnova">
             <h2>Bienvenido <?= $usuarioNombre ?></h2>
             <p>¿Por donde quieres empezar hoy?</p>
-            <a href="ingresos.html">Registra tus ingresos</a>
+            <a href="php/ingresos.php">Registra tus ingresos</a>
             <a href="gastos.html">Registra tus gastos</a>
         </section>
     </main>
