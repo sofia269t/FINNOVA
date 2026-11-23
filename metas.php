@@ -101,6 +101,7 @@ unset($_SESSION["mensaje_meta"]);
                         <progress id="meta-<?= (int) $meta["idMeta"] ?>" value="<?= $porcentaje ?>" max="100"><?= $porcentaje ?>%</progress>
                         <p>Ahorrado: $<?= number_format((float) $meta["total_ahorrado"], 2, ",", ".") ?> (<?= $porcentaje ?>%)</p>
                         <a href="formulario_meta.html?idMeta=<?= (int) $meta["idMeta"] ?>">Agregar aporte</a>
+                        <a class="editar-meta-link" href="php/editar_meta.php?idMeta=<?= (int) $meta["idMeta"] ?>">Editar meta</a>
                         <a href="php/detalle_meta.php?idMeta=<?= (int) $meta["idMeta"] ?>">Ver meta</a>
                     </article>
                 <?php endwhile; ?>
