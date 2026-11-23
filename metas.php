@@ -68,7 +68,7 @@ unset($_SESSION["mensaje_meta"]);
             <ul>
                 <li><a href="ingresos.html">Ingresos</a></li>
                 <li><a href="gastos.html">Gastos</a></li>
-                <li><a href="ahorros.html">Ahorros</a></li>
+                <li><a href="ahorros.php">Ahorros</a></li>
                 <li><a href="metas.php" class="activo">Metas</a></li>
                 <li><a href="presupuesto.html">Presupuesto</a></li>
                 <li><a href="#">Reportes</a></li>

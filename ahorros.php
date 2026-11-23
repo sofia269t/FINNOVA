@@ -9,32 +9,28 @@ if (!isset($_SESSION["usuario_id"])) {
 
 $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario");
 $sql = "SELECT
-            m.idMeta,
-            m.metNombre,
-            m.metFechaFin,
-            m.metMontoObjetivo,
-            m.metEstado,
-            COALESCE(SUM(a.apmMonto), 0) AS total_ahorrado,
-            ROUND(LEAST(COALESCE(SUM(a.apmMonto), 0) / NULLIF(m.metMontoObjetivo, 0) * 100, 100), 2) AS porcentaje_progreso
-        FROM meta m
-        LEFT JOIN aporte_meta a ON a.apmMeta = m.idMeta
-        WHERE m.metUsuario = ?
-        GROUP BY m.idMeta, m.metNombre, m.metFechaFin, m.metMontoObjetivo, m.metEstado
-        ORDER BY m.metFechaFin ASC";
+            a.idAhorro,
+            a.ahorFecha,
+            a.ahorMonto,
+            a.ahorUsuario
+            COALESCE(SUM(a.ahorMonto), 0) AS total_ahorrado,
+        FROM ahorro a
+        WHERE a.ahorUsuario = ?
+        ORDER BY a.ahorFecha ASC";
 $stmt = $conexion->prepare($sql);
 if (!$stmt) {
     http_response_code(500);
-    exit("No fue posible consultar tus metas.");
+    exit("No fue posible consultar tus ahorros.");
 }
 $usuarioId = (int) $_SESSION["usuario_id"];
 $stmt->bind_param("i", $usuarioId);
 if (!$stmt->execute()) {
     http_response_code(500);
-    exit("No fue posible cargar tus metas.");
+    exit("No fue posible cargar tus ahorro.");
 }
 $metas = $stmt->get_result();
-$mensajeMeta = $_SESSION["mensaje_meta"] ?? "";
-unset($_SESSION["mensaje_meta"]);
+$mensajeMeta = $_SESSION["mensaje_ahorro"] ?? "";
+unset($_SESSION["mensaje_ahorro"]);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -73,7 +69,7 @@ unset($_SESSION["mensaje_meta"]);
                 <ul>
                     <li><a href="ingresos.html">Ingresos</a></li>
                     <li><a href="gastos.html">Gastos</a></li>
-                    <li><a href="ahorros.html" class="activo" aria-current="page">Ahorros</a></li>
+                    <li><a href="ahorros.php" class="activo" aria-current="page">Ahorros</a></li>
                     <li><a href="metas.php">Metas</a></li>
                     <li><a href="presupuesto.html">Presupuesto</a></li>
                     <li><a href="#">Reportes</a></li>
@@ -142,7 +138,7 @@ unset($_SESSION["mensaje_meta"]);
                     </table>
                 </div>
 
-                <a class="borrar-historial" href="ahorros.html">Borrar historial</a>
+                <a class="borrar-historial" href="ahorros.php">Borrar historial</a>
             </section>
         </section>
     </main>
