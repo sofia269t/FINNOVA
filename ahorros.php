@@ -8,27 +8,40 @@ if (!isset($_SESSION["usuario_id"])) {
 }
 
 $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario");
+$usuarioId = (int) $_SESSION["usuario_id"];
+
+// 1. Movimientos del historial
 $sql = "SELECT
             a.idAhorro,
             a.ahorFecha,
             a.ahorMonto,
             a.ahorUsuario
-            COALESCE(SUM(a.ahorMonto), 0) AS total_ahorrado,
         FROM ahorro a
         WHERE a.ahorUsuario = ?
         ORDER BY a.ahorFecha ASC";
+
 $stmt = $conexion->prepare($sql);
 if (!$stmt) {
     http_response_code(500);
     exit("No fue posible consultar tus ahorros.");
 }
-$usuarioId = (int) $_SESSION["usuario_id"];
+
 $stmt->bind_param("i", $usuarioId);
 if (!$stmt->execute()) {
     http_response_code(500);
-    exit("No fue posible cargar tus ahorro.");
+    exit("No fue posible cargar tus ahorros.");
 }
-$metas = $stmt->get_result();
+$movimientos = $stmt->get_result();
+
+// 2. Total ahorrado acumulado
+$sqlTotal = "SELECT COALESCE(SUM(ahorMonto), 0) AS total_ahorrado
+             FROM ahorro
+             WHERE ahorUsuario = ?";
+$stmtTotal = $conexion->prepare($sqlTotal);
+$stmtTotal->bind_param("i", $usuarioId);
+$stmtTotal->execute();
+$totalAhorrado = (float) ($stmtTotal->get_result()->fetch_assoc()["total_ahorrado"] ?? 0);
+
 $mensajeMeta = $_SESSION["mensaje_ahorro"] ?? "";
 unset($_SESSION["mensaje_ahorro"]);
 ?>
