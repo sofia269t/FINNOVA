@@ -28,3 +28,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Acceso no permitido.";
 }
+
+
+
+require_once "conexion_mysqli.php";
+
+// Verificar si se enviaron los datos
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Capturar información del formulario
+    $idAhorro = trim($_POST["idAhorro"]);
+    $ahorFecha = date("Y-m-d"); // Fecha actual
+    $ahorMonto = trim($_POST["ahorMonto"]);
+}
+    // Validar campos obligatorios
+    if ($idAhorro == "" || $ahorMonto == "") {
+
+        echo "El ID de ahorro y el monto son obligatorios.";
+
+    } else {
+
+        // Consulta SQL para insertar
+        $sql = "INSERT INTO ahorros (ahorFecha, ahorMonto)
+                VALUES (?, ?, ?)";
+        
+
+        // Preparar consulta
+        $stmt = $conexion->prepare($sql);
+
+        // Asociar los 7 parámetros
+        $stmt->bind_param(
+            "ss",
+            
+            $ahorFecha,
+            $ahorMonto
+        );
+            
+        };
