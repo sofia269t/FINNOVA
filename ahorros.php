@@ -113,7 +113,7 @@ unset($_SESSION["mensaje_ahorro"]);
                 <p class="mensaje-estado"><?= htmlspecialchars($mensajeAhorro) ?></p>
             <?php endif; ?>
 
-            <form class="formulario" action="php/formulario_ahorros.php" method="POST">
+            <form class="formulario" action="php/formulario_ahorro.php" method="POST">
                 <div class="campo">
                     <label for="cantidad">Valor del ahorro</label>
                     <input type="number" id="cantidad" name="cantidad"
