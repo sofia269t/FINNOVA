@@ -28,12 +28,9 @@ CREATE TABLE IF NOT EXISTS administrador(
 
 CREATE TABLE IF NOT EXISTS ingreso(
     idIngreso INT NOT NULL AUTO_INCREMENT,
-    ingMonto DECIMAL(12,2) NOT NULL,
+    ingMonto INT NOT NULL,
     ingFecha DATE NOT NULL,
-    ingNombre VARCHAR(100) NOT NULL DEFAULT 'Ingreso',
-    ingDescripcion VARCHAR(200) NOT NULL DEFAULT '',
-    ingFrecuencia VARCHAR(20) NOT NULL DEFAULT 'Mensual',
-    ingRecordatorio TINYINT(1) NOT NULL DEFAULT 0,
+    ingDescripcion VARCHAR(100) NOT NULL,
     ingUsuario INT NOT NULL,
     PRIMARY KEY (idIngreso),
     FOREIGN KEY (ingUsuario) REFERENCES usuario(idUsuario)
@@ -92,20 +89,20 @@ INSERT INTO administrador(adminNombre, adminCorreo, adminContraseña, usuAdminis
 VALUES
 ('Administrador Principal', 'admin@finanzas.com', '123456', 1);
 
-INSERT INTO ingreso(ingMonto, ingFecha, ingNombre, ingDescripcion, ingFrecuencia, ingUsuario)
+INSERT INTO ingreso(ingMonto, ingFecha, ingDescripcion, ingUsuario)
 VALUES
-(1500000, '2026-08-01', 'Salario', '', 'Mensual', 1),
-(300000, '2026-08-10', 'Trabajo extra', '', 'Quincenal', 1),
-(250000, '2026-08-12', 'Venta de producto', '', 'Mensual', 1),
-(180000, '2026-08-14', 'Freelance', '', 'Mensual', 1),
-(95000, '2026-08-16', 'Venta de articulo', '', 'Mensual', 1),
-(400000, '2026-08-18', 'Trabajo adicional', '', 'Mensual', 1),
-(120000, '2026-08-20', 'Comisión', '', 'Mensual', 1),
-(350000, '2026-08-22', 'Proyecto freelance', '', 'Mensual', 1),
-(75000, '2026-08-24', 'Devolución de dinero', '', 'Mensual', 1),
-(220000, '2026-08-25', 'Venta online', '', 'Mensual', 1),
-(150000, '2026-08-27', 'Trabajo extra', '', 'Quincenal', 1),
-(500000, '2026-08-29', 'Pago adicional', '', 'Mensual', 1);
+(1500000, '2026-08-01', 'Salario', 1),
+(300000, '2026-08-10', 'Trabajo extra', 1),
+(250000, '2026-08-12', 'Venta de producto', 1),
+(180000, '2026-08-14', 'Freelance', 1),
+(95000, '2026-08-16', 'Venta de articulo', 1),
+(400000, '2026-08-18', 'Trabajo adicional', 1),
+(120000, '2026-08-20', 'Comisión', 1),
+(350000, '2026-08-22', 'Proyecto freelance', 1),
+(75000, '2026-08-24', 'Devolución de dinero', 1),
+(220000, '2026-08-25', 'Venta online', 1),
+(150000, '2026-08-27', 'Trabajo extra', 1),
+(500000, '2026-08-29', 'Pago adicional', 1);
 
 INSERT INTO ahorro(ahorFecha, ahorMonto, ahorUsuario)
 VALUES
@@ -184,11 +181,11 @@ CREATE PROCEDURE sp_registrar_ingreso(
     IN p_idUsuario INT,
     IN p_monto DECIMAL(12,2),
     IN p_fecha DATE,
-    IN p_nombre VARCHAR(100)
+    IN p_descripcion VARCHAR(100)
 )
 BEGIN
-    INSERT INTO ingreso (ingMonto, ingFecha, ingNombre, ingUsuario)
-    VALUES (p_monto, p_fecha, p_nombre, p_idUsuario);
+    INSERT INTO ingreso (ingMonto, ingFecha, ingDescripcion, ingUsuario)
+    VALUES (p_monto, p_fecha, p_descripcion, p_idUsuario);
 END //
 
 
