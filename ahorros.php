@@ -1,3 +1,41 @@
+<?php
+require_once __DIR__ . "/php/sesion.php";
+require_once __DIR__ . "/php/conexion.php";
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+
+$usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario");
+$sql = "SELECT
+            m.idMeta,
+            m.metNombre,
+            m.metFechaFin,
+            m.metMontoObjetivo,
+            m.metEstado,
+            COALESCE(SUM(a.apmMonto), 0) AS total_ahorrado,
+            ROUND(LEAST(COALESCE(SUM(a.apmMonto), 0) / NULLIF(m.metMontoObjetivo, 0) * 100, 100), 2) AS porcentaje_progreso
+        FROM meta m
+        LEFT JOIN aporte_meta a ON a.apmMeta = m.idMeta
+        WHERE m.metUsuario = ?
+        GROUP BY m.idMeta, m.metNombre, m.metFechaFin, m.metMontoObjetivo, m.metEstado
+        ORDER BY m.metFechaFin ASC";
+$stmt = $conexion->prepare($sql);
+if (!$stmt) {
+    http_response_code(500);
+    exit("No fue posible consultar tus metas.");
+}
+$usuarioId = (int) $_SESSION["usuario_id"];
+$stmt->bind_param("i", $usuarioId);
+if (!$stmt->execute()) {
+    http_response_code(500);
+    exit("No fue posible cargar tus metas.");
+}
+$metas = $stmt->get_result();
+$mensajeMeta = $_SESSION["mensaje_meta"] ?? "";
+unset($_SESSION["mensaje_meta"]);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
