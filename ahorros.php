@@ -64,7 +64,7 @@ unset($_SESSION["mensaje_ahorro"]);
         <h1>Ahorros</h1>
 
         <div class="usuario">
-            <span>Usuario</span>
+            <span><?= $usuarioNombre ?></span>
             <a href="perfil.html">
                 <img src="Estilos/img/user-icon.png" alt="Ver perfil">
             </a>
@@ -105,9 +105,13 @@ unset($_SESSION["mensaje_ahorro"]);
 
                 <div class="saldo">
                     <span>Saldo actual</span>
-                    <strong id="saldo">$0.00</strong>
+                    <strong id="saldo">$<?= number_format($totalAhorrado, 2) ?></strong>
                 </div>
             </div>
+
+            <?php if ($mensajeMeta !== ""): ?>
+                <p class="mensaje-estado"><?= htmlspecialchars($mensajeMeta) ?></p>
+            <?php endif; ?>
 
             <form class="formulario" action="#" method="get">
                 <div class="campo">
@@ -125,33 +129,42 @@ unset($_SESSION["mensaje_ahorro"]);
                         <p class="etiqueta">Movimientos</p>
                         <h2 id="titulo-historial">Historial</h2>
                     </div>
+
                     <label class="filtro" for="mostrarHistorial">
                         <input type="checkbox" id="mostrarHistorial" checked>
                         Mostrar historial
                     </label>
                 </div>
 
-                <div class="tabla-contenedor">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th scope="col">Movimiento</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody id="listaMovimientos">
-                            <tr>
-                                <td colspan="4" class="sin-movimientos">
-                                    Todavía no tienes movimientos registrados.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <?php if ($movimientos->num_rows === 0): ?>
+                    <p class="sin-movimientos">Todavía no tienes movimientos registrados.</p>
+                <?php else: ?>
+                    <div class="tabla-contenedor">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Movimiento</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaMovimientos">
+                                <?php while ($fila = $movimientos->fetch_assoc()): ?>
+                                    <?php $monto = (float) $fila["ahorMonto"]; ?>
+                                    <tr>
+                                        <td><?= $monto >= 0 ? "Ahorro" : "Retiro" ?></td>
+                                        <td>$<?= number_format(abs($monto), 2) ?></td>
+                                        <td><?= htmlspecialchars($fila["ahorFecha"]) ?></td>
+                                        <td>Completado</td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <a class="borrar-historial" href="ahorros.php">Borrar historial</a>
+                    <a class="borrar-historial" href="ahorros.php">Borrar historial</a>
+                <?php endif; ?>
             </section>
         </section>
     </main>
