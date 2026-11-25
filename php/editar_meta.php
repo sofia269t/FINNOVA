@@ -117,7 +117,7 @@ $error = filter_input(INPUT_GET, "error", FILTER_UNSAFE_RAW);
         <h1>Editar meta</h1>
         <div class="user-icon">
             <p><?= $usuarioNombre ?></p>
-            <a href="../perfil.html"><img src="../Estilos/img/user-icon.png" alt="Perfil"></a>
+            <a href="../perfil.php"><img src="../Estilos/img/user-icon.png" alt="Perfil"></a>
         </div>
     </header>
 
@@ -128,8 +128,8 @@ $error = filter_input(INPUT_GET, "error", FILTER_UNSAFE_RAW);
                 <li><a href="../gastos.html">Gastos</a></li>
                 <li><a href="../ahorros.php">Ahorros</a></li>
                 <li><a href="../metas.php" class="activo">Metas</a></li>
-                <li><a href="../presupuesto.html">Presupuesto</a></li>
-                <li><a href="#">Reportes</a></li>
+                <li><a href="../presupuesto.php">Presupuesto</a></li>
+                <li><a href="../reportes/finanzas.php">Reportes</a></li>
             </ul>
         </div>
 

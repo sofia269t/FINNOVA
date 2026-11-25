@@ -95,11 +95,11 @@ $porcentaje = number_format((float) $meta["porcentaje_progreso"], 2, ".", "");
         <h1>Detalle de Meta</h1>
         <div class="user-icon">
             <p><?= $usuarioNombre ?></p>
-            <a href="../perfil.html"><img src="../Estilos/img/user-icon.png" alt="Perfil de usuario"></a>
+            <a href="../perfil.php"><img src="../Estilos/img/user-icon.png" alt="Perfil de usuario"></a>
         </div>
         <div class="sub-menu">
             <ul>
-                <li><a href="../perfil.html">Perfil</a></li>
+                <li><a href="../perfil.php">Perfil</a></li>
                 <li><a href="logout.php">Cerrar Sesión</a></li>
             </ul>
         </div>
@@ -112,7 +112,7 @@ $porcentaje = number_format((float) $meta["porcentaje_progreso"], 2, ".", "");
                 <li><a href="../gastos.html">Gastos</a></li>
                 <li><a href="../ahorros.php">Ahorros</a></li>
                 <li><a href="../metas.php" class="activo">Metas</a></li>
-                <li><a href="../presupuesto.html">Presupuesto</a></li>
+                <li><a href="../presupuesto.php">Presupuesto</a></li>
                 <li><a href="../reportes/finanzas.php">Reportes</a></li>
             </ul>
         </div>

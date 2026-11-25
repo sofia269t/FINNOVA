@@ -23,13 +23,13 @@ $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario");
         <h1>Bienvenido</h1>
         <div class="user-icon">
             <p>Bienvenido, <?= $usuarioNombre ?></p>
-            <a href="perfil.html">
+            <a href="perfil.php">
                 <img src="Estilos/img/user-icon.png" alt="User Icon">
             </a>
         </div>
         <div class="sub-menu">
             <ul>
-                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
                 <li><a href="php/logout.php">Cerrar Sesión</a></li>
             </ul>
         </div>
@@ -42,8 +42,8 @@ $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario");
                 <li><a href="gastos.html">Gastos</a></li>
                 <li><a href="ahorros.php">Ahorros</a></li>
                 <li><a href="metas.php">Metas</a></li>
-                <li><a href="presupuesto.html">Presupuesto</a></li>
-                <li><a href="#">Reportes</a></li>
+                <li><a href="presupuesto.php">Presupuesto</a></li>
+                <li><a href="reportes/finanzas.php">Reportes</a></li>
                 <li>
                     <label for="total-restante"> Total restante:</label>
                     <input type="text" id="total-restante" name="total-restante" value="$0.00" readonly>

@@ -267,6 +267,30 @@ header h1 {
   margin: 28px 0;
 }
 
+.form-editar-perfil .dato {
+  display: grid;
+  gap: 8px;
+  color: var(--texto-suave);
+  font-size: 12px;
+}
+
+.form-editar-perfil input {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 7px;
+  color: var(--texto);
+  background: #f8fafc;
+  font: inherit;
+  font-size: 15px;
+}
+
+.form-editar-perfil .boton-editar {
+  border: 0;
+  cursor: pointer;
+}
+
 .dato {
   padding: 16px;
   border-radius: 9px;
@@ -298,6 +322,10 @@ header h1 {
   flex-direction: column;
   gap: 8px;
   margin-top: 20px;
+}
+
+#frecuencia-notificaciones[hidden] {
+  display: none;
 }
 
 .opcion label {

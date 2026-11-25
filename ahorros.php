@@ -65,13 +65,13 @@ unset($_SESSION["mensaje_ahorro"]);
 
         <div class="usuario">
             <span><?= $usuarioNombre ?></span>
-            <a href="perfil.html">
+            <a href="perfil.php">
                 <img src="Estilos/img/user-icon.png" alt="Ver perfil">
             </a>
         </div>
 
         <nav class="sub-menu" aria-label="Opciones de usuario">
-            <a href="perfil.html">Perfil</a>
+            <a href="perfil.php">Perfil</a>
             <a href="index.html">Cerrar sesión</a>
         </nav>
     </header>
@@ -84,8 +84,8 @@ unset($_SESSION["mensaje_ahorro"]);
                     <li><a href="gastos.html">Gastos</a></li>
                     <li><a href="ahorros.php" class="activo" aria-current="page">Ahorros</a></li>
                     <li><a href="metas.php">Metas</a></li>
-                    <li><a href="presupuesto.html">Presupuesto</a></li>
-                    <li><a href="#">Reportes</a></li>
+                    <li><a href="presupuesto.php">Presupuesto</a></li>
+                    <li><a href="reportes/finanzas.php">Reportes</a></li>
                 </ul>
             </nav>
 

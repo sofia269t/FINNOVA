@@ -51,13 +51,13 @@ unset($_SESSION["mensaje_meta"]);
         <h1>Metas</h1>
         <div class="user-icon">
                     <p><?= $usuarioNombre ?></p>
-                    <a href="perfil.html">
+                    <a href="perfil.php">
                         <img  src="Estilos/img/user-icon.png" alt="User Icon">
                     </a>
         </div>
         <div class="sub-menu">
             <ul>
-                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
                 <li><a href="index.html">Cerrar Sesión</a></li>
             </ul>
         </div>
@@ -70,8 +70,8 @@ unset($_SESSION["mensaje_meta"]);
                 <li><a href="gastos.html">Gastos</a></li>
                 <li><a href="ahorros.php">Ahorros</a></li>
                 <li><a href="metas.php" class="activo">Metas</a></li>
-                <li><a href="presupuesto.html">Presupuesto</a></li>
-                <li><a href="#">Reportes</a></li>
+                <li><a href="presupuesto.php">Presupuesto</a></li>
+                <li><a href="reportes/finanzas.php">Reportes</a></li>
                 <li><label for="total-restante"> Total restante:</label>
                     <input type="text" id="total-restante" name="total-restante" value="$0.00" readonly>
                 
@@ -99,7 +99,7 @@ unset($_SESSION["mensaje_meta"]);
                         <p>Fecha límite: <?= htmlspecialchars(date("d/m/Y", strtotime($meta["metFechaFin"])), ENT_QUOTES, "UTF-8") ?></p>
                         <p>Estado: <?= htmlspecialchars($meta["metEstado"], ENT_QUOTES, "UTF-8") ?></p>
                         <progress id="meta-<?= (int) $meta["idMeta"] ?>" value="<?= $porcentaje ?>" max="100"><?= $porcentaje ?>%</progress>
-                        <p>Ahorrado: $<?= number_format((float) $meta["total_ahorrado"], 2, ",", ".") ?> (<?= $porcentaje ?>%)</p>
+                        <p>Total ahorrado según aportes: $<?= number_format((float) $meta["total_ahorrado"], 2, ",", ".") ?> (<?= $porcentaje ?>%)</p>
                         <a href="formulario_meta.html?idMeta=<?= (int) $meta["idMeta"] ?>">Agregar aporte</a>
                         <a class="editar-meta-link" href="php/editar_meta.php?idMeta=<?= (int) $meta["idMeta"] ?>">Editar meta</a>
                         <a href="php/detalle_meta.php?idMeta=<?= (int) $meta["idMeta"] ?>">Ver meta</a>
