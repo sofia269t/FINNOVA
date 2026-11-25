@@ -157,6 +157,32 @@ body {
     font-size: 15px;
 }
 
+.formulario-eliminar {
+    margin-top: 14px;
+}
+
+.formulario-eliminar p {
+    margin: 0 0 8px;
+    color: #66717e;
+    font-size: 12px;
+}
+
+.boton-eliminar {
+    padding: 7px 10px;
+    border: 1px solid #b42318;
+    border-radius: 5px;
+    color: #b42318;
+    background: #fff;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.boton-eliminar:hover {
+    color: #fff;
+    background: #b42318;
+}
+
 .boton-agregar {
     display: inline-flex;
     align-items: center;

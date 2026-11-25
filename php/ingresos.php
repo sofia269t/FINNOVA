@@ -8,7 +8,8 @@ if (!isset($_SESSION["usuario_id"])) {
 
 require_once __DIR__ . "/conexion.php";
 $usuarioId = (int) $_SESSION["usuario_id"];
-$sql = "SELECT ingNombre, ingMonto, ingFecha, ingDescripcion, ingFrecuencia
+// Se incluye idIngreso para que cada tarjeta pueda enviar el registro correcto al eliminarlo.
+$sql = "SELECT idIngreso, ingNombre, ingMonto, ingFecha, ingDescripcion, ingFrecuencia
         FROM ingreso
         WHERE ingUsuario = ?
         ORDER BY ingFecha DESC, idIngreso DESC";
@@ -38,6 +39,12 @@ while ($fila = $resultado->fetch_assoc()) {
 $stmt->close();
 $conexion->close();
 $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario", ENT_QUOTES, "UTF-8");
+
+// Crea un token aleatorio una vez por sesión para proteger el formulario de eliminación.
+if (!isset($_SESSION["csrf_token"])) {
+    $_SESSION["csrf_token"] = bin2hex(random_bytes(32));
+}
+$tokenCSRF = $_SESSION["csrf_token"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -84,6 +91,8 @@ $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario", ENT_
             <div class="lista-ingresos">
                 <?php foreach ($ingresos as $ingreso): ?>
                     <?php
+                    // Convierte el ID a entero y escapa los textos antes de mostrarlos en la página.
+                    $idIngreso = (int) $ingreso["idIngreso"];
                     $nombre = htmlspecialchars($ingreso["ingNombre"], ENT_QUOTES, "UTF-8");
                     $monto = number_format((float) $ingreso["ingMonto"], 2, ",", ".");
                     $fecha = htmlspecialchars($ingreso["ingFecha"], ENT_QUOTES, "UTF-8");
@@ -99,6 +108,15 @@ $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario", ENT_
                         <?php if ($descripcion !== ""): ?>
                             <p class="fecha-ingreso"><?= htmlspecialchars($descripcion, ENT_QUOTES, "UTF-8") ?></p>
                         <?php endif; ?>
+                        <!-- Envía el ID y el token al PHP que procesa la eliminación. -->
+                        <form class="formulario-eliminar" action="eliminar_ingreso.php" method="POST">
+                            <input type="hidden" name="idIngreso" value="<?= $idIngreso ?>">
+                            <input type="hidden" name="csrf_token"
+                                   value="<?= htmlspecialchars($tokenCSRF, ENT_QUOTES, "UTF-8") ?>">
+                            <!-- Aviso visible: no se usa JavaScript para pedir confirmación. -->
+                            <p>Eliminar este ingreso no se puede deshacer.</p>
+                            <button class="boton-eliminar" type="submit">Eliminar ingreso</button>
+                        </form>
                     </article>
                 <?php endforeach; ?>
             </div>
