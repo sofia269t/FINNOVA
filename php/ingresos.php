@@ -108,6 +108,12 @@ $tokenCSRF = $_SESSION["csrf_token"];
                         <?php if ($descripcion !== ""): ?>
                             <p class="fecha-ingreso"><?= htmlspecialchars($descripcion, ENT_QUOTES, "UTF-8") ?></p>
                         <?php endif; ?>
+                        <!-- Abre la ficha de solo lectura del ingreso seleccionado. -->
+                        <a class="boton-consultar"
+                           href="consultar_ingreso.php?idIngreso=<?= $idIngreso ?>">Consultar</a>
+                        <!-- Abre la edición del ingreso seleccionado usando su identificador. -->
+                        <a class="boton-editar"
+                           href="editar_ingreso.php?idIngreso=<?= $idIngreso ?>">Editar ingreso</a>
                         <!-- Envía el ID y el token al PHP que procesa la eliminación. -->
                         <form class="formulario-eliminar" action="eliminar_ingreso.php" method="POST">
                             <input type="hidden" name="idIngreso" value="<?= $idIngreso ?>">

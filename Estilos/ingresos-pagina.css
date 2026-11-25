@@ -161,6 +161,40 @@ body {
     margin-top: 14px;
 }
 
+/* Distingue la consulta de solo lectura de la acción para editar el ingreso. */
+.boton-consultar {
+    display: inline-block;
+    margin: 14px 8px 0 0;
+    padding: 7px 10px;
+    border: 1px solid #cfd4db;
+    border-radius: 5px;
+    color: #30343b;
+    background: #fff;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.boton-consultar:hover {
+    background: #f3f5f7;
+}
+
+/* Mantiene el enlace de edición con el estilo de los controles de cada ingreso. */
+.boton-editar {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 7px 10px;
+    border: 1px solid #cfd4db;
+    border-radius: 5px;
+    color: #30343b;
+    background: #fff;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.boton-editar:hover {
+    background: #f3f5f7;
+}
+
 .formulario-eliminar p {
     margin: 0 0 8px;
     color: #66717e;
@@ -374,6 +408,26 @@ summary:focus-visible {
     .lista-ingresos,
     .tarjeta-ingreso {
         width: 100%;
+    }
+
+    .detalle-ingreso {
+        width: min(100%, 520px);
+    }
+
+    .detalle-ingreso dl {
+        display: grid;
+        grid-template-columns: minmax(120px, 1fr) 2fr;
+        gap: 12px;
+        margin: 0;
+    }
+
+    .detalle-ingreso dt {
+        color: #66717e;
+    }
+
+    .detalle-ingreso dd {
+        margin: 0;
+        overflow-wrap: anywhere;
     }
 
     .boton-agregar {
