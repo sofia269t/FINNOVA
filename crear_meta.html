@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear meta - FINNOVA</title>
+    <link rel="stylesheet" href="Estilos/presupuesto.css">
+
+</head>
+<body>
+    <header>
+        <a href="pag.principal.php"><img class="logo" src="Estilos/img/logo_img.png" alt="Logo"></a>
+        <a href="pag.principal.php"><img class="logo-nombre" src="Estilos/img/Logo.png" alt="FINNOVA"></a>
+        <h1>Crear nueva meta</h1>
+    </header>
+
+    <main>
+        <section class="inicio formulario-meta">
+            <h2>Datos de la meta</h2>
+            <p class="descripcion">Completa los datos de tu objetivo financiero. La meta quedará asociada a tu cuenta.</p>
+            <p id="mensaje-error" class="error" role="alert" hidden></p>
+
+            <form action="php/crear_meta.php" method="post">
+                <label for="metNombre">Nombre de la meta
+                    <input type="text" id="metNombre" name="metNombre" maxlength="100" required>
+                </label>
+
+                <label for="metMontoObjetivo">Monto objetivo
+                    <input type="number" id="metMontoObjetivo" name="metMontoObjetivo" min="0.01" max="9999999999.99" step="0.01" placeholder="0.00" required>
+                </label>
+
+                <label for="metFechaInicio">Fecha de inicio
+                    <input type="date" id="metFechaInicio" name="metFechaInicio" required>
+                </label>
+
+                <label for="metFechaFin">Fecha límite
+                    <input type="date" id="metFechaFin" name="metFechaFin" required>
+                </label>
+
+                <button type="submit">Crear meta</button>
+            </form>
+            <a class="volver-metas" href="metas.php">Volver a mis metas</a>
+        </section>
+    </main>
+
+    <script>
+        const fechaInicio = document.getElementById("metFechaInicio");
+        const fechaFin = document.getElementById("metFechaFin");
+        const ahoraLocal = new Date();
+        ahoraLocal.setMinutes(ahoraLocal.getMinutes() - ahoraLocal.getTimezoneOffset());
+        const hoy = ahoraLocal.toISOString().slice(0, 10);
+        fechaInicio.value = hoy;
+
+        function siguienteDia(fecha) {
+            const siguiente = new Date(`${fecha}T00:00:00`);
+            siguiente.setDate(siguiente.getDate() + 1);
+            return `${siguiente.getFullYear()}-${String(siguiente.getMonth() + 1).padStart(2, "0")}-${String(siguiente.getDate()).padStart(2, "0")}`;
+        }
+
+        function actualizarFechaLimite() {
+            const minimo = siguienteDia(fechaInicio.value || hoy);
+            fechaFin.min = minimo;
+            if (!fechaFin.value || fechaFin.value < minimo) {
+                fechaFin.value = minimo;
+            }
+        }
+
+        fechaInicio.addEventListener("change", actualizarFechaLimite);
+        actualizarFechaLimite();
+
+        const error = new URLSearchParams(window.location.search).get("error");
+        if (error) {
+            const mensaje = document.getElementById("mensaje-error");
+            mensaje.textContent = error;
+            mensaje.hidden = false;
+        }
+    </script>
+</body>
+</html>

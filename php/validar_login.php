@@ -35,9 +35,9 @@ if (!$usuario) {
     exit;
 }
 
-/* =========================================================
+/*
    CÓDIGO ORIGINAL CON ENCRIPTACIÓN (COMENTADO)
-   =========================================================
+
    $passwordValida = password_verify($contraseña, $usuario["usuContraseña"]);
 
    if (!$passwordValida && hash_equals($usuario["usuContraseña"] ?? "", $contraseña)) {
@@ -50,7 +50,7 @@ if (!$usuario) {
            $update->close();
        }
    }
-   ========================================================= */
+*/
 
 // Validación SIN encriptación (comparación directa de texto plano)
 $passwordValida = ($contraseña === $usuario["usuContraseña"]);
