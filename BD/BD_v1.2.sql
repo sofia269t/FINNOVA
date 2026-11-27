@@ -1,4 +1,4 @@
--- DROP DATABASE IF EXISTS Finnova;
+ DROP DATABASE IF EXISTS Finnova;
 CREATE DATABASE IF NOT EXISTS Finnova;
 USE Finnova;
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS aporte_meta(
 
 -- 2. REGISTROS INICIALES
 
---hola
+
 INSERT INTO usuario (usuNombre, usuApellido, usuTelefono, usuCorreo, usuContraseña, usuAdministrador)
 VALUES
 ('Johan', 'Morales', '3001234567', 'johan@gmail.com', '123456', 1),

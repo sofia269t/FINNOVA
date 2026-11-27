@@ -59,42 +59,50 @@ $tokenCSRF = $_SESSION["csrf_token"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingresos - Finnova</title>
-    <link rel="stylesheet" href="../Estilos/ingresos-pagina.css">
+    <link rel="stylesheet" href="../Estilos/ingresos-pagina.css?v=2">
 </head>
-<body class="pagina-ingresos">
+<body>
     <header class="encabezado">
-        <details class="menu-desplegable">
-            <summary class="boton-menu" aria-label="Abrir menú de navegación">
-                <span></span>
-                <span></span>
-                <span></span>
-            </summary>
-            <nav class="menu-navegacion" aria-label="Navegación principal">
-                <a href="../pag.principal.php">Inicio</a>
-                <a href="ingresos.php" aria-current="page">Ingresos</a>
-                <a href="../gastos.html">Gastos</a>
-                <a href="../ahorros.html">Ahorros</a>
-                <a href="../metas.html">Metas</a>
-                <a href="../presupuesto.html">Presupuesto</a>
-                <a href="logout.php">Cerrar sesión</a>
-            </nav>
-        </details>
-
-        <a class="enlace-logo" href="../pag.principal.php" aria-label="Volver al inicio">
-            <img class="logo" src="../Estilos/img/logo_img.png" alt="">
+        <a href="../pag.principal.php" aria-label="Ir al inicio">
+            <img class="logo" src="../Estilos/img/logo_img.png" alt="Logo de Finnova">
+        </a>
+        <a href="../pag.principal.php" aria-label="Ir al inicio">
+            <img class="logo-nombre" src="../Estilos/img/Logo.png" alt="Finnova">
         </a>
         <h1>Ingresos</h1>
 
         <div class="usuario">
             <span><?= $usuarioNombre ?></span>
-            <a href="../perfil.html" aria-label="Ver perfil">
+            <a href="../perfil.php" aria-label="Ver perfil">
                 <img src="../Estilos/img/user-icon.png" alt="">
             </a>
         </div>
+        <nav class="sub-menu" aria-label="Opciones de usuario">
+            <a href="../perfil.php">Perfil</a>
+            <a href="../php/logout.php">Cerrar sesión</a>
+        </nav>
     </header>
 
-    <main class="contenido">
-        <section class="vista-ingresos" aria-label="Mis ingresos">
+    <main>
+        <aside class="menu">
+            <nav aria-label="Navegación principal">
+                <ul>
+                    <li><a href="../php/ingresos.php" class="activo" aria-current="page">Ingresos</a></li>
+                    <li><a href="../gastos.html">Gastos</a></li>
+                    <li><a href="../ahorros.php">Ahorros</a></li>
+                    <li><a href="../metas.php">Metas</a></li>
+                    <li><a href="../presupuesto.php">Presupuesto</a></li>
+                    <li><a href="../reportes/finanzas.php">Reportes</a></li>
+                </ul>
+            </nav>
+            <div class="total">
+                <label for="total-restante">Total restante:</label>
+                <input type="text" id="total-restante" value="$0.00" readonly>
+            </div>
+        </aside>
+
+        <section class="contenido">
+            <section class="vista-ingresos" aria-label="Mis ingresos">
             <div class="lista-ingresos">
                 <?php foreach ($ingresos as $ingreso): ?>
                     <?php
@@ -138,6 +146,7 @@ $tokenCSRF = $_SESSION["csrf_token"];
                 <span aria-hidden="true">+</span>
                 Agregar ingresos
             </a>
+            </section>
         </section>
     </main>
 </body>

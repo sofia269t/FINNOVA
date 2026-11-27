@@ -1,70 +1,54 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 :root {
-    color: #30343b;
-    background: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+    --principal: #19a38c;
+    --principal-oscuro: #097563;
+    --texto: #263445;
+    --texto-suave: #66758a;
+    --fondo: #f2f6fc;
+    --borde: #dce5f0;
+    --azul-claro: #eaf2ff;
 }
 
 body {
-    min-width: 320px;
     min-height: 100vh;
-    margin: 0;
+    color: var(--texto);
+    background: var(--fondo);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .encabezado {
     position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
-    gap: 16px;
-    min-height: 72px;
-    padding: 10px 24px;
-    border-bottom: 1px solid #d8dce2;
+    gap: 20px;
+    min-height: 85px;
+    padding: 12px 25px;
     background: #fff;
-}
-
-.boton-menu {
-    display: grid;
-    gap: 5px;
-    width: 28px;
-    padding: 5px 2px;
-    list-style: none;
-    cursor: pointer;
-}
-
-.boton-menu::-webkit-details-marker {
-    display: none;
-}
-
-.menu-desplegable[open] > .menu-navegacion {
-    display: grid;
-}
-
-.boton-menu span {
-    width: 22px;
-    height: 2px;
-    border-radius: 2px;
-    background: #30343b;
-}
-
-.enlace-logo {
-    display: flex;
-    align-items: center;
+    box-shadow: 0 3px 12px rgb(0 0 0 / 8%);
 }
 
 .logo {
-    display: block;
-    width: 58px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.logo-nombre {
+    width: 150px;
+    max-height: 60px;
     object-fit: contain;
 }
 
 .encabezado h1 {
-    margin: 0;
-    font-size: 21px;
-    font-weight: 600;
+    margin-left: 10px;
+    color: var(--principal);
+    font-size: 24px;
 }
 
 .usuario {
@@ -72,144 +56,208 @@ body {
     align-items: center;
     gap: 14px;
     margin-left: auto;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .usuario a {
-    display: flex;
-    align-items: center;
+    display: block;
 }
 
 .usuario img {
-    width: 30px;
-    height: 30px;
+    width: 38px;
+    height: 38px;
     object-fit: contain;
 }
 
-.menu-navegacion {
+.sub-menu {
     position: absolute;
-    z-index: 2;
-    top: calc(100% + 1px);
-    left: 16px;
+    top: 74px;
+    right: 20px;
+    z-index: 3;
     display: none;
-    min-width: 190px;
-    padding: 8px;
-    border: 1px solid #e0e3e8;
+    min-width: 160px;
+    padding: 6px 0;
+    border: 1px solid var(--borde);
     border-radius: 8px;
     background: #fff;
-    box-shadow: 0 8px 20px rgb(25 35 50 / 12%);
+    box-shadow: 0 5px 18px rgb(0 0 0 / 12%);
 }
 
-.menu-navegacion a {
-    padding: 10px 12px;
-    border-radius: 5px;
-    color: #30343b;
+.usuario:hover + .sub-menu,
+.sub-menu:hover,
+.usuario:focus-within + .sub-menu {
+    display: grid;
+}
+
+.sub-menu a {
+    padding: 10px 14px;
+    color: var(--texto);
     text-decoration: none;
 }
 
-.menu-navegacion a:hover,
-.menu-navegacion a:focus-visible {
-    background: #eff5f8;
+.sub-menu a:hover,
+.sub-menu a:focus-visible {
+    color: var(--principal-oscuro);
+    background: #f7faff;
+}
+
+main {
+    display: flex;
+    min-height: calc(100vh - 85px);
+}
+
+.menu {
+    position: fixed;
+    top: 85px;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 245px;
+    padding: 25px 15px;
+    overflow-y: auto;
+    background: var(--principal);
+}
+
+.menu ul {
+    display: grid;
+    gap: 10px;
+    list-style: none;
+}
+
+.menu a {
+    display: block;
+    padding: 13px 15px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    transition: background .2s, padding-left .2s;
+}
+
+.menu a:hover,
+.menu a.activo {
+    padding-left: 22px;
+    background: var(--principal-oscuro);
+}
+
+.total {
+    margin-top: 25px;
+}
+
+.total label {
+    display: block;
+    margin: 0 5px 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.total input {
+    width: 100%;
+    padding: 12px 10px;
+    border: 0;
+    border-radius: 8px;
+    color: var(--principal-oscuro);
+    background: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .contenido {
-    min-height: calc(100vh - 72px);
+    width: min(calc(100% - 245px), 1100px);
+    margin-left: 245px;
+    padding: 48px 40px 60px;
 }
 
 .vista-ingresos {
-    display: flex;
-    align-items: flex-start;
-    gap: 60px;
-    padding: 52px clamp(24px, 10.5vw, 110px);
+    width: 100%;
 }
 
 .lista-ingresos {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
 }
 
 .tarjeta-ingreso {
-    width: 258px;
-    min-height: 135px;
-    padding: 15px;
-    border: 1px solid #cfd4db;
-    border-radius: 7px;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
     background: #fff;
+    box-shadow: 0 5px 18px rgb(25 61 110 / 7%);
 }
 
 .tarjeta-ingreso h2 {
-    margin: 0 0 12px;
+    margin-bottom: 12px;
+    color: var(--texto);
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
+    overflow-wrap: anywhere;
 }
 
 .monto-ingreso {
-    margin: 0 0 12px;
-    color: #30343b;
-    font-size: 17px;
+    margin-bottom: 14px;
+    color: var(--principal-oscuro);
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .fecha-ingreso {
-    margin: 0;
-    color: #454a52;
-    font-size: 15px;
+    margin: 7px 0;
+    color: var(--texto-suave);
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
 }
 
 .formulario-eliminar {
     margin-top: 14px;
-}
-
-/* Distingue la consulta de solo lectura de la acción para editar el ingreso. */
-.boton-consultar {
-    display: inline-block;
-    margin: 14px 8px 0 0;
-    padding: 7px 10px;
-    border: 1px solid #cfd4db;
-    border-radius: 5px;
-    color: #30343b;
-    background: #fff;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-.boton-consultar:hover {
-    background: #f3f5f7;
-}
-
-/* Mantiene el enlace de edición con el estilo de los controles de cada ingreso. */
-.boton-editar {
-    display: inline-block;
-    margin-top: 14px;
-    padding: 7px 10px;
-    border: 1px solid #cfd4db;
-    border-radius: 5px;
-    color: #30343b;
-    background: #fff;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-.boton-editar:hover {
-    background: #f3f5f7;
+    padding-top: 12px;
+    border-top: 1px solid var(--borde);
 }
 
 .formulario-eliminar p {
-    margin: 0 0 8px;
-    color: #66717e;
+    margin-bottom: 8px;
+    color: var(--texto-suave);
     font-size: 12px;
 }
 
-.boton-eliminar {
-    padding: 7px 10px;
-    border: 1px solid #b42318;
-    border-radius: 5px;
-    color: #b42318;
-    background: #fff;
+.boton-consultar,
+.boton-editar,
+.boton-eliminar,
+.boton-agregar,
+.boton-guardar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    margin: 12px 8px 0 0;
+    padding: 8px 12px;
+    border: 1px solid var(--principal);
+    border-radius: 7px;
+    color: #fff;
+    background: var(--principal);
     font: inherit;
     font-size: 13px;
+    text-decoration: none;
     cursor: pointer;
+    transition: background .2s, border-color .2s;
+}
+
+.boton-consultar:hover,
+.boton-editar:hover,
+.boton-agregar:hover,
+.boton-guardar:hover {
+    border-color: var(--principal-oscuro);
+    background: var(--principal-oscuro);
+}
+
+.boton-eliminar {
+    border-color: #b42318;
+    color: #b42318;
+    background: #fff;
 }
 
 .boton-eliminar:hover {
@@ -217,259 +265,239 @@ body {
     background: #b42318;
 }
 
-.boton-agregar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    min-width: 176px;
-    min-height: 40px;
-    margin-top: 14px;
-    padding: 8px 14px;
-    border: 1px solid #cfd4db;
-    border-radius: 7px;
-    color: #30343b;
-    background: #fff;
-    box-shadow: 0 2px 4px rgb(25 35 50 / 10%);
-    font: inherit;
-    font-size: 14px;
-    text-decoration: none;
-}
-
-.boton-agregar:hover {
-    border-color: #738090;
-    background: #f8fafc;
-}
-
 .boton-agregar span {
-    font-size: 22px;
+    margin-right: 8px;
+    font-size: 20px;
     line-height: 1;
+}
+
+.detalle-ingreso {
+    width: min(100%, 760px);
+}
+
+.detalle-ingreso dl {
+    display: grid;
+    grid-template-columns: minmax(130px, 1fr) 2fr;
+    gap: 14px;
+    margin: 0;
+}
+
+.detalle-ingreso dt {
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.detalle-ingreso dd {
+    margin: 0;
+    color: var(--texto);
+    font-size: 14px;
+    overflow-wrap: anywhere;
 }
 
 .vista-formulario {
     position: relative;
-    padding: 34px clamp(24px, 7.5vw, 62px);
+    width: min(100%, 920px);
+    padding: 30px;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgb(25 61 110 / 7%);
 }
 
 .vista-formulario form {
     display: grid;
-    grid-template-columns: minmax(320px, 1fr) minmax(240px, 1fr);
-    gap: clamp(32px, 8vw, 100px);
-    padding-top: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+    padding-top: 28px;
 }
 
 .boton-guardar {
     position: absolute;
-    top: 4px;
-    right: 24px;
-    min-width: 58px;
-    min-height: 34px;
-    padding: 6px 12px;
-    border: 1px solid #cfd4db;
-    border-radius: 5px;
-    color: #30343b;
-    background: #fff;
-    font: inherit;
-    font-size: 13px;
-    cursor: pointer;
+    top: 16px;
+    right: 20px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.boton-guardar:hover {
-    background: #f3f5f7;
-}
-
-.campos-principales {
+.campos-principales,
+.opciones-ingreso {
     display: grid;
     align-content: start;
-    gap: 12px;
-    padding-top: 4px;
+    gap: 18px;
 }
 
 .campo-formulario {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: grid;
+    gap: 8px;
 }
 
-.campo-formulario > label {
-    flex: 0 0 190px;
-    font-size: 13px;
-    line-height: 1.35;
+.campo-formulario > label,
+.opcion-ingreso {
+    color: var(--texto);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.45;
 }
 
 .campo-formulario > input,
 .campo-formulario select,
-.campo-monto {
-    width: min(100%, 190px);
-}
-
-.campo-formulario input,
-.campo-formulario select {
-    min-height: 32px;
-    padding: 6px 8px;
-    border: 1px solid #aeb5be;
-    border-radius: 2px;
-    color: #30343b;
+.campo-monto,
+.campo-descripcion {
+    width: 100%;
+    min-height: 42px;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    color: var(--texto);
     background: #fff;
     font: inherit;
-    font-size: 13px;
+}
+
+.campo-formulario > input,
+.campo-formulario select,
+.campo-descripcion {
+    padding: 9px 12px;
 }
 
 .campo-monto {
     display: flex;
     align-items: center;
-    min-height: 32px;
-    border: 1px solid #aeb5be;
+    overflow: hidden;
 }
 
 .campo-monto span {
-    padding-left: 8px;
-    color: #66717e;
-    font-size: 13px;
+    padding-left: 12px;
+    color: var(--texto-suave);
 }
 
 .campo-monto input {
     width: 100%;
+    min-width: 0;
+    min-height: 40px;
+    padding: 9px 12px 9px 6px;
     border: 0;
-}
-
-.opciones-ingreso {
-    display: grid;
-    align-content: start;
-    gap: 22px;
-    padding-top: 4px;
+    color: var(--texto);
+    background: transparent;
+    font: inherit;
 }
 
 .opcion-ingreso {
-    display: grid;
-    grid-template-columns: minmax(0, 190px) 20px;
-    align-items: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
     gap: 14px;
-    font-size: 13px;
-    line-height: 1.35;
 }
 
 .opcion-ingreso input {
-    width: 16px;
-    height: 16px;
-    margin: 0;
-    accent-color: #1769aa;
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--principal);
 }
 
 .campo-descripcion {
-    width: 190px;
-    min-height: 32px;
-    justify-self: start;
-    margin-left: 34px;
-    padding: 6px 8px;
-    border: 1px solid #aeb5be;
-    border-radius: 2px;
-    font: inherit;
-    font-size: 13px;
+    resize: vertical;
 }
 
 button:focus-visible,
 a:focus-visible,
-input:focus-visible {
-    outline: 3px solid #7bb8e5;
-    outline-offset: 2px;
-}
-
+input:focus-visible,
+select:focus-visible,
 summary:focus-visible {
     outline: 3px solid #7bb8e5;
     outline-offset: 2px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .encabezado {
+        flex-wrap: wrap;
         gap: 10px;
-        padding: 10px 14px;
+        padding: 12px;
     }
 
     .logo {
-        width: 42px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .logo-nombre {
+        width: 105px;
     }
 
     .encabezado h1 {
-        font-size: 18px;
+        order: 3;
+        width: 100%;
+        margin: 0;
+        font-size: 20px;
+        text-align: center;
     }
 
     .usuario {
-        gap: 8px;
+        gap: 10px;
+        font-size: 12px;
+    }
+
+    .usuario img {
+        width: 32px;
+        height: 32px;
+    }
+
+    main {
+        display: block;
+    }
+
+    .menu {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .menu li {
+        margin: 0;
+    }
+
+    .menu a {
+        padding: 10px;
         font-size: 13px;
     }
 
-    .vista-ingresos {
-        flex-direction: column;
-        gap: 20px;
-        padding: 28px 20px;
+    .menu a:hover,
+    .menu a.activo {
+        padding-left: 10px;
     }
 
-    .lista-ingresos,
-    .tarjeta-ingreso {
+    .total {
         width: 100%;
+        max-width: 250px;
+        margin: 12px auto 0;
     }
 
-    .detalle-ingreso {
-        width: min(100%, 520px);
-    }
-
-    .detalle-ingreso dl {
-        display: grid;
-        grid-template-columns: minmax(120px, 1fr) 2fr;
-        gap: 12px;
+    .contenido {
+        width: 100%;
         margin: 0;
+        padding: 28px 20px 40px;
     }
 
-    .detalle-ingreso dt {
-        color: #66717e;
-    }
-
-    .detalle-ingreso dd {
-        margin: 0;
-        overflow-wrap: anywhere;
-    }
-
-    .boton-agregar {
-        margin-top: 0;
+    .lista-ingresos {
+        grid-template-columns: 1fr;
     }
 
     .vista-formulario {
-        padding: 54px 20px 28px;
+        padding: 58px 20px 24px;
     }
 
     .vista-formulario form {
         grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .campo-formulario {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .campo-formulario > label {
-        flex-basis: auto;
-    }
-
-    .campo-formulario > input,
-    .campo-formulario select,
-    .campo-monto {
-        width: 100%;
-        max-width: 340px;
-    }
-
-    .opciones-ingreso {
-        gap: 18px;
-    }
-
-    .campo-descripcion {
-        margin-left: 0;
-    }
-
-    .boton-guardar {
-        top: 10px;
-        right: 20px;
+        gap: 22px;
     }
 }

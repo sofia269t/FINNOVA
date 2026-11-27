@@ -126,7 +126,6 @@ $estadosActuales = array_unique(array_map(static function (array $meta) use ($es
 
 <nav class="menu" aria-label="Navegación principal">
     <ul>
-        <li><a href="../pag.principal.php">Inicio</a></li>
         <li><a href="../ingresos.html">Ingresos</a></li>
         <li><a href="../gastos.html">Gastos</a></li>
         <li><a href="../ahorros.php">Ahorros</a></li>

@@ -59,9 +59,9 @@ $totalIngresos = (float) $resumen["total_ingresos"];
 $totalGastos = (float) $resumen["total_gastos"];
 $gastosPrioritarios = (float) $resumen["gastos_prioritarios"];
 $gastosVarios = max(0, $totalGastos - $gastosPrioritarios);
-$totalAhorros = (float) $resumen["ahorros_registrados"] + (float) $resumen["aportes_metas"];
+$totalAhorros = (float) $resumen["ahorros_registrados"];
 $totalMetas = (float) $resumen["aportes_metas"];
-$totalRestante = $totalIngresos - $totalGastos - $totalAhorros;
+$totalRestante = $totalIngresos - $totalGastos - $totalAhorros - $totalMetas;
 $porcentajeUso = $totalIngresos > 0 ? min(100, ($totalGastos / $totalIngresos) * 100) : 0;
 $porcentajeUsoTexto = number_format($porcentajeUso, 1, ",", ".");
 $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario", ENT_QUOTES, "UTF-8");
@@ -117,7 +117,7 @@ $dinero = static fn(float $valor): string => "$" . number_format($valor, 2, ",",
                     <h2 id="titulo-resumen">Tu presupuesto</h2>
                     <p class="descripcion">Resumen de ingresos, gastos y ahorros de <?= htmlspecialchars($mesActual, ENT_QUOTES, "UTF-8") ?>.</p>
                 </div>
-                <a href="graficas.html" class="btn-graficas">Ver resumen y gráficas</a>
+                <a href="reportes/finanzas.php" class="btn-graficas">Ver resumen</a>
             </div>
 
             <div class="resumen-principal">
@@ -182,7 +182,7 @@ $dinero = static fn(float $valor): string => "$" . number_format($valor, 2, ",",
                 <span class="card-icon">▣</span>
                 <h2>Ahorros</h2>
             </div>
-            <label for="Total-ahorros">Ahorros y aportes del mes</label>
+            <label for="Total-ahorros">Ahorros del mes</label>
             <input type="text" id="Total-ahorros" name="Total-ahorros" value="<?= htmlspecialchars($dinero($totalAhorros), ENT_QUOTES, "UTF-8") ?>" readonly>
             <a href="ahorros.php">Ver Ahorros</a>
         </section>
