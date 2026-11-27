@@ -444,3 +444,10 @@ footer {
         margin-left: 0;
     }
 }
+
+header,
+.encabezado {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}

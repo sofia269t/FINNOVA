@@ -143,7 +143,7 @@ $usuarioTelefono = htmlspecialchars($usuario["usuTelefono"], ENT_QUOTES, "UTF-8"
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="Estilos/perfil.css">
+    <link rel="stylesheet" href="Estilos/perfil.css?v=2">
 </head>
 <body>
     <header>

@@ -14,7 +14,7 @@ $usuarioNombre = htmlspecialchars($_SESSION["usuario_nombre"] ?? "Usuario", ENT_
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar ingreso - Finnova</title>
-    <link rel="stylesheet" href="../Estilos/ingresos-pagina.css?v=2">
+    <link rel="stylesheet" href="../Estilos/ingresos-pagina.css?v=3">
 </head>
 <body>
     <header class="encabezado">

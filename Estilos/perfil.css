@@ -504,3 +504,10 @@ footer p {
     right: 10px;
   }
 }
+
+header,
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}

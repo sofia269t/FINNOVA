@@ -42,7 +42,7 @@ unset($_SESSION["mensaje_meta"]);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metas</title>
-    <link rel="stylesheet" href="Estilos/metas.css">
+    <link rel="stylesheet" href="Estilos/metas.css?v=2">
 </head>
 <body>
         <header>

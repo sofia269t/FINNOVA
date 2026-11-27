@@ -256,3 +256,10 @@ main > p {
     }
 }
 
+header,
+.encabezado {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+

@@ -73,7 +73,7 @@ $dinero = static fn(float $valor): string => "$" . number_format($valor, 2, ",",
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presupuesto</title>
-    <link rel="stylesheet" href="Estilos/presupuesto.css">
+    <link rel="stylesheet" href="Estilos/presupuesto.css?v=2">
 </head>
 <body>
     <header>

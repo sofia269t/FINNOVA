@@ -86,7 +86,7 @@ $porcentaje = number_format((float) $meta["porcentaje_progreso"], 2, ".", "");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $nombreMeta ?> - Detalle de Meta</title>
-    <link rel="stylesheet" href="../Estilos/detalle_meta.css">
+    <link rel="stylesheet" href="../Estilos/detalle_meta.css?v=2">
 </head>
 <body>
     <header>

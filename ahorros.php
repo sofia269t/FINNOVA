@@ -51,7 +51,7 @@ unset($_SESSION["mensaje_ahorro"]);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahorros</title>
-    <link rel="stylesheet" href="Estilos/ahorros.css">
+    <link rel="stylesheet" href="Estilos/ahorros.css?v=2">
 </head>
 <body>
     <header class="encabezado">

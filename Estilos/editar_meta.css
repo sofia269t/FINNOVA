@@ -216,3 +216,10 @@ header h1 {
         padding: 20px;
     }
 }
+
+header,
+.encabezado {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}

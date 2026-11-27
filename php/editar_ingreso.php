@@ -201,7 +201,7 @@ $frecuenciaActual = $ingreso["ingFrecuencia"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar ingreso - Finnova</title>
-    <link rel="stylesheet" href="../Estilos/ingresos-pagina.css?v=2">
+    <link rel="stylesheet" href="../Estilos/ingresos-pagina.css?v=3">
 </head>
 <body>
     <header class="encabezado">
