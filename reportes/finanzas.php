@@ -109,7 +109,7 @@ $estadosActuales = array_unique(array_map(static function (array $meta) use ($es
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reportes - FINNOVA</title>
-    <link rel="stylesheet" href="../Estilos/pag.principal.css">
+    <link rel="stylesheet" href="../Estilos/finanzas.css">
 </head>
 <body>
 <header>
