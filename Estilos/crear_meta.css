@@ -1,5 +1,5 @@
 
-/* ESTILOS GENERALES */
+/* CONFIGURACIÓN GENERAL */
 * {
     margin: 0;
     padding: 0;
@@ -8,18 +8,21 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f2f6fc;
+    background-color: #f2f6fc;
     color: #26364d;
 }
 
 /* ENCABEZADO */
 header {
+    width: 100%;
+    min-height: 85px;
     display: flex;
     align-items: center;
-    min-height: 85px;
     padding: 10px 30px;
-    background: white;
+    background-color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
@@ -61,7 +64,7 @@ header h1 {
     left: 0;
     width: 245px;
     height: calc(100vh - 85px);
-    background: #173b70;
+    background-color: #173b70;
     padding: 25px 15px;
     overflow-y: auto;
 }
@@ -76,15 +79,15 @@ header h1 {
 
 .menu li a {
     display: block;
+    padding: 13px 15px;
     color: white;
     text-decoration: none;
-    padding: 13px 15px;
     border-radius: 6px;
-    transition: background 0.3s;
+    transition: 0.3s;
 }
 
 .menu li a:hover {
-    background: #287bc1;
+    background-color: #287bc1;
 }
 
 /* TOTAL RESTANTE */
@@ -99,15 +102,20 @@ header h1 {
     padding: 10px;
     border: none;
     border-radius: 6px;
-    background: white;
+    background-color: white;
     color: #26364d;
 }
 
 /* CONTENIDO PRINCIPAL */
-.formulario-meta {
+main {
     margin-left: 245px;
     padding: 35px;
     min-height: calc(100vh - 85px);
+}
+
+/* FORMULARIO DE META */
+.formulario-meta {
+    width: 100%;
 }
 
 .formulario-meta h2 {
@@ -119,13 +127,15 @@ header h1 {
 .formulario-meta .descripcion {
     margin-bottom: 22px;
     line-height: 1.5;
+    color: #26364d;
 }
 
 /* FORMULARIO */
 .formulario-meta form {
+    width: 100%;
     max-width: 650px;
-    background: white;
     padding: 30px;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
@@ -147,6 +157,7 @@ header h1 {
     font-size: 15px;
     font-family: Arial, sans-serif;
     color: #26364d;
+    background-color: white;
     outline: none;
 }
 
@@ -157,28 +168,30 @@ header h1 {
 
 /* BOTÓN CREAR META */
 .formulario-meta form button {
+    display: block;
     width: 100%;
     padding: 13px;
-    background: #1769aa;
+    background-color: #1769aa;
     color: white;
     border: none;
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: 0.3s;
 }
 
 .formulario-meta form button:hover {
-    background: #104b80;
+    background-color: #104b80;
 }
 
 /* MENSAJE DE ERROR */
 .formulario-meta .error {
+    width: 100%;
     max-width: 650px;
     margin-bottom: 20px;
     padding: 12px 15px;
     color: #a12626;
-    background: #fdeaea;
+    background-color: #fdeaea;
     border: 1px solid #e8b5b5;
     border-radius: 6px;
 }
@@ -187,20 +200,20 @@ header h1 {
     display: none;
 }
 
-/* VOLVER A MIS METAS */
+/* BOTÓN VOLVER */
 .volver-metas {
     display: inline-block;
     margin-top: 18px;
     padding: 12px 25px;
-    background: #1769aa;
+    background-color: #1769aa;
     color: white;
     text-decoration: none;
     border-radius: 6px;
-    transition: background 0.3s;
+    transition: 0.3s;
 }
 
 .volver-metas:hover {
-    background: #104b80;
+    background-color: #104b80;
 }
 
 /* RESPONSIVE */
@@ -209,7 +222,7 @@ header h1 {
         width: 200px;
     }
 
-    .formulario-meta {
+    main {
         margin-left: 200px;
     }
 }
@@ -233,7 +246,7 @@ header h1 {
         height: auto;
     }
 
-    .formulario-meta {
+    main {
         margin-left: 0;
         padding: 20px;
     }
@@ -242,5 +255,7 @@ header h1 {
         padding: 20px;
     }
 }
+
+
 
 
