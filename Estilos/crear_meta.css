@@ -1,0 +1,261 @@
+
+/* CONFIGURACIÓN GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f6fc;
+    color: #26364d;
+}
+
+/* ENCABEZADO */
+header {
+    width: 100%;
+    min-height: 85px;
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    width: 65px;
+}
+
+.logo-nombre {
+    width: 150px;
+}
+
+header h1 {
+    color: #173b70;
+    font-size: 28px;
+    margin-left: 25px;
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.user-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+/* SUBMENÚ */
+.sub-menu {
+    display: none;
+}
+
+/* MENÚ LATERAL */
+.menu {
+    position: fixed;
+    top: 85px;
+    left: 0;
+    width: 245px;
+    height: calc(100vh - 85px);
+    background-color: #173b70;
+    padding: 25px 15px;
+    overflow-y: auto;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu li a {
+    display: block;
+    padding: 13px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.menu li a:hover {
+    background-color: #287bc1;
+}
+
+/* TOTAL RESTANTE */
+.menu li label {
+    display: block;
+    color: white;
+    margin: 20px 10px 8px;
+}
+
+.menu li input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: white;
+    color: #26364d;
+}
+
+/* CONTENIDO PRINCIPAL */
+main {
+    margin-left: 245px;
+    padding: 35px;
+    min-height: calc(100vh - 85px);
+}
+
+/* FORMULARIO DE META */
+.formulario-meta {
+    width: 100%;
+}
+
+.formulario-meta h2 {
+    color: #173b70;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.formulario-meta .descripcion {
+    margin-bottom: 22px;
+    line-height: 1.5;
+    color: #26364d;
+}
+
+/* FORMULARIO */
+.formulario-meta form {
+    width: 100%;
+    max-width: 650px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.formulario-meta form label {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #26364d;
+}
+
+.formulario-meta form input {
+    display: block;
+    width: 100%;
+    margin-top: 9px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    color: #26364d;
+    background-color: white;
+    outline: none;
+}
+
+.formulario-meta form input:focus {
+    border-color: #287bc1;
+    box-shadow: 0 0 4px rgba(40, 123, 193, 0.3);
+}
+
+/* BOTÓN CREAR META */
+.formulario-meta form button {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background-color: #1769aa;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.formulario-meta form button:hover {
+    background-color: #104b80;
+}
+
+/* MENSAJE DE ERROR */
+.formulario-meta .error {
+    width: 100%;
+    max-width: 650px;
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    color: #a12626;
+    background-color: #fdeaea;
+    border: 1px solid #e8b5b5;
+    border-radius: 6px;
+}
+
+.formulario-meta .error[hidden] {
+    display: none;
+}
+
+/* BOTÓN VOLVER */
+.volver-metas {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 12px 25px;
+    background-color: #1769aa;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.volver-metas:hover {
+    background-color: #104b80;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    .menu {
+        width: 200px;
+    }
+
+    main {
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 650px) {
+    header {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    header h1 {
+        font-size: 22px;
+        margin-left: 0;
+    }
+
+    .menu {
+        position: relative;
+        top: 0;
+        width: 100%;
+        height: auto;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .formulario-meta form {
+        padding: 20px;
+    }
+}
+
+
+
+

@@ -86,7 +86,7 @@ $porcentaje = number_format((float) $meta["porcentaje_progreso"], 2, ".", "");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $nombreMeta ?> - Detalle de Meta</title>
-    <link rel="stylesheet" href="../Estilos/presupuesto.css">
+    <link rel="stylesheet" href="../Estilos/detalle_meta.css">
 </head>
 <body>
     <header>
@@ -103,17 +103,23 @@ $porcentaje = number_format((float) $meta["porcentaje_progreso"], 2, ".", "");
                 <li><a href="logout.php">Cerrar Sesión</a></li>
             </ul>
         </div>
-    </header>
+</header>
 
     <main>
         <div class="menu">
             <ul>
-                <li><a href="../ingresos.html">Ingresos</a></li>
-                <li><a href="../gastos.html">Gastos</a></li>
-                <li><a href="../ahorros.php">Ahorros</a></li>
-                <li><a href="../metas.php" class="activo">Metas</a></li>
-                <li><a href="../presupuesto.php">Presupuesto</a></li>
-                <li><a href="../reportes/finanzas.php">Reportes</a></li>
+                <li><a href="ingresos.html">Ingresos</a></li>
+                <li><a href="gastos.html" class="activo">Gastos</a></li>
+                <li><a href="ahorros.php">Ahorros</a></li>
+                <li><a href="metas.php">Metas</a></li>
+                <li><a href="presupuesto.php">Presupuesto</a></li>
+                <li><a href="reportes/finanzas.php">Reportes</a></li>
+
+                <li class="total">
+                    <label for="total-restante">Total restante:</label>
+                    <input type="text" id="total-restante"
+                           name="total-restante" value="$0.00" readonly>
+                </li>
             </ul>
         </div>
 
