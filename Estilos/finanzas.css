@@ -1,0 +1,344 @@
+
+/* ESTILOS GENERALES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f6fc;
+    color: #26364d;
+}
+
+/* ENCABEZADO */
+header {
+    display: flex;
+    align-items: center;
+    min-height: 85px;
+    padding: 10px 30px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    width: 65px;
+}
+
+.logo-nombre {
+    width: 150px;
+}
+
+header h1 {
+    color: #173b70;
+    font-size: 28px;
+    margin-left: 25px;
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.user-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+/* SUBMENÚ */
+.sub-menu {
+    display: none;
+}
+
+/* MENÚ LATERAL */
+.menu {
+    position: fixed;
+    top: 85px;
+    left: 0;
+    width: 245px;
+    height: calc(100vh - 85px);
+    background: #173b70;
+    padding: 25px 15px;
+    overflow-y: auto;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu li a {
+    display: block;
+    padding: 13px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.menu li a:hover {
+    background: #287bc1;
+}
+
+/* TOTAL RESTANTE */
+.menu li label {
+    display: block;
+    color: white;
+    margin: 20px 10px 8px;
+}
+
+.menu li input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: white;
+    color: #26364d;
+}
+
+/* CONTENIDO PRINCIPAL */
+main {
+    margin-left: 245px;
+    padding: 35px;
+    min-height: calc(100vh - 85px);
+}
+
+main > h1 {
+    color: #173b70;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+main > p {
+    line-height: 1.6;
+    margin-bottom: 22px;
+    max-width: 1000px;
+}
+
+/* FORMULARIO DE FILTROS */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 18px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.filtros label {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    font-weight: bold;
+    color: #26364d;
+}
+
+.filtros input,
+.filtros select {
+    min-width: 170px;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: white;
+    color: #26364d;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.filtros input:focus,
+.filtros select:focus {
+    border-color: #287bc1;
+}
+
+/* BOTÓN CONSULTAR */
+.filtros button {
+    padding: 12px 25px;
+    background: #1769aa;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.filtros button:hover {
+    background: #104b80;
+}
+
+/* RESUMEN FINANCIERO */
+.resumen {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.resumen article {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 22px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #287bc1;
+}
+
+.resumen article span {
+    color: #52647b;
+    font-size: 14px;
+}
+
+.resumen article strong {
+    color: #173b70;
+    font-size: 21px;
+    overflow-wrap: anywhere;
+}
+
+/* DESCARGAR CSV */
+.acciones {
+    margin-bottom: 30px;
+}
+
+.acciones a {
+    display: inline-block;
+    padding: 13px 22px;
+    background: #1769aa;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.acciones a:hover {
+    background: #104b80;
+}
+
+/* TÍTULO DE LA TABLA */
+main > h2 {
+    color: #173b70;
+    font-size: 23px;
+    margin-bottom: 18px;
+}
+
+/* TABLA DE REPORTES */
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tabla-contenedor table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+.tabla-contenedor th {
+    background: #173b70;
+    color: white;
+    padding: 16px 14px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.tabla-contenedor td {
+    padding: 15px 14px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #26364d;
+    font-size: 14px;
+}
+
+.tabla-contenedor tbody tr:hover {
+    background: #f2f6fc;
+}
+
+.tabla-contenedor tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-contenedor td[colspan="5"] {
+    text-align: center;
+    padding: 25px;
+    line-height: 1.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    .menu {
+        width: 200px;
+    }
+
+    main {
+        margin-left: 200px;
+    }
+
+    .filtros {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 650px) {
+    header {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    header h1 {
+        font-size: 22px;
+        margin-left: 0;
+    }
+
+    .menu {
+        position: relative;
+        top: 0;
+        width: 100%;
+        height: auto;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .filtros {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+    }
+
+    .filtros input,
+    .filtros select {
+        width: 100%;
+    }
+
+    .filtros button {
+        width: 100%;
+    }
+
+    .resumen {
+        grid-template-columns: 1fr;
+    }
+
+    .acciones a {
+        display: block;
+        text-align: center;
+    }
+}
