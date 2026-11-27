@@ -119,17 +119,23 @@ $error = filter_input(INPUT_GET, "error", FILTER_UNSAFE_RAW);
             <p><?= $usuarioNombre ?></p>
             <a href="../perfil.php"><img src="../Estilos/img/user-icon.png" alt="Perfil"></a>
         </div>
-    </header>
+</header>
 
     <main>
         <div class="menu">
             <ul>
-                <li><a href="../ingresos.html">Ingresos</a></li>
-                <li><a href="../gastos.html">Gastos</a></li>
-                <li><a href="../ahorros.php">Ahorros</a></li>
-                <li><a href="../metas.php" class="activo">Metas</a></li>
-                <li><a href="../presupuesto.php">Presupuesto</a></li>
-                <li><a href="../reportes/finanzas.php">Reportes</a></li>
+                <li><a href="ingresos.html">Ingresos</a></li>
+                <li><a href="gastos.html" class="activo">Gastos</a></li>
+                <li><a href="ahorros.php">Ahorros</a></li>
+                <li><a href="metas.php">Metas</a></li>
+                <li><a href="presupuesto.php">Presupuesto</a></li>
+                <li><a href="reportes/finanzas.php">Reportes</a></li>
+
+                <li class="total">
+                    <label for="total-restante">Total restante:</label>
+                    <input type="text" id="total-restante"
+                           name="total-restante" value="$0.00" readonly>
+                </li>
             </ul>
         </div>
 
