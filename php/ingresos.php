@@ -119,7 +119,7 @@ $tokenCSRF = $_SESSION["csrf_token"];
                             <input type="hidden" name="idIngreso" value="<?= $idIngreso ?>">
                             <input type="hidden" name="csrf_token"
                                    value="<?= htmlspecialchars($tokenCSRF, ENT_QUOTES, "UTF-8") ?>">
-                            <!-- Aviso visible: no se usa JavaScript para pedir confirmación. -->
+                            
                             <p>Eliminar este ingreso no se puede deshacer.</p>
                             <button class="boton-eliminar" type="submit">Eliminar ingreso</button>
                         </form>
