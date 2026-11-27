@@ -89,6 +89,11 @@ header h1 {
     background: #287bc1;
 }
 
+.menu li a[aria-current="page"] {
+    background: #287bc1;
+    font-weight: bold;
+}
+
 /* TOTAL RESTANTE */
 .menu li label {
     display: block;
@@ -198,6 +203,26 @@ main > p {
     border-left: 5px solid #287bc1;
 }
 
+.resumen article:nth-child(1) {
+    border-left-color: #159570;
+}
+
+.resumen article:nth-child(2) {
+    border-left-color: #dc5656;
+}
+
+.resumen article:nth-child(3) {
+    border-left-color: #287bc1;
+}
+
+.resumen article:nth-child(4) {
+    border-left-color: #8b65c2;
+}
+
+.resumen article:nth-child(5) {
+    border-left-color: #173b70;
+}
+
 .resumen article span {
     color: #52647b;
     font-size: 14px;
@@ -304,6 +329,10 @@ main > h2 {
     header h1 {
         font-size: 22px;
         margin-left: 0;
+    }
+
+    .user-icon {
+        margin-left: auto;
     }
 
     .menu {
