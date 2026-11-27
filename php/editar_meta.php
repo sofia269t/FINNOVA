@@ -108,7 +108,7 @@ $error = filter_input(INPUT_GET, "error", FILTER_UNSAFE_RAW);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar meta</title>
-    <link rel="stylesheet" href="../Estilos/">
+    <link rel="stylesheet" href="../Estilos/editar_meta.css">
 </head>
 <body>
     <header>
