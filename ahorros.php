@@ -130,10 +130,10 @@ unset($_SESSION["mensaje_ahorro"]);
                         <h2 id="titulo-historial">Historial</h2>
                     </div>
 
-                    <label class="filtro" for="mostrarHistorial">
+                    <!-- <label class="filtro" for="mostrarHistorial">
                         <input type="checkbox" id="mostrarHistorial" checked>
                         Mostrar historial
-                    </label>
+                    </label> -->
                 </div>
 
                 <?php if ($movimientos->num_rows === 0): ?>
@@ -161,7 +161,6 @@ unset($_SESSION["mensaje_ahorro"]);
                         </table>
                     </div>
 
-                    <a class="borrar-historial" href="ahorros.php">Borrar historial</a>
                 <?php endif; ?>
             </section>
         </section>

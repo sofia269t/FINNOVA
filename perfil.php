@@ -239,7 +239,7 @@ $usuarioTelefono = htmlspecialchars($usuario["usuTelefono"], ENT_QUOTES, "UTF-8"
                     </div>
                 <?php endif; ?>
 
-                <div class="preferencias">
+                <!-- <div class="preferencias">
                     <div class="preferencias-titulo">
                         <p class="etiqueta">Preferencias</p>
                         <h3>Notificaciones y presupuesto</h3>
@@ -268,7 +268,7 @@ $usuarioTelefono = htmlspecialchars($usuario["usuTelefono"], ENT_QUOTES, "UTF-8"
                         <label for="presupuesto">Cuándo realizará el presupuesto</label>
                         <input type="date" id="presupuesto" name="presupuesto" disabled>
                     </div>
-                </div>
+                </div> -->
             </section>
         </section>
         
