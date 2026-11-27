@@ -13,7 +13,14 @@ $sql = "SELECT idIngreso, ingNombre, ingMonto, ingFecha, ingDescripcion, ingFrec
         FROM ingreso
         WHERE ingUsuario = ?
         ORDER BY ingFecha DESC, idIngreso DESC";
-$stmt = $conexion->prepare($sql);
+try {
+    $stmt = $conexion->prepare($sql);
+} catch (mysqli_sql_exception $exception) {
+    error_log("No se pudo preparar la consulta de ingresos: " . $exception->getMessage());
+    $conexion->close();
+    http_response_code(500);
+    exit("No fue posible consultar tus ingresos. Actualiza la base de datos con el esquema de ingresos v1.3.");
+}
 
 if (!$stmt) {
     error_log("No se pudo preparar la consulta de ingresos: " . $conexion->error);
